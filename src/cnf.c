@@ -12,7 +12,7 @@
 
 
 // unit propagation stack
-int_t cnf_up_stack[__ID_SIZE__];
+int_t cnf_up_stack[__MAX_BUFFER_SIZE__ + __MAX_EQ__];
 int_t cnf_up_top_stack;
 
 boolean_t cnf_assignment_buffer[__SIGNED_ID_SIZE__];
@@ -213,9 +213,10 @@ bool cnf_initiate_from_dimacs(void) {
     int_t **tmp_binary_implications = NULL, **_tmp_binary_implications;
 	int_t **tmp_ternary_implications = NULL, **_tmp_ternary_implications;
 	int_t **tmp_quaternary_implications = NULL, **_tmp_quaternary_implications;
-    _get_mem(int_t *, tmp_binary_implications, ((cnf_nb_of_vars + 1LL) << 1LL));
-	_get_mem(int_t *, tmp_ternary_implications, ((cnf_nb_of_vars + 1LL) << 1LL));
-	_get_mem(int_t *, tmp_quaternary_implications, ((cnf_nb_of_vars + 1LL) << 1LL));
+    const int_t _tmp_idx_sz = (cnf_nb_of_vars + 1LL) << 1LL;
+    _get_mem(int_t *, tmp_binary_implications, _tmp_idx_sz);
+	_get_mem(int_t *, tmp_ternary_implications, _tmp_idx_sz);
+	_get_mem(int_t *, tmp_quaternary_implications, _tmp_idx_sz);
     _tmp_binary_implications = tmp_binary_implications + cnf_nb_of_vars + 1LL;
 	_tmp_ternary_implications = tmp_ternary_implications + cnf_nb_of_vars + 1LL;
 	_tmp_quaternary_implications = tmp_quaternary_implications + cnf_nb_of_vars + 1LL;
@@ -236,7 +237,7 @@ bool cnf_initiate_from_dimacs(void) {
         switch (_dimacs_size_of_equations[i]) {
             case 1:
                 cnf_up_stack[cnf_up_top_stack++] = _dimacs_equation[0];
-                assert(cnf_up_top_stack < __ID_SIZE__);
+                assert(cnf_up_top_stack < __MAX_BUFFER_SIZE__ + __MAX_EQ__);
                 continue;
             case 2:
                 _int_vector_append(_tmp_binary_implications[-_dimacs_equation[0]], _dimacs_equation[1]);

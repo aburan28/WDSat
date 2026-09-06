@@ -31,11 +31,9 @@ extern int_t xorgauss_history_top;
 extern int_t xorgauss_step[__ID_SIZE__];
 extern int_t xorgauss_step_top;
 #ifdef __XG_ENHANCED__
-extern uint_t xorgauss_equivalency_history[__MAX_ANF_ID__][__ID_SIZE__][__SZ_GAUSS__];
-extern bool xorgauss_equivalent_history[__MAX_ANF_ID__][__ID_SIZE__];
-extern boolean_t xorgauss_assignment_buffer_history[__MAX_ANF_ID__][__SIGNED_ID_SIZE__];
-extern boolean_t xorgauss_current_degree[__ID_SIZE__];
-extern boolean_t xorgauss_current_degree_history[__MAX_ANF_ID__][__ID_SIZE__];
+void xg_segment_begin(void);
+void xg_segment_undo(void);
+void xg_save_row(uint_t i);
 #else
 extern uint_t xorgauss_mask[__ID_SIZE__][__SZ_GAUSS__];
 extern int_t xorgauss_mask_top;
@@ -46,6 +44,9 @@ extern int_t xorgauss_mask_list_top;
 extern int_t xorgauss_reset[__ID_SIZE__];
 extern int_t xorgauss_reset_top;
 #endif
+void xg_bit_set(uint_t *, uint_t);
+void xg_bit_reset(uint_t *, uint_t);
+void xg_flip_constant(uint_t *);
 
 bool xorgauss_from_dimacs(void);
 bool xorgauss_initiate_from_dimacs(void);
@@ -67,12 +68,14 @@ void xorgauss_fprint_for_xorset(void);
 
 #ifdef __XG_ENHANCED__ //if XG-enhanced
 
+/// Opens a new copy-on-write journal segment. State changes made until the
+/// matching xorgauss_undo() are recorded there (each row at most once per
+/// segment, at its first modification) instead of snapshotting the whole
+/// state, which is much cheaper for wide instances. The assignment state is
+/// not journaled: xorgauss_undo() restores it from xorgauss_history.
 #define _xorgauss_breakpoint \
 { \
-memcpy(xorgauss_equivalency_history[xorgauss_step_top], xorgauss_equivalency, sizeof(int_t)*__ID_SIZE__*__SZ_GAUSS__); \
-memcpy(xorgauss_equivalent_history[xorgauss_step_top], xorgauss_equivalent, sizeof(bool)*__ID_SIZE__); \
-memcpy(xorgauss_assignment_buffer_history[xorgauss_step_top], xorgauss_assignment_buffer, sizeof(boolean_t)*__SIGNED_ID_SIZE__); \
-memcpy(xorgauss_current_degree_history[xorgauss_step_top], xorgauss_current_degree, sizeof(boolean_t)*__ID_SIZE__); \
+xg_segment_begin(); \
 xorgauss_step[xorgauss_step_top++] = xorgauss_history_top; \
 }
 
@@ -99,6 +102,10 @@ xorgauss_step_mask_top && --xorgauss_step_mask_top; \
 
 #define _xorgauss_unset(_v) xorgauss_assignment[_v] = xorgauss_assignment[-_v] = __UNDEF__
 
+/// assign the equivalent flag, journaling the row first (no-op without __XG_ENHANCED__)
+#define _xg_equiv_set(_i, _b) \
+do { xg_save_row(_i); xorgauss_equivalent[_i] = (_b); } while(0)
+
 #define _xorgauss_set(_v, _tv) \
 { \
 /*printf("--------Setting %d to %d\n", _v, _tv);*/ \
@@ -113,14 +120,13 @@ xorgauss_assignment[-_v] = (boolean_t) _tv ^ (boolean_t) __TRUE__; \
 #define _boolean_vector_get(_vect, _id) \
 (_vect[(_id / __SZ_ATOM__)] & (1ULL << ((__SZ_ATOM__ - 1ULL) - (_id % __SZ_ATOM__))))
 
-#define _boolean_vector_set(_vect, _id) \
-_vect[(_id / __SZ_ATOM__)] |= (1ULL << ((__SZ_ATOM__ - 1ULL) - (_id % __SZ_ATOM__)))
+/// mutation operations route through functions that journal the row
+/// (first touch per step) when a journal segment is active
+#define _boolean_vector_set(_vect, _id) xg_bit_set(_vect, _id)
 
-#define _boolean_vector_reset(_vect, _id) \
-_vect[(_id / __SZ_ATOM__)] &= ((~0ULL) ^ (1ULL << ((__SZ_ATOM__ - 1ULL) - (_id % __SZ_ATOM__))))
+#define _boolean_vector_reset(_vect, _id) xg_bit_reset(_vect, _id)
 
-#define _boolean_vector_flip_constant(_vect) \
-_vect[0] ^= __XOR_CONSTANT_MASK__
+#define _boolean_vector_flip_constant(_vect) xg_flip_constant(_vect)
 
 #define _boolean_vector_get_constant(_vect) \
 _vect[0] & __XOR_CONSTANT_MASK__

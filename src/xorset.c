@@ -43,7 +43,7 @@ int_t size_of_xor_equation[__MAX_XEQ__];
 int_t xorset_occurrence(int_t l);
 
 // unit propagation stack
-int_t xorset_up_stack[__ID_SIZE__];
+int_t xorset_up_stack[__MAX_BUFFER_SIZE__ + __MAX_XEQ__];
 int_t xorset_up_top_stack;
 
 // index of clauses per literals
@@ -204,7 +204,8 @@ bool xorset_initiate_from_dimacs() {
     }
     /// temporary structures for indexing clauses
     int_t **tmp_idx = NULL, **_tmp_idx;
-    _get_mem(int_t *, tmp_idx, ((xorset_nb_of_vars + 1LL) << 1LL));
+    const int_t _tmp_idx_sz = (xorset_nb_of_vars + 1LL) << 1LL;
+    _get_mem(int_t *, tmp_idx, _tmp_idx_sz);
     _tmp_idx = tmp_idx + xorset_nb_of_vars + 1LL;
     for(i = 1LL; i <= _n_v; ++i) {
         _tmp_idx[i] = (int_t *) NULL;
@@ -220,7 +221,7 @@ bool xorset_initiate_from_dimacs() {
         switch (sz) {
             case 1:
                 xorset_up_stack[xorset_up_top_stack++] = _dimacs_xor[0];
-                assert(xorset_up_top_stack < __ID_SIZE__);
+                assert(xorset_up_top_stack < __MAX_BUFFER_SIZE__ + __MAX_XEQ__);
                 continue;
             default:
                 for(j = 0; j < sz; ++j) {
@@ -315,7 +316,7 @@ inline const int_t xorset_number_of_assigned_variables() { return xorset_history
 
 void cpy_from_dimacs()
 {
-    int_t **_dimacs_xor = get_dimacs_xor_equation();
+    int_t (*_dimacs_xor)[__MAX_XEQ_SIZE__] = get_dimacs_xor_equation();
     int_t i;
     for(i = 0; i < __MAX_XEQ__; i++) {
         size_of_xor_equation[i] = dimacs_size_of_xor(i);

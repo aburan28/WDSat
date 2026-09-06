@@ -40,7 +40,9 @@ extern int_t xorset_degree_u[__MAX_XEQ__];
 extern int_t xor_equation[__MAX_XEQ__][__MAX_XEQ_SIZE__];
 extern int_t size_of_xor_equation[__MAX_XEQ__];
 extern int_t xorset_occurrence(int_t l);
-extern int_t xorset_up_stack[__ID_SIZE__];
+// sized for the worst case: every clause occurrence plus every unit
+// clause may sit on the stack simultaneously
+extern int_t xorset_up_stack[__MAX_BUFFER_SIZE__ + __MAX_XEQ__];
 extern int_t xorset_up_top_stack;
 #define _xorset_unset(_v) \
 { \

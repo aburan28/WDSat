@@ -17,16 +17,9 @@
 #include "xorgauss.h"
 #include "dimacs.h"
 
-#define _LA_LEVEL_ 17
-
 int_t l;
 int_t m;
-int test[100] = {0};
 
-/// @var uint_t nb_of_vars;
-/// @brief number of variables
-static int_t nb_of_vars;
-	
 /// @var int_t wdsat_cnf_up_stack[__ID_SIZE__];
 /// @brief unit propagation cnf stack
 static int_t wdsat_cnf_up_stack[__ID_SIZE__];
@@ -462,10 +455,9 @@ bool wdsat_infer_unitary() {
 /// @fn solve();
 /// @return false if formula is unsatisfiable and true otherwise
 bool wdsat_solve(int_t n, int_t new_l, int_t new_m, char *irr, char *X3, int_t xg, int_t br_sym, char mvc_graph[1000], char thread[1000]) {
-	int_t i, j;
+	int_t j;
 	int_t nb_min_vars;
 	int_t conf[1]={0};
-	bool seen[50]={0};
 	m = new_m;
 	l = new_l;
 	cnf_initiate_from_dimacs();
@@ -482,7 +474,7 @@ bool wdsat_solve(int_t n, int_t new_l, int_t new_m, char *irr, char *X3, int_t x
 	
 	//check allocated memory
 	if(dimacs_nb_vars() < __MAX_ID__)
-		printf("\n!!! Running times are not optimal with these parameters. Set the __MAX_ID__ constant to %d !!!\n\n", dimacs_nb_vars());
+		printf("\n!!! Running times are not optimal with these parameters. Set the __MAX_ID__ constant to %lld !!!\n\n", (long long) dimacs_nb_vars());
 	
 	//code for multithread: assign prefix for this thread
 	if(strlen(thread) > 0)

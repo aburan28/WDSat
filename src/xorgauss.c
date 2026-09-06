@@ -9,6 +9,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdbool.h>
+#include <string.h>
 
 #include "wdsat_utils.h"
 #include "xorgauss.h"
@@ -23,6 +24,7 @@ int_t xorgauss_up_top_stack;
 /// @brief resp. number of variables, number of equations
 static uint_t xorgauss_nb_of_vars;
 static uint_t xorgauss_nb_of_equations;
+
 
 /// @var uint_t xorgauss_equivalency[__ID_SIZE__][__SZ_GAUSS__];
 /// @brief equivalency list according to variable
@@ -39,12 +41,67 @@ int_t xorgauss_step[__ID_SIZE__];
 int_t xorgauss_step_top;
 
 #ifdef __XG_ENHANCED__
-uint_t xorgauss_equivalency_history[__MAX_ANF_ID__][__ID_SIZE__][__SZ_GAUSS__];
-bool xorgauss_equivalent_history[__MAX_ANF_ID__][__ID_SIZE__];
-boolean_t xorgauss_assignment_buffer_history[__MAX_ANF_ID__][__SIGNED_ID_SIZE__];
 boolean_t xorgauss_current_degree[__ID_SIZE__];
-boolean_t xorgauss_current_degree_history[__MAX_ANF_ID__][__ID_SIZE__];
+
+/// @brief copy-on-write journal: for each step, the rows that were modified
+/// during that step, each with its state at the first modification. Undoing a
+/// step restores exactly those rows, instead of resnapshotting the whole state.
+static uint_t xg_journal_data[__MAX_ANF_ID__][__ID_SIZE__][__SZ_GAUSS__];
+static int_t xg_journal_row[__MAX_ANF_ID__][__ID_SIZE__];
+static ubyte_t xg_journal_flags[__MAX_ANF_ID__][__ID_SIZE__];
+static int_t xg_seg_top[__MAX_ANF_ID__];
+/// for each row, the stack of journal segments that saved it (dedup must
+/// survive nested undos, so a plain mark would not do)
+static int_t xg_mark_stack[__ID_SIZE__][__MAX_ANF_ID__];
+static int_t xg_mark_top[__ID_SIZE__];
+/// number of meaningful words per row (word 0: const bit + ids 1..63, then
+/// ids 64+); words above are always zero and need not be journaled
+static uint_t xg_row_words = __SZ_GAUSS__;
+
+/// @fn void xg_save_row(uint_t i)
+/// @brief save the state of row i (row bits + equivalent flag + current
+/// degree) in the current journal segment, once per segment
+void xg_save_row(uint_t i) {
+	const int_t s = (int_t) xorgauss_step_top - 1;
+	if(s < 0 || s >= __MAX_ANF_ID__ || i >= __ID_SIZE__) return;
+	const int_t mt = xg_mark_top[i];
+	if(mt > 0 && xg_mark_stack[i][mt - 1] == s) return;
+	assert(mt < __MAX_ANF_ID__);
+	const int_t t = xg_seg_top[s]++;
+	assert(t < __ID_SIZE__);
+	memcpy(xg_journal_data[s][t], xorgauss_equivalency[i], xg_row_words * sizeof(uint_t));
+	xg_journal_row[s][t] = (int_t) i;
+	xg_journal_flags[s][t] = (ubyte_t) ((xorgauss_equivalent[i] ? 1U : 0U) | (((uint_t) xorgauss_current_degree[i]) & 3U) << 1U);
+	xg_mark_stack[i][mt] = s;
+	xg_mark_top[i] = mt + 1;
+}
+
+/// @fn void xg_segment_begin(void)
+/// @brief open the journal segment of the new step (called from the breakpoint)
+void xg_segment_begin(void) {
+	assert(xorgauss_step_top < __MAX_ANF_ID__);
+	xg_seg_top[xorgauss_step_top] = 0;
+}
+
+/// @fn void xg_segment_undo(void)
+/// @brief restore the rows journaled in the segment that was just popped
+/// (xorgauss_step_top must already have been decremented)
+void xg_segment_undo(void) {
+	const int_t s = (int_t) xorgauss_step_top;
+	int_t t;
+	for(t = xg_seg_top[s]; t-- > 0;) {
+		const int_t i = xg_journal_row[s][t];
+		memcpy(xorgauss_equivalency[i], xg_journal_data[s][t], xg_row_words * sizeof(uint_t));
+		xorgauss_equivalent[i] = (xg_journal_flags[s][t] & 1U) != 0U;
+		xorgauss_current_degree[i] = (boolean_t) ((xg_journal_flags[s][t] >> 1) & 3U);
+		assert(xg_mark_top[i] > 0);
+		xg_mark_top[i]--;
+	}
+	xg_seg_top[s] = 0;
+}
+
 #else
+void xg_save_row(uint_t i) { (void) i; }
 uint_t xorgauss_mask[__ID_SIZE__][__SZ_GAUSS__];
 int_t xorgauss_mask_top;
 int_t xorgauss_step_mask[__ID_SIZE__];
@@ -54,6 +111,31 @@ int_t xorgauss_mask_list_top;
 int_t xorgauss_reset[__ID_SIZE__];
 int_t xorgauss_reset_top;
 #endif
+
+#ifdef __XG_ENHANCED__
+static inline void xg_save_row_ptr(const uint_t *v) {
+	if(xorgauss_step_top == 0) return;
+	/* distance in words; each row spans __SZ_GAUSS__ words */
+	xg_save_row((uint_t)((v - &xorgauss_equivalency[0][0]) / __SZ_GAUSS__));
+}
+#else
+static inline void xg_save_row_ptr(const uint_t *v) { (void) v; }
+#endif
+
+void xg_bit_set(uint_t *v, uint_t id) {
+	xg_save_row_ptr(v);
+	v[(id / __SZ_ATOM__)] |= (1ULL << ((__SZ_ATOM__ - 1ULL) - (id % __SZ_ATOM__)));
+}
+
+void xg_bit_reset(uint_t *v, uint_t id) {
+	xg_save_row_ptr(v);
+	v[(id / __SZ_ATOM__)] &= ((~0ULL) ^ (1ULL << ((__SZ_ATOM__ - 1ULL) - (id % __SZ_ATOM__))));
+}
+
+void xg_flip_constant(uint_t *v) {
+	xg_save_row_ptr(v);
+	v[0] ^= __XOR_CONSTANT_MASK__;
+}
 
 void xorgauss_fprint() {
 	uint_t v;
@@ -117,10 +199,8 @@ void xorgauss_fprint_for_xorset() {
 }
 
 inline void xorgauss_reset_boolean_vector(uint_t *v) {
-	for(uint_t i = 0ULL; i < __SZ_GAUSS__; ++i)
-		/// different writing for same aim
-		/// v[i] = 0ULL;
-		v[i] ^= v[i];
+	xg_save_row_ptr(v);
+	memset(v, 0, __SZ_GAUSS__ * sizeof(uint_t));
 }
 
 inline uint_t xorgauss_get_size_of_boolean_vector(uint_t *v, uint_t *lt) {
@@ -173,7 +253,7 @@ inline uint_t xorgauss_get_last_id_from_boolean_vector(uint_t *v) {
 }
 
 inline uint_t xorgauss_get_first_id_from_boolean_vector(uint_t *v) {
-	uint_t i, _id, mask;
+	uint_t i, _id;
 	_id = 0ULL;
 	bool is_cst = false;
 	if(_boolean_vector_get_constant(v)) {
@@ -184,18 +264,23 @@ inline uint_t xorgauss_get_first_id_from_boolean_vector(uint_t *v) {
 		if(v[i]) break;
 		_id += __SZ_ATOM__;
 	}
-	//assert(_id < __MAX_ID__);
-	if(_id > __MAX_ID__)
-	{
+	// no variable bit left (zero or constant-only vector)
+	if(i == __SZ_GAUSS__) {
 		if(is_cst)
 			_boolean_vector_flip_constant(v);
 		return 0;
 	}
-	const uint_t _offset = v[i];
-	mask = __XOR_CONSTANT_MASK__;
-	while(!(_offset & mask)) {
-		++_id;
-		mask >>= 1ULL;
+	// for word 0 the constant bit was cleared above, so it cannot be the answer
+	const uint_t _offset = (i == 0ULL) ? (v[0] & (~__XOR_CONSTANT_MASK__)) : v[i];
+	if(_offset) {
+		// bit position of the highest set bit is 63 - clz; the id offset
+		// within the word is 63 - position, i.e. clz
+		_id += (uint_t) __builtin_clzll((unsigned long long) _offset);
+	} else {
+		// only the constant bit was set in word 0
+		if(is_cst)
+			_boolean_vector_flip_constant(v);
+		return 0;
 	}
 	if(is_cst)
 		_boolean_vector_flip_constant(v);
@@ -203,11 +288,13 @@ inline uint_t xorgauss_get_first_id_from_boolean_vector(uint_t *v) {
 }
 
 inline void xorgauss_xor_it(uint_t *dst, uint_t *src) {
+	xg_save_row_ptr(dst);
 	for(uint_t i = 0ULL; i < __SZ_GAUSS__; ++i) dst[i] ^= src[i];
 }
 
 inline bool xorgauss_xor_it_and_check(uint_t *dst, uint_t *src) {
 	static bool out_xor;
+	xg_save_row_ptr(dst);
 	out_xor = true;
 	if((dst[0] ^= src[0]) & (~__XOR_CONSTANT_MASK__)) out_xor = false;
 	for(uint_t i = 1ULL; i < __SZ_GAUSS__; ++i)
@@ -389,7 +476,7 @@ bool xorgauss_replace(const int_t v_bin, const int_t v_mon)
 							_xorgauss_set(i, _tv_i);
 						}
 					}
-					xorgauss_equivalent[_to_subst] = true;
+					_xg_equiv_set(_to_subst, true);
 					_boolean_vector_reset(_xeq_to_subst, _to_subst);
 					if(_is_unary_subst) {
 						const bool _tv_to_subst = ((_boolean_vector_get_constant(_xeq_to_subst)) == __XOR_CONSTANT_MASK__);
@@ -405,7 +492,7 @@ bool xorgauss_replace(const int_t v_bin, const int_t v_mon)
 					if((_boolean_vector_get_constant(_xeq_bin)) == __XOR_CONSTANT_MASK__)
 						return false;
 				}
-				xorgauss_equivalent[v_bin] = false;
+				_xg_equiv_set(v_bin, false);
 				xorgauss_reset_boolean_vector(xorgauss_equivalency[v_bin]); //pas nécessaire mais propre
 			}
 		}
@@ -442,7 +529,7 @@ bool xorgauss_replace(const int_t v_bin, const int_t v_mon)
 							_xorgauss_set(i, _tv_i);
 						}
 					}
-					xorgauss_equivalent[_to_subst] = true;
+					_xg_equiv_set(_to_subst, true);
 					_boolean_vector_reset(_xeq_to_subst, _to_subst);
 					if(_is_unary_subst) {
 						const bool _tv_to_subst = ((_boolean_vector_get_constant(_xeq_to_subst)) == __XOR_CONSTANT_MASK__);
@@ -456,7 +543,7 @@ bool xorgauss_replace(const int_t v_bin, const int_t v_mon)
 				// do 1
 				_boolean_vector_set(_xeq_mon, v_mon);
 				_boolean_vector_set(_xeq_mon, v_bin);
-				xorgauss_equivalent[v_mon] = false;
+				_xg_equiv_set(v_mon, false);
 				for(i = xorgauss_nb_of_vars; i > 0ULL; --i) {
 					if(!xorgauss_equivalent[i]) continue;
 					uint_t * const _xeq_i = xorgauss_equivalency[i];
@@ -510,7 +597,7 @@ bool xorgauss_replace(const int_t v_bin, const int_t v_mon)
 				_to_subst = xorgauss_get_first_id_from_boolean_vector(_xeq_bin);
 				if(_to_subst == 0)
 				{
-					xorgauss_equivalent[v_bin] = false;
+					_xg_equiv_set(v_bin, false);
 					return ((_boolean_vector_get_constant(_xeq_bin)) != __XOR_CONSTANT_MASK__);
 				}
 				uint_t * const _xeq_to_subst = xorgauss_equivalency[_to_subst];
@@ -531,7 +618,7 @@ bool xorgauss_replace(const int_t v_bin, const int_t v_mon)
 						_xorgauss_set(i, _tv_i);
 					}
 				}
-				xorgauss_equivalent[_to_subst] = true;
+				_xg_equiv_set(_to_subst, true);
 				_boolean_vector_reset(_xeq_to_subst, _to_subst);
 				if(_is_unary_subst) {
 					const bool _tv_to_subst = ((_boolean_vector_get_constant(_xeq_to_subst)) == __XOR_CONSTANT_MASK__);
@@ -570,9 +657,9 @@ bool xorgauss_replace(const int_t v_bin, const int_t v_mon)
 					}
 				}
 				_boolean_vector_reset(_xeq_mon, v_mon);
-				xorgauss_equivalent[v_mon] = true;
+				_xg_equiv_set(v_mon, true);
 			}
-			xorgauss_equivalent[v_bin] = false;
+			_xg_equiv_set(v_bin, false);
 			xorgauss_reset_boolean_vector(xorgauss_equivalency[v_bin]); //pas nécessaire mais propre
 		}
 		else // 1
@@ -619,6 +706,7 @@ bool xorgauss_set_true(const int_t v)
 				int_t i = 0;
 				while(monomials_to_column[_uv][i][0] > 0)
 				{
+					xg_save_row(monomials_to_column[_uv][i][0]);
 					xorgauss_current_degree[monomials_to_column[_uv][i][0]]--;
 					if(xorgauss_current_degree[monomials_to_column[_uv][i][0]] == 1)
 					{
@@ -646,6 +734,7 @@ bool xorgauss_set_true(const int_t v)
 				int_t i = 0;
 				while(monomials_to_column[_uv][i][0] > 0)
 				{
+					xg_save_row(monomials_to_column[_uv][i][0]);
 					xorgauss_current_degree[monomials_to_column[_uv][i][0]] = 0;
 					i++;
 				}
@@ -728,7 +817,7 @@ bool xorgauss_infer(int_t v) {
 #ifndef __XG_ENHANCED__
 	xorgauss_mask_list_top++;
 #endif
-	xorgauss_equivalent[_to_subst] = true;
+	_xg_equiv_set(_to_subst, true);
 	_boolean_vector_reset(_xeq, _to_subst);
 	if(_is_unary_subst) {
 		const bool _tv_to_subst = ((_boolean_vector_get_constant(_xeq)) == __XOR_CONSTANT_MASK__);
@@ -746,6 +835,7 @@ bool xorgauss_initiate_from_dimacs() {
 	const int_t _n_x = dimacs_nb_xor_equations();
 	xorgauss_nb_of_equations = _n_x;
 	xorgauss_nb_of_vars = _n_v;
+	xg_row_words = (uint_t) (_n_v / (int_t) __SZ_ATOM__) + 1ULL;
 	xorgauss_assignment = xorgauss_assignment_buffer + _n_v + 1LL;
 	assert(xorgauss_nb_of_vars <= __MAX_ID__);
 	assert(xorgauss_nb_of_equations <= __MAX_XEQ__);
@@ -767,6 +857,7 @@ bool xorgauss_initiate_from_dimacs() {
 
 void xorgauss_undo() {
 	int_t _l;
+	const int_t _had_step = (xorgauss_step_top > 0);
 	const int_t top_step = (xorgauss_step_top) ? xorgauss_step[--xorgauss_step_top] : 0;
 	while(xorgauss_history_top != top_step) {
 		_l = xorgauss_history[--xorgauss_history_top];
@@ -774,10 +865,8 @@ void xorgauss_undo() {
 	}
 	xorgauss_up_top_stack = 0LL;
 #ifdef __XG_ENHANCED__
-	memcpy(xorgauss_equivalency, xorgauss_equivalency_history[xorgauss_step_top], sizeof(int_t)*__ID_SIZE__*__SZ_GAUSS__);
-	memcpy(xorgauss_equivalent, xorgauss_equivalent_history[xorgauss_step_top], sizeof(bool)*__ID_SIZE__);
-	memcpy(xorgauss_assignment_buffer, xorgauss_assignment_buffer_history[xorgauss_step_top], sizeof(boolean_t)*__SIGNED_ID_SIZE__);
-	memcpy(xorgauss_current_degree, xorgauss_current_degree_history[xorgauss_step_top], sizeof(boolean_t)*__ID_SIZE__);
+	if(_had_step)
+		xg_segment_undo();
 #else
 	const int_t top_step_mask = (xorgauss_step_mask_top) ? xorgauss_step_mask[--xorgauss_step_mask_top] : 0;
 	while(xorgauss_mask_top != top_step_mask)

@@ -78,7 +78,7 @@ const int_t dimacs_size_of_equation(const int_t);
 int_t * dimacs_xor(const int_t);
 int_t * dimacs_size_of_xor_equations(void);
 const int_t dimacs_size_of_xor(const int_t);
-int_t ** get_dimacs_xor_equation(void);
+int_t (*get_dimacs_xor_equation(void))[__MAX_XEQ_SIZE__];
 bool dimacs_xor_constant(const int_t i);
 boolean_t dimacs_get_current_degree(const int_t i);
 

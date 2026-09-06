@@ -25,7 +25,9 @@ extern int_t cnf_step_top;
 
 
 // unit propagation stack
-extern int_t cnf_up_stack[__ID_SIZE__];
+// sized for the worst case: every implication entry of the main buffer
+// plus every unit clause may sit on the stack simultaneously
+extern int_t cnf_up_stack[__MAX_BUFFER_SIZE__ + __MAX_EQ__];
 extern int_t cnf_up_top_stack;
 
 

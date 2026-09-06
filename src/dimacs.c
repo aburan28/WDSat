@@ -71,7 +71,7 @@ inline int_t * dimacs_size_of_xor_equations() { return dimacs_size_of_xor_equati
 inline const int_t dimacs_size_of_xor(const int_t i) { return dimacs_size_of_xor_equation[i]; }
 inline const bool dimacs_is_header_read() { return(_dimacs_header_read); }
 inline const bool dimacs_is_read() { return(_dimacs_read); }
-inline int_t ** get_dimacs_xor_equation() { return dimacs_xor_equation; }
+inline int_t (*get_dimacs_xor_equation(void))[__MAX_XEQ_SIZE__] { return dimacs_xor_equation; }
 inline bool dimacs_xor_constant(const int_t i) { return dimacs_xor_equation_constant[i]; }
 #ifdef __XG_ENHANCED__
 inline boolean_t dimacs_get_current_degree(const int_t i) { return dimacs_current_degree[i]; }
