@@ -22,6 +22,7 @@
 #include "xorset.h"
 #include "xorgauss.h"
 #include "wdsat.h"
+#include "fp.h"
 
 extern byte_t thread_digits;
 
@@ -57,6 +58,7 @@ int occ = 0;
 int s = 0;
 int xg = 0;
 int br_sym = 0;
+int fp_mode = 0;
 char mvc_graph[1000] = "";
 char thread[1000] = "";
 /**
@@ -74,6 +76,7 @@ int scan_opt(int argc, char **argv, const char *opt) {
 			case 'l': _l = atoi(optarg); break;
 			case 'm': _m = atoi(optarg); break;
 			case 'x': xg = 1; break;
+			case 'P': fp_mode = 1; break;
 			case 'b': br_sym = 1; break;
 			case 'c': occ = 1; break;
 			case 's': s = 1; break;
@@ -84,9 +87,19 @@ int scan_opt(int argc, char **argv, const char *opt) {
 	return(0);
 }
 
-boolean_t generate(char *ifn, char *ofn) {
+	boolean_t generate(char *ifn, char *ofn) {
 	FILE *d;
-	
+
+	if(fp_mode) {
+		// like the GF(2) path: UNSAT is reported on stdout, exit stays 0
+		if(!fp_read(ifn)) {
+			_cid_cout("fp: %s", fp_errno_msg());
+			return(__OFF__);
+		}
+		fp_solve();
+		return(__ON__);
+	}
+
 	if((d = fopen(ifn, "r")) == NULL) {
 		_cid_cout("%s :: unkown filename", ifn);
 		return(__OFF__);
@@ -114,6 +127,7 @@ int main(int argc, char * argv[]) {
 	
 	char *syntax =
 	"c          -x : to enable Gaussian Elimination\n"
+	"c          -P : prime field mode (input: p fp <n> <m> <p> systems)\n"
 	"c          -i file    : where file is the input file\n"
 	"c          -g mvc    : where mvc is a string of comma-separated variables that defines statically the branching order\n"
 	"c          -h : help (shows the argument list)\n"
@@ -133,7 +147,7 @@ on_break:
 	goto end;
 	
 on_continue:
-	if(scan_opt(argc, argv, "i:o:a:n:l:xbcshm:g:t:")) goto on_break;
+	if(scan_opt(argc, argv, "i:o:a:n:l:xbcshmPg:t:")) goto on_break;
 	
 	
 	if(!generate(input_filename, output_filename)) {

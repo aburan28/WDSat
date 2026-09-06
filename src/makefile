@@ -5,9 +5,9 @@ LDFLAGS =
 
 ARC = ../wdsat_solver
 
-SRC_GEN = main.c wdsat_utils.c dimacs.c cnf.c xorset.c xorgauss.c wdsat.c
+SRC_GEN = main.c wdsat_utils.c dimacs.c cnf.c xorset.c xorgauss.c wdsat.c fp.c
 OBJ_GEN = $(SRC_GEN:.c=.o)
-HDRS = config.h wdsat_utils.h dimacs.h cnf.h xorset.h xorgauss.h wdsat.h
+HDRS = config.h wdsat_utils.h dimacs.h cnf.h xorset.h xorgauss.h wdsat.h fp.h
 
 ### --- All Binaries
 
