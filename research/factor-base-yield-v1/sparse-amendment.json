@@ -1,0 +1,11 @@
+{
+  "amends": "protocol.json",
+  "trigger": "Dense random directions raised subgroup-point counts but tripled the descended ANF term count at n=17. Cardinality-matched nulls showed no special target-spreading gain.",
+  "mechanism": "Search coordinate subspaces of the sparse trace-zero basis a^i + Tr(a^i), 1 <= i < n, then translate by 1. This aims to increase point density while retaining inexpensive polynomial-basis products.",
+  "profiles": "Same three profiles as protocol.json; enumerate all dimension-k subsets of the n-1 direction vectors.",
+  "selection": "Maximum actual valid x-coordinate count, then minimum sum of basis exponents, then lexicographic exponent list. No targets, logarithms or relation coverage may guide selection.",
+  "membership": "For these cofactor-two curves A=B=1 with odd n, trace-compatible nonzero x lifts to the subgroup exactly when Tr(1/x)=0. Validate selected candidate membership independently using lift_x and [r]P=O.",
+  "costs": "Retain every score, unique membership queries, cache hits, elapsed construction time, descended equation size and eventual solver timings. The screen is prepaid construction, never free speedup.",
+  "success_for_next_stage": "Higher density at comparable equation size earns a paired SAT comparison. It does not establish a breakthrough.",
+  "controls": "Compare to fixed trace-one affine, frozen dense-pool winners, full-curve polynomial with cofactor clearing, and same-cardinality random subgroup sets."
+}
