@@ -1,0 +1,306 @@
+{
+  "scope": "small-field cofactor-control oracle, not an attack performance measurement",
+  "source_sha256": "dd8106848702b1fc3f6cfc87211277052b9d7e4f0902f43176e9074976615a60",
+  "profiles": [
+    {
+      "profile": {
+        "n": 7,
+        "a": 1,
+        "b": 1,
+        "dimension": 3
+      },
+      "field_modulus": "x^7 + x + 1",
+      "group_order": 142,
+      "subgroup_order": 71,
+      "curve_generator": [
+        118,
+        69
+      ],
+      "subgroup_generator": [
+        101,
+        89
+      ],
+      "points": [
+        [
+          3,
+          85,
+          2
+        ],
+        [
+          6,
+          66,
+          17
+        ],
+        [
+          2,
+          94,
+          35
+        ],
+        [
+          4,
+          50,
+          55
+        ],
+        [
+          5,
+          119,
+          64
+        ],
+        [
+          7,
+          58,
+          68
+        ]
+      ],
+      "full_curve_factor_points": 12,
+      "subgroup_only_factor_points": 6,
+      "original_sign_columns": 6,
+      "cofactor_image_sign_columns": 6,
+      "subgroup_only_target_coverage": 28,
+      "full_curve_single_subgroup_target_coverage": 56,
+      "full_curve_two_preimage_target_coverage": 58,
+      "two_preimage_query_multiplier_upper_bound": 2,
+      "wall_seconds": 0.34869262494612485
+    },
+    {
+      "profile": {
+        "n": 11,
+        "a": 1,
+        "b": 1,
+        "dimension": 4
+      },
+      "field_modulus": "x^11 + x^2 + 1",
+      "group_order": 1982,
+      "subgroup_order": 991,
+      "curve_generator": [
+        945,
+        144
+      ],
+      "subgroup_generator": [
+        1858,
+        82
+      ],
+      "points": [
+        [
+          12,
+          1473,
+          173
+        ],
+        [
+          15,
+          1558,
+          194
+        ],
+        [
+          6,
+          1319,
+          495
+        ],
+        [
+          9,
+          1599,
+          752
+        ],
+        [
+          11,
+          908,
+          898
+        ]
+      ],
+      "full_curve_factor_points": 10,
+      "subgroup_only_factor_points": 6,
+      "original_sign_columns": 5,
+      "cofactor_image_sign_columns": 5,
+      "subgroup_only_target_coverage": 44,
+      "full_curve_single_subgroup_target_coverage": 92,
+      "full_curve_two_preimage_target_coverage": 162,
+      "two_preimage_query_multiplier_upper_bound": 2,
+      "wall_seconds": 0.021281667053699493
+    },
+    {
+      "profile": {
+        "n": 17,
+        "a": 1,
+        "b": 1,
+        "dimension": 6
+      },
+      "field_modulus": "x^17 + x^3 + 1",
+      "group_order": 131174,
+      "subgroup_order": 65587,
+      "curve_generator": [
+        106502,
+        70124
+      ],
+      "subgroup_generator": [
+        43693,
+        23339
+      ],
+      "points": [
+        [
+          63,
+          4366,
+          352
+        ],
+        [
+          57,
+          97009,
+          6390
+        ],
+        [
+          13,
+          39239,
+          7528
+        ],
+        [
+          5,
+          106138,
+          8592
+        ],
+        [
+          59,
+          38260,
+          8782
+        ],
+        [
+          45,
+          128631,
+          18724
+        ],
+        [
+          33,
+          16320,
+          19440
+        ],
+        [
+          11,
+          78566,
+          22328
+        ],
+        [
+          62,
+          129624,
+          23895
+        ],
+        [
+          60,
+          24409,
+          24099
+        ],
+        [
+          37,
+          5249,
+          25072
+        ],
+        [
+          38,
+          22544,
+          26799
+        ],
+        [
+          8,
+          42505,
+          26945
+        ],
+        [
+          23,
+          72753,
+          32708
+        ],
+        [
+          3,
+          95624,
+          32794
+        ],
+        [
+          24,
+          17976,
+          37815
+        ],
+        [
+          30,
+          68734,
+          38969
+        ],
+        [
+          40,
+          45168,
+          39367
+        ],
+        [
+          29,
+          99463,
+          40070
+        ],
+        [
+          18,
+          56641,
+          46303
+        ],
+        [
+          28,
+          44557,
+          50297
+        ],
+        [
+          48,
+          5384,
+          50981
+        ],
+        [
+          39,
+          14652,
+          52406
+        ],
+        [
+          27,
+          99168,
+          54324
+        ],
+        [
+          61,
+          30550,
+          56582
+        ],
+        [
+          17,
+          124093,
+          56996
+        ],
+        [
+          34,
+          16935,
+          57205
+        ],
+        [
+          54,
+          127677,
+          58641
+        ],
+        [
+          25,
+          16479,
+          62298
+        ],
+        [
+          49,
+          121032,
+          63326
+        ],
+        [
+          47,
+          4715,
+          65452
+        ]
+      ],
+      "full_curve_factor_points": 62,
+      "subgroup_only_factor_points": 38,
+      "original_sign_columns": 31,
+      "cofactor_image_sign_columns": 31,
+      "subgroup_only_target_coverage": 8540,
+      "full_curve_single_subgroup_target_coverage": 17422,
+      "full_curve_two_preimage_target_coverage": 30016,
+      "two_preimage_query_multiplier_upper_bound": 2,
+      "wall_seconds": 0.7453422079561278
+    }
+  ]
+}
