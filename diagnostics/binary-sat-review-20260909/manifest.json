@@ -1,0 +1,51 @@
+{
+  "scope": "local implementation diagnostics; independent scientific review not performed",
+  "base_commit": "83130ebeab6a78fda24035910b1dd9795ca12231",
+  "platform": "macOS-26.6-arm64-arm-64bit-Mach-O",
+  "compiler": "Apple clang version 17.0.0 (clang-1700.0.13.5)\nTarget: arm64-apple-darwin25.6.0\nThread model: posix\nInstalledDir: /Library/Developer/CommandLineTools/usr/bin",
+  "source_sha256": {
+    "src/main.c": "0ab5b48557aa3a5a6229124bda3dea36a1a771d2a8f92721e6d44a4291b0973d",
+    "src/wdsat.c": "1f17ba03459bbdda89539e542bbda75d8860037082a25d7c073dc0d90095a732",
+    "tools/binary_factor_base.py": "f2deeb9b07ded874c814520647885bafcd944f8c7b3ac70d26a884654ba81111",
+    "tests/test_binary_solver.py": "a46cbf2cca0af65970d8acc9f30be106bb7c80a7ec34213d5c226f1f547e46e4",
+    "tests/check_binary_factor_base.py": "b779353d1045093e3868827f6d452d583865a0baa09b5dac08026d741e496cff",
+    "tests/check_generated_anf.py": "8770088b719833999d8387f75e5581c85e8ed2d72a321261a12457fb567e4e66",
+    "wdsat_solver": "e1c7b85c6ce128dd81173fdd0477e6b0524d187bd694164a554463ab1c682f78"
+  },
+  "validation": [
+    {
+      "command": [
+        "make",
+        "-C",
+        "src"
+      ],
+      "returncode": 0
+    },
+    {
+      "command": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-v"
+      ],
+      "returncode": 0
+    },
+    {
+      "command": [
+        "sage",
+        "-python",
+        "tests/check_binary_factor_base.py"
+      ],
+      "returncode": 0
+    }
+  ],
+  "artifacts_sha256": "99c5a2ea7c2838dc0cb26fba1e3e1b57584ab2ea96b8be07f57a3f073f259d59",
+  "notes": [
+    "Timings are exploratory; tests and some diagnostic processes overlapped. No speedup claim.",
+    "No full ECDLP solve, compressed relation-matrix rank experiment, or harness admission.",
+    "Preliminary diagnostics are retained locally but excluded from the final comparison."
+  ]
+}

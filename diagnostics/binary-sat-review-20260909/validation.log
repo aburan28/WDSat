@@ -1,0 +1,22 @@
+$ make -C src
+make: Nothing to be done for `all'.
+
+$ python3 -m unittest discover -s tests -v
+test_incompatible_symmetry_order (test_binary_solver.BinarySolverTests.test_incompatible_symmetry_order) ... ok
+test_initial_conflict (test_binary_solver.BinarySolverTests.test_initial_conflict) ... ok
+test_invalid_order (test_binary_solver.BinarySolverTests.test_invalid_order) ... ok
+test_partial_order_completed (test_binary_solver.BinarySolverTests.test_partial_order_completed) ... ok
+test_random_anf_against_truth_tables (test_binary_solver.BinarySolverTests.test_random_anf_against_truth_tables) ... ok
+test_symmetry_completes_auxiliary_variables (test_binary_solver.BinarySolverTests.test_symmetry_completes_auxiliary_variables) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 2.117s
+
+OK
+
+$ sage -python tests/check_binary_factor_base.py
+.......
+----------------------------------------------------------------------
+Ran 7 tests in 1.132s
+
+OK

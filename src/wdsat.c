@@ -37,6 +37,7 @@ static int_t wdsat_xorset_up_stack[__ID_SIZE__];
 static int_t wdsat_xorset_up_top_stack;
 
 static int_t set[__ID_SIZE__];
+static int_t set_count;
 
 bool wdsat_set_true(const int_t l) {
     /*printf("Setting:%ld\n",l);
@@ -236,14 +237,7 @@ bool go_right(int_t h, int_t h_end, bool search_prune_point, int_t conf[])
 bool wdsat_solve_rest_sym(int_t h, int_t h_end, bool search_prune_point, int_t conf[]) {
 	if(h > h_end)
 	{
-#ifdef __FIND_ALL_SOLUTIONS__
-		printf("SAT:\n");
-		for(int i = 1; i <= dimacs_nb_unary_vars(); i++)
-			printf("%d", xorgauss_assignment[i]);
-		printf("\nconf:%lld\n", conf[0]);
-		return false;
-#endif
-		return true;
+		return wdsat_solve_rest(h, set_count - 1, conf);
 	}
 	if(h % l == 0)
 		search_prune_point = true;
@@ -312,14 +306,7 @@ bool go_right_XG(int_t h, int_t h_end, bool search_prune_point, int_t conf[])
 bool wdsat_solve_rest_XG_sym(int_t h, int_t h_end, bool search_prune_point, int_t conf[]) {
 	if(h > h_end)
 	{
-#ifdef __FIND_ALL_SOLUTIONS__
-		printf("SAT:\n");
-		for(int i = 1; i <= dimacs_nb_unary_vars(); i++)
-			printf("%d", xorgauss_assignment[i]);
-		printf("\nconf:%lld\n", conf[0]);
-		return false;
-#endif
-		return true;
+		return wdsat_solve_rest_XG(h, set_count - 1, conf);
 	}
 	if(h % l == 0)
 		search_prune_point = true;
@@ -492,31 +479,58 @@ bool wdsat_solve(int_t n, int_t new_l, int_t new_m, char *irr, char *X3, int_t x
 	}
 	// end code for multithread (this has to be done before wdsat_infer_unitary();
 	
-	wdsat_infer_unitary();
+	if(!wdsat_infer_unitary()) {
+		printf("UNSAT on initial propagation\n");
+		return false;
+	}
+#ifdef __XG_ENHANCED__
+	nb_min_vars = dimacs_nb_unary_vars();
+#else
+	nb_min_vars = dimacs_nb_vars();
+#endif
+	set_count = 0;
 	if(strlen(mvc_graph) > 0)
 	{
-		nb_min_vars = 0;
+		bool seen[__ID_SIZE__] = {false};
 		char *str_l;
-		j = 0;
+		if(mvc_graph[0] == ',' || mvc_graph[strlen(mvc_graph) - 1] == ',' || strstr(mvc_graph, ",,")) {
+			fprintf(stderr, "Invalid empty variable in -g branching order\n");
+			exit(EXIT_FAILURE);
+		}
 		str_l = strtok (mvc_graph, ",");
 		while(str_l != NULL)
 		{
-			set[j] = atoi(str_l);
+			char *end;
+			long long id = strtoll(str_l, &end, 10);
+			if(*end || id < 1 || id > nb_min_vars || seen[id]) {
+				fprintf(stderr, "Invalid or duplicate variable in -g branching order\n");
+				exit(EXIT_FAILURE);
+			}
+			seen[id] = true;
+			set[set_count++] = id;
 			str_l = strtok (NULL, ",");
-			nb_min_vars++;
-			j++;
 		}
+		/* -g is a priority prefix, never permission to leave a model partial. */
+		for(j = 1; j <= nb_min_vars; ++j)
+			if(!seen[j]) set[set_count++] = j;
 	}
 	else
 	{
-#ifdef __XG_ENHANCED__
-		nb_min_vars = dimacs_nb_unary_vars();
-#else
-		nb_min_vars = dimacs_nb_vars();
-#endif
 		for(j = 1; j <= nb_min_vars; j++)
 		{
-			set[j - 1] = j;
+			set[set_count++] = j;
+		}
+	}
+	if(br_sym) {
+		if(l <= 0 || m < 2 || m > nb_min_vars / l || strlen(thread) > 0) {
+			fprintf(stderr, "Invalid symmetry dimensions or unsupported -b with -t\n");
+			exit(EXIT_FAILURE);
+		}
+		for(j = 0; j < m * l; ++j) {
+			if(set[j] != j + 1) {
+				fprintf(stderr, "-b requires canonical factor-coordinate order in -g\n");
+				exit(EXIT_FAILURE);
+			}
 		}
 	}
 	

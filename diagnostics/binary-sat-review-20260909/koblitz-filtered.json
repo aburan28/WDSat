@@ -1,0 +1,1988 @@
+{
+  "scope": "toy implementation diagnostic; not harness-admitted research evidence",
+  "environment": {
+    "sage": "10.9",
+    "python": "3.14.3",
+    "platform": "macOS-26.6-arm64-arm-64bit-Mach-O",
+    "solver_version": "3.0.1"
+  },
+  "parameters": {
+    "n": 7,
+    "dimension": 3,
+    "m": 3,
+    "a": 1,
+    "b": 1,
+    "seed": 20260909,
+    "targets": 8,
+    "solver": "cadical",
+    "timeout": 30,
+    "no_trace_filter": false,
+    "artifacts": "diagnostics/binary-sat-review-20260909/koblitz-filtered",
+    "output": "diagnostics/binary-sat-review-20260909/koblitz-filtered.json"
+  },
+  "field_modulus": "x^7 + x + 1",
+  "curve_order": 142,
+  "subgroup_order": 71,
+  "curve_type": "Koblitz over F2",
+  "subgroup_generator": [
+    3,
+    85
+  ],
+  "target_scalars": [
+    12,
+    9,
+    21,
+    16,
+    61,
+    2,
+    38,
+    44
+  ],
+  "invariant_dimensions": [
+    0,
+    1,
+    3,
+    4,
+    6,
+    7
+  ],
+  "frobenius_factors": [
+    "T + 1",
+    "T^3 + T + 1",
+    "T^3 + T^2 + 1"
+  ],
+  "candidates": [
+    {
+      "name": "polynomial",
+      "basis": [
+        1,
+        2,
+        4
+      ],
+      "affine_offset": 0,
+      "subspace_size": 8,
+      "subgroup_factor_points": 6,
+      "frobenius_invariant": false,
+      "exact_nonzero_target_coverage": 28,
+      "runs": [
+        {
+          "status": "exhausted_polynomial_models",
+          "witness": null,
+          "rejected_projections": 0,
+          "input_sha256": "476562e80947e12c1d82f34890eaf6355ba1e69620dbef44e5f5c712e9c84f6d",
+          "encoding_wall_seconds": 0.0013655830407515168,
+          "solve_wall_seconds": 0.009453541017137468,
+          "total_wall_seconds": 0.011652166955173016,
+          "boolean_variables": 16,
+          "cnf_variables": 412,
+          "cnf_clauses": 1529,
+          "anf_equations": 17,
+          "target_scalar": 12,
+          "target": [
+            75,
+            126
+          ],
+          "group_oracle_decomposable": false
+        },
+        {
+          "status": "exhausted_polynomial_models",
+          "witness": null,
+          "rejected_projections": 0,
+          "input_sha256": "9bafd58c11e10d4d1a19fffc889ce4d3a16cb13e7e47504afcfd737f4a3a581a",
+          "encoding_wall_seconds": 0.002849083044566214,
+          "solve_wall_seconds": 0.012172083021141589,
+          "total_wall_seconds": 0.014032332925125957,
+          "boolean_variables": 16,
+          "cnf_variables": 429,
+          "cnf_clauses": 1597,
+          "anf_equations": 17,
+          "target_scalar": 9,
+          "target": [
+            55,
+            15
+          ],
+          "group_oracle_decomposable": false
+        },
+        {
+          "status": "exhausted_polynomial_models",
+          "witness": null,
+          "rejected_projections": 0,
+          "input_sha256": "db7b05b5b49153d9fb7786bbff6ce6444e0d9336c852ca6a3ecc19c3adb3dbd9",
+          "encoding_wall_seconds": 0.0025031670229509473,
+          "solve_wall_seconds": 0.011587374960072339,
+          "total_wall_seconds": 0.01354666706174612,
+          "boolean_variables": 16,
+          "cnf_variables": 425,
+          "cnf_clauses": 1581,
+          "anf_equations": 17,
+          "target_scalar": 21,
+          "target": [
+            43,
+            100
+          ],
+          "group_oracle_decomposable": false
+        },
+        {
+          "status": "exhausted_polynomial_models",
+          "witness": null,
+          "rejected_projections": 0,
+          "input_sha256": "d3f0a2d5810a04cfd71ada2f58a29da2af55789f559afdef1f6c71773f2d5449",
+          "encoding_wall_seconds": 0.002333834068849683,
+          "solve_wall_seconds": 0.011893791961483657,
+          "total_wall_seconds": 0.014238958014175296,
+          "boolean_variables": 16,
+          "cnf_variables": 394,
+          "cnf_clauses": 1457,
+          "anf_equations": 17,
+          "target_scalar": 16,
+          "target": [
+            105,
+            39
+          ],
+          "group_oracle_decomposable": false
+        },
+        {
+          "status": "exhausted_polynomial_models",
+          "witness": null,
+          "rejected_projections": 0,
+          "input_sha256": "516e72054b0b79341a88fbd6c527f77374c928d392585bb2e9aead9b6f40322b",
+          "encoding_wall_seconds": 0.0016961669316515326,
+          "solve_wall_seconds": 0.012878375011496246,
+          "total_wall_seconds": 0.015352999907918274,
+          "boolean_variables": 16,
+          "cnf_variables": 383,
+          "cnf_clauses": 1413,
+          "anf_equations": 17,
+          "target_scalar": 61,
+          "target": [
+            67,
+            106
+          ],
+          "group_oracle_decomposable": false
+        },
+        {
+          "status": "verified_relation",
+          "witness": [
+            [
+              3,
+              86
+            ],
+            [
+              7,
+              61
+            ],
+            [
+              7,
+              61
+            ]
+          ],
+          "rejected_projections": 0,
+          "input_sha256": "6085a4de56415b946b1f69078dc62a077a6b3111af961606c798e112c6fa8443",
+          "encoding_wall_seconds": 0.0014081669505685568,
+          "solve_wall_seconds": 0.013723958050832152,
+          "total_wall_seconds": 0.019361874903552234,
+          "boolean_variables": 16,
+          "cnf_variables": 425,
+          "cnf_clauses": 1581,
+          "anf_equations": 17,
+          "target_scalar": 2,
+          "target": [
+            47,
+            40
+          ],
+          "group_oracle_decomposable": true
+        },
+        {
+          "status": "exhausted_polynomial_models",
+          "witness": null,
+          "rejected_projections": 0,
+          "input_sha256": "210c024f2cc76523e075d814d69509b42452004d3a00f65dd10656d8cb719f9e",
+          "encoding_wall_seconds": 0.0013557920465245843,
+          "solve_wall_seconds": 0.0122832499910146,
+          "total_wall_seconds": 0.0134590829256922,
+          "boolean_variables": 16,
+          "cnf_variables": 412,
+          "cnf_clauses": 1529,
+          "anf_equations": 17,
+          "target_scalar": 38,
+          "target": [
+            93,
+            53
+          ],
+          "group_oracle_decomposable": false
+        },
+        {
+          "status": "verified_relation",
+          "witness": [
+            [
+              5,
+              114
+            ],
+            [
+              5,
+              114
+            ],
+            [
+              7,
+              61
+            ]
+          ],
+          "rejected_projections": 0,
+          "input_sha256": "8374c03537119a1649c753715c228c21c49adf4427610a763d86eb721d9ef9df",
+          "encoding_wall_seconds": 0.003276083036325872,
+          "solve_wall_seconds": 0.01128383306786418,
+          "total_wall_seconds": 0.01685066695790738,
+          "boolean_variables": 16,
+          "cnf_variables": 430,
+          "cnf_clauses": 1601,
+          "anf_equations": 17,
+          "target_scalar": 44,
+          "target": [
+            63,
+            79
+          ],
+          "group_oracle_decomposable": true
+        }
+      ]
+    },
+    {
+      "name": "random",
+      "basis": [
+        23,
+        16,
+        41
+      ],
+      "affine_offset": 0,
+      "subspace_size": 8,
+      "subgroup_factor_points": 6,
+      "frobenius_invariant": false,
+      "exact_nonzero_target_coverage": 20,
+      "runs": [
+        {
+          "status": "verified_relation",
+          "witness": [
+            [
+              57,
+              13
+            ],
+            [
+              7,
+              58
+            ],
+            [
+              7,
+              58
+            ]
+          ],
+          "rejected_projections": 0,
+          "input_sha256": "16873b84fbe3c76e9113f465910097b347f0c03fb3927e93356d7f7bdf702699",
+          "encoding_wall_seconds": 0.0040359580889344215,
+          "solve_wall_seconds": 0.021453749970532954,
+          "total_wall_seconds": 0.027184042031876743,
+          "boolean_variables": 16,
+          "cnf_variables": 648,
+          "cnf_clauses": 2473,
+          "anf_equations": 17,
+          "target_scalar": 12,
+          "target": [
+            75,
+            126
+          ],
+          "group_oracle_decomposable": true
+        },
+        {
+          "status": "exhausted_polynomial_models",
+          "witness": null,
+          "rejected_projections": 0,
+          "input_sha256": "c55fd6f6894f24eed1c72f0bcdbd746559d0ecbbd1ef5f761c243dbc3d342112",
+          "encoding_wall_seconds": 0.003493833006359637,
+          "solve_wall_seconds": 0.021846040966920555,
+          "total_wall_seconds": 0.025772209046408534,
+          "boolean_variables": 16,
+          "cnf_variables": 652,
+          "cnf_clauses": 2489,
+          "anf_equations": 17,
+          "target_scalar": 9,
+          "target": [
+            55,
+            15
+          ],
+          "group_oracle_decomposable": false
+        },
+        {
+          "status": "exhausted_polynomial_models",
+          "witness": null,
+          "rejected_projections": 0,
+          "input_sha256": "ccd54a6c0293dc88652d76fd31870c4839065b6c44d6a0814317dacbe39c2e98",
+          "encoding_wall_seconds": 0.0016734999371692538,
+          "solve_wall_seconds": 0.02521554206032306,
+          "total_wall_seconds": 0.02788574993610382,
+          "boolean_variables": 16,
+          "cnf_variables": 645,
+          "cnf_clauses": 2461,
+          "anf_equations": 17,
+          "target_scalar": 21,
+          "target": [
+            43,
+            100
+          ],
+          "group_oracle_decomposable": false
+        },
+        {
+          "status": "exhausted_polynomial_models",
+          "witness": null,
+          "rejected_projections": 0,
+          "input_sha256": "29b74703ceffb81b2b35bb9fe5c410ea42ae025085b061fd97d1c0f7e0df2765",
+          "encoding_wall_seconds": 0.00163162499666214,
+          "solve_wall_seconds": 0.011003917083144188,
+          "total_wall_seconds": 0.01408012502361089,
+          "boolean_variables": 16,
+          "cnf_variables": 636,
+          "cnf_clauses": 2425,
+          "anf_equations": 17,
+          "target_scalar": 16,
+          "target": [
+            105,
+            39
+          ],
+          "group_oracle_decomposable": false
+        },
+        {
+          "status": "exhausted_polynomial_models",
+          "witness": null,
+          "rejected_projections": 0,
+          "input_sha256": "6d4af891ee5375618e5ea41f71ca0b7e5ad53aedae24b347230ef535bde4d884",
+          "encoding_wall_seconds": 0.0032596250530332327,
+          "solve_wall_seconds": 0.013615874922834337,
+          "total_wall_seconds": 0.015639291959814727,
+          "boolean_variables": 16,
+          "cnf_variables": 640,
+          "cnf_clauses": 2441,
+          "anf_equations": 17,
+          "target_scalar": 61,
+          "target": [
+            67,
+            106
+          ],
+          "group_oracle_decomposable": false
+        },
+        {
+          "status": "exhausted_polynomial_models",
+          "witness": null,
+          "rejected_projections": 0,
+          "input_sha256": "430373f046c4852c69a44728861a3109efc35e1ffaf1d073624877f85038621a",
+          "encoding_wall_seconds": 0.0017832079902291298,
+          "solve_wall_seconds": 0.01642495801206678,
+          "total_wall_seconds": 0.01912920898757875,
+          "boolean_variables": 16,
+          "cnf_variables": 654,
+          "cnf_clauses": 2497,
+          "anf_equations": 17,
+          "target_scalar": 2,
+          "target": [
+            47,
+            40
+          ],
+          "group_oracle_decomposable": false
+        },
+        {
+          "status": "exhausted_polynomial_models",
+          "witness": null,
+          "rejected_projections": 0,
+          "input_sha256": "7ab61e454a11c2eb62909dc478e62144f3ed8c3df1bdbcd768a1a56b1ae06a00",
+          "encoding_wall_seconds": 0.0019556250190362334,
+          "solve_wall_seconds": 0.01221012498717755,
+          "total_wall_seconds": 0.015498333959840238,
+          "boolean_variables": 16,
+          "cnf_variables": 646,
+          "cnf_clauses": 2466,
+          "anf_equations": 17,
+          "target_scalar": 38,
+          "target": [
+            93,
+            53
+          ],
+          "group_oracle_decomposable": false
+        },
+        {
+          "status": "exhausted_polynomial_models",
+          "witness": null,
+          "rejected_projections": 0,
+          "input_sha256": "35801af96538a934ef50c84740f5852d933f1f54c0139366f6e2130dd41888d6",
+          "encoding_wall_seconds": 0.0016023749485611916,
+          "solve_wall_seconds": 0.014176915981806815,
+          "total_wall_seconds": 0.015955833019688725,
+          "boolean_variables": 16,
+          "cnf_variables": 650,
+          "cnf_clauses": 2481,
+          "anf_equations": 17,
+          "target_scalar": 44,
+          "target": [
+            63,
+            79
+          ],
+          "group_oracle_decomposable": false
+        }
+      ]
+    },
+    {
+      "name": "trace-zero",
+      "basis": [
+        2,
+        4,
+        8
+      ],
+      "affine_offset": 0,
+      "subspace_size": 8,
+      "subgroup_factor_points": 0,
+      "frobenius_invariant": false,
+      "exact_nonzero_target_coverage": 0,
+      "runs": [
+        {
+          "status": "exhausted_polynomial_models",
+          "witness": null,
+          "rejected_projections": 0,
+          "input_sha256": "b36f2552710ab3fbcfbfafa2301f00daf3c2fa1493a8af6170536e9bbe5cb475",
+          "encoding_wall_seconds": 0.0014746250817552209,
+          "solve_wall_seconds": 0.010287667042575777,
+          "total_wall_seconds": 0.01215562503784895,
+          "boolean_variables": 16,
+          "cnf_variables": 447,
+          "cnf_clauses": 1669,
+          "anf_equations": 17,
+          "target_scalar": 12,
+          "target": [
+            75,
+            126
+          ],
+          "group_oracle_decomposable": false
+        },
+        {
+          "status": "exhausted_polynomial_models",
+          "witness": null,
+          "rejected_projections": 0,
+          "input_sha256": "6f4401113f8af3312e1559f5047279cc1cd983fcbb7ac418b285dfa2ae38431e",
+          "encoding_wall_seconds": 0.0015447080368176103,
+          "solve_wall_seconds": 0.01412254199385643,
+          "total_wall_seconds": 0.01588720898143947,
+          "boolean_variables": 16,
+          "cnf_variables": 457,
+          "cnf_clauses": 1709,
+          "anf_equations": 17,
+          "target_scalar": 9,
+          "target": [
+            55,
+            15
+          ],
+          "group_oracle_decomposable": false
+        },
+        {
+          "status": "exhausted_polynomial_models",
+          "witness": null,
+          "rejected_projections": 0,
+          "input_sha256": "758d6f3bc5cd14975171620918523312395cbe984c3cc92ff783bcb966b3282c",
+          "encoding_wall_seconds": 0.0017007500864565372,
+          "solve_wall_seconds": 0.01162887504324317,
+          "total_wall_seconds": 0.01342229195870459,
+          "boolean_variables": 16,
+          "cnf_variables": 451,
+          "cnf_clauses": 1685,
+          "anf_equations": 17,
+          "target_scalar": 21,
+          "target": [
+            43,
+            100
+          ],
+          "group_oracle_decomposable": false
+        },
+        {
+          "status": "exhausted_polynomial_models",
+          "witness": null,
+          "rejected_projections": 0,
+          "input_sha256": "eed906c57f849607b9080fa9a67e8fb3e2a400eb4a7ca37e84565cb20eb2200b",
+          "encoding_wall_seconds": 0.0022955830208957195,
+          "solve_wall_seconds": 0.008040833985432982,
+          "total_wall_seconds": 0.010281999944709241,
+          "boolean_variables": 16,
+          "cnf_variables": 424,
+          "cnf_clauses": 1577,
+          "anf_equations": 17,
+          "target_scalar": 16,
+          "target": [
+            105,
+            39
+          ],
+          "group_oracle_decomposable": false
+        },
+        {
+          "status": "exhausted_polynomial_models",
+          "witness": null,
+          "rejected_projections": 0,
+          "input_sha256": "827b334eaa97530d02ae62e4f775354045de7e3c3cb28381e7f0c871b713eb65",
+          "encoding_wall_seconds": 0.0014254589332267642,
+          "solve_wall_seconds": 0.009299666970036924,
+          "total_wall_seconds": 0.01049849996343255,
+          "boolean_variables": 16,
+          "cnf_variables": 416,
+          "cnf_clauses": 1545,
+          "anf_equations": 17,
+          "target_scalar": 61,
+          "target": [
+            67,
+            106
+          ],
+          "group_oracle_decomposable": false
+        },
+        {
+          "status": "exhausted_polynomial_models",
+          "witness": null,
+          "rejected_projections": 0,
+          "input_sha256": "5131664dea566eb8c36db169da4cb1bcdd6d7b695a1dfc236dc5adef047ff959",
+          "encoding_wall_seconds": 0.002736708032898605,
+          "solve_wall_seconds": 0.010463334037922323,
+          "total_wall_seconds": 0.011781124980188906,
+          "boolean_variables": 16,
+          "cnf_variables": 451,
+          "cnf_clauses": 1685,
+          "anf_equations": 17,
+          "target_scalar": 2,
+          "target": [
+            47,
+            40
+          ],
+          "group_oracle_decomposable": false
+        },
+        {
+          "status": "exhausted_polynomial_models",
+          "witness": null,
+          "rejected_projections": 0,
+          "input_sha256": "eb7ad6ded63c1f75c4d6460d2befc21efc88e31e0b652ce6aedc754f738be44d",
+          "encoding_wall_seconds": 0.0017261659959331155,
+          "solve_wall_seconds": 0.011102541000582278,
+          "total_wall_seconds": 0.014523833058774471,
+          "boolean_variables": 16,
+          "cnf_variables": 441,
+          "cnf_clauses": 1645,
+          "anf_equations": 17,
+          "target_scalar": 38,
+          "target": [
+            93,
+            53
+          ],
+          "group_oracle_decomposable": false
+        },
+        {
+          "status": "exhausted_polynomial_models",
+          "witness": null,
+          "rejected_projections": 0,
+          "input_sha256": "d0494a6399a9c33d5945080fbd00aae10e52ebd076382111fd0539a8038530d2",
+          "encoding_wall_seconds": 0.002426000079140067,
+          "solve_wall_seconds": 0.012811874970793724,
+          "total_wall_seconds": 0.01473745796829462,
+          "boolean_variables": 16,
+          "cnf_variables": 452,
+          "cnf_clauses": 1689,
+          "anf_equations": 17,
+          "target_scalar": 44,
+          "target": [
+            63,
+            79
+          ],
+          "group_oracle_decomposable": false
+        }
+      ]
+    },
+    {
+      "name": "invariant-001",
+      "basis": [
+        98,
+        76,
+        48
+      ],
+      "affine_offset": 0,
+      "subspace_size": 8,
+      "subgroup_factor_points": 0,
+      "frobenius_invariant": true,
+      "exact_nonzero_target_coverage": 0,
+      "runs": [
+        {
+          "status": "exhausted_polynomial_models",
+          "witness": null,
+          "rejected_projections": 0,
+          "input_sha256": "a701807cf88ea97bc0b4075ff745cc04dac900f5811058b43d3e07b469aa5963",
+          "encoding_wall_seconds": 0.0026254589902237058,
+          "solve_wall_seconds": 0.013349249958992004,
+          "total_wall_seconds": 0.016985583934001625,
+          "boolean_variables": 16,
+          "cnf_variables": 655,
+          "cnf_clauses": 2501,
+          "anf_equations": 17,
+          "target_scalar": 12,
+          "target": [
+            75,
+            126
+          ],
+          "group_oracle_decomposable": false
+        },
+        {
+          "status": "exhausted_polynomial_models",
+          "witness": null,
+          "rejected_projections": 0,
+          "input_sha256": "7a5eabf9925e2e679bb2a42569154282cff8e34c022f9e7fc69ea313a15a9bef",
+          "encoding_wall_seconds": 0.002665541018359363,
+          "solve_wall_seconds": 0.010655458085238934,
+          "total_wall_seconds": 0.012758291908539832,
+          "boolean_variables": 16,
+          "cnf_variables": 667,
+          "cnf_clauses": 2549,
+          "anf_equations": 17,
+          "target_scalar": 9,
+          "target": [
+            55,
+            15
+          ],
+          "group_oracle_decomposable": false
+        },
+        {
+          "status": "exhausted_polynomial_models",
+          "witness": null,
+          "rejected_projections": 0,
+          "input_sha256": "d089d07e72bcfa43648efd523e38add901eeaae5076cd1f53a8927130558231b",
+          "encoding_wall_seconds": 0.0016602090327069163,
+          "solve_wall_seconds": 0.010623167036101222,
+          "total_wall_seconds": 0.013792166952043772,
+          "boolean_variables": 16,
+          "cnf_variables": 670,
+          "cnf_clauses": 2561,
+          "anf_equations": 17,
+          "target_scalar": 21,
+          "target": [
+            43,
+            100
+          ],
+          "group_oracle_decomposable": false
+        },
+        {
+          "status": "exhausted_polynomial_models",
+          "witness": null,
+          "rejected_projections": 0,
+          "input_sha256": "19a3b403b395320bfa6fbcca66514d5c6b9fd4f7368ebcd01d27fb15497f1b85",
+          "encoding_wall_seconds": 0.0042562499875202775,
+          "solve_wall_seconds": 0.010111792013049126,
+          "total_wall_seconds": 0.012869709054939449,
+          "boolean_variables": 16,
+          "cnf_variables": 665,
+          "cnf_clauses": 2541,
+          "anf_equations": 17,
+          "target_scalar": 16,
+          "target": [
+            105,
+            39
+          ],
+          "group_oracle_decomposable": false
+        },
+        {
+          "status": "exhausted_polynomial_models",
+          "witness": null,
+          "rejected_projections": 0,
+          "input_sha256": "1457d83256e686ba0a40f60f7a52e94fa96229ffe617e450510523a84bf1f2aa",
+          "encoding_wall_seconds": 0.002868042094632983,
+          "solve_wall_seconds": 0.010226208018139005,
+          "total_wall_seconds": 0.012622583075426519,
+          "boolean_variables": 16,
+          "cnf_variables": 666,
+          "cnf_clauses": 2546,
+          "anf_equations": 17,
+          "target_scalar": 61,
+          "target": [
+            67,
+            106
+          ],
+          "group_oracle_decomposable": false
+        },
+        {
+          "status": "exhausted_polynomial_models",
+          "witness": null,
+          "rejected_projections": 0,
+          "input_sha256": "c3dbe123b27bfc182afa4a149f476b37498b17edc46e515e369b30e5dae4d331",
+          "encoding_wall_seconds": 0.002482707961462438,
+          "solve_wall_seconds": 0.009932833025231957,
+          "total_wall_seconds": 0.013270583003759384,
+          "boolean_variables": 16,
+          "cnf_variables": 661,
+          "cnf_clauses": 2525,
+          "anf_equations": 17,
+          "target_scalar": 2,
+          "target": [
+            47,
+            40
+          ],
+          "group_oracle_decomposable": false
+        },
+        {
+          "status": "exhausted_polynomial_models",
+          "witness": null,
+          "rejected_projections": 0,
+          "input_sha256": "8b9b14b919b1e991bf420631124484d159388cf76a2b622b1ecfcf7905f43254",
+          "encoding_wall_seconds": 0.0025926249800249934,
+          "solve_wall_seconds": 0.01236979104578495,
+          "total_wall_seconds": 0.015099875046871603,
+          "boolean_variables": 16,
+          "cnf_variables": 667,
+          "cnf_clauses": 2549,
+          "anf_equations": 17,
+          "target_scalar": 38,
+          "target": [
+            93,
+            53
+          ],
+          "group_oracle_decomposable": false
+        },
+        {
+          "status": "exhausted_polynomial_models",
+          "witness": null,
+          "rejected_projections": 0,
+          "input_sha256": "7b9a72f1b4e47ab4f28e6fa0f371c4b08174e39ce5608fe1d7f2c705f21b2343",
+          "encoding_wall_seconds": 0.0016178329242393374,
+          "solve_wall_seconds": 0.011217167018912733,
+          "total_wall_seconds": 0.0129262920236215,
+          "boolean_variables": 16,
+          "cnf_variables": 665,
+          "cnf_clauses": 2541,
+          "anf_equations": 17,
+          "target_scalar": 44,
+          "target": [
+            63,
+            79
+          ],
+          "group_oracle_decomposable": false
+        }
+      ],
+      "signed_frobenius_orbit_sizes": [],
+      "orbit_columns": 0
+    },
+    {
+      "name": "invariant-010",
+      "basis": [
+        2,
+        4,
+        16
+      ],
+      "affine_offset": 0,
+      "subspace_size": 8,
+      "subgroup_factor_points": 0,
+      "frobenius_invariant": true,
+      "exact_nonzero_target_coverage": 0,
+      "runs": [
+        {
+          "status": "exhausted_polynomial_models",
+          "witness": null,
+          "rejected_projections": 0,
+          "input_sha256": "77540f68f07701be95f762e0e2d76a625d14e8b635c00f24242120f78b688293",
+          "encoding_wall_seconds": 0.003940541064366698,
+          "solve_wall_seconds": 0.011873208917677402,
+          "total_wall_seconds": 0.013268374954350293,
+          "boolean_variables": 16,
+          "cnf_variables": 459,
+          "cnf_clauses": 1717,
+          "anf_equations": 17,
+          "target_scalar": 12,
+          "target": [
+            75,
+            126
+          ],
+          "group_oracle_decomposable": false
+        },
+        {
+          "status": "exhausted_polynomial_models",
+          "witness": null,
+          "rejected_projections": 0,
+          "input_sha256": "97421c3e39bb2ac83bf2adeb5cfde028047a9a69d40645d3037f1d5df5a64908",
+          "encoding_wall_seconds": 0.0014831250300630927,
+          "solve_wall_seconds": 0.010510458960197866,
+          "total_wall_seconds": 0.012931291945278645,
+          "boolean_variables": 16,
+          "cnf_variables": 461,
+          "cnf_clauses": 1725,
+          "anf_equations": 17,
+          "target_scalar": 9,
+          "target": [
+            55,
+            15
+          ],
+          "group_oracle_decomposable": false
+        },
+        {
+          "status": "exhausted_polynomial_models",
+          "witness": null,
+          "rejected_projections": 0,
+          "input_sha256": "046f30a43d6ec0f0af44055bf0b8c4bc05bf7d331fdbe89fba8fb0a923a50f2f",
+          "encoding_wall_seconds": 0.0018241660436615348,
+          "solve_wall_seconds": 0.011274583986960351,
+          "total_wall_seconds": 0.013276124955154955,
+          "boolean_variables": 16,
+          "cnf_variables": 462,
+          "cnf_clauses": 1729,
+          "anf_equations": 17,
+          "target_scalar": 21,
+          "target": [
+            43,
+            100
+          ],
+          "group_oracle_decomposable": false
+        },
+        {
+          "status": "exhausted_polynomial_models",
+          "witness": null,
+          "rejected_projections": 0,
+          "input_sha256": "46a28242911d73393ee9f209682ae0db3ed04e88b608a8d63a22cf06069cf368",
+          "encoding_wall_seconds": 0.0016610829625278711,
+          "solve_wall_seconds": 0.010525000048801303,
+          "total_wall_seconds": 0.01325437508057803,
+          "boolean_variables": 16,
+          "cnf_variables": 435,
+          "cnf_clauses": 1621,
+          "anf_equations": 17,
+          "target_scalar": 16,
+          "target": [
+            105,
+            39
+          ],
+          "group_oracle_decomposable": false
+        },
+        {
+          "status": "exhausted_polynomial_models",
+          "witness": null,
+          "rejected_projections": 0,
+          "input_sha256": "043b9f3b75c78c81f465cf34a3249ac5b60f84b01d98636cc9efb9d432246bcd",
+          "encoding_wall_seconds": 0.001413083984516561,
+          "solve_wall_seconds": 0.009405250078998506,
+          "total_wall_seconds": 0.01060566701926291,
+          "boolean_variables": 16,
+          "cnf_variables": 428,
+          "cnf_clauses": 1593,
+          "anf_equations": 17,
+          "target_scalar": 61,
+          "target": [
+            67,
+            106
+          ],
+          "group_oracle_decomposable": false
+        },
+        {
+          "status": "exhausted_polynomial_models",
+          "witness": null,
+          "rejected_projections": 0,
+          "input_sha256": "c6c02cd983750e3cb054ab6f0dcb4051ace9306d924152919b9b4bed234cfd8a",
+          "encoding_wall_seconds": 0.0014712089905515313,
+          "solve_wall_seconds": 0.008609000011347234,
+          "total_wall_seconds": 0.010870125028304756,
+          "boolean_variables": 16,
+          "cnf_variables": 461,
+          "cnf_clauses": 1725,
+          "anf_equations": 17,
+          "target_scalar": 2,
+          "target": [
+            47,
+            40
+          ],
+          "group_oracle_decomposable": false
+        },
+        {
+          "status": "exhausted_polynomial_models",
+          "witness": null,
+          "rejected_projections": 0,
+          "input_sha256": "b64241aa036b54ce2cb41105b48595856dd8c01f6befa5f36628ef2f75742b06",
+          "encoding_wall_seconds": 0.003377291955985129,
+          "solve_wall_seconds": 0.010091166943311691,
+          "total_wall_seconds": 0.012085208087228239,
+          "boolean_variables": 16,
+          "cnf_variables": 449,
+          "cnf_clauses": 1677,
+          "anf_equations": 17,
+          "target_scalar": 38,
+          "target": [
+            93,
+            53
+          ],
+          "group_oracle_decomposable": false
+        },
+        {
+          "status": "exhausted_polynomial_models",
+          "witness": null,
+          "rejected_projections": 0,
+          "input_sha256": "0bd85984ef588356c7ad1148c1b5727163582633517129e1cdfe0c6b84a25468",
+          "encoding_wall_seconds": 0.0019037909805774689,
+          "solve_wall_seconds": 0.009621458011679351,
+          "total_wall_seconds": 0.01208779204171151,
+          "boolean_variables": 16,
+          "cnf_variables": 460,
+          "cnf_clauses": 1721,
+          "anf_equations": 17,
+          "target_scalar": 44,
+          "target": [
+            63,
+            79
+          ],
+          "group_oracle_decomposable": false
+        }
+      ],
+      "signed_frobenius_orbit_sizes": [],
+      "orbit_columns": 0
+    },
+    {
+      "name": "random-affine-one",
+      "basis": [
+        23,
+        16,
+        41
+      ],
+      "affine_offset": 1,
+      "subspace_size": 8,
+      "subgroup_factor_points": 6,
+      "frobenius_invariant": false,
+      "exact_nonzero_target_coverage": 38,
+      "runs": [
+        {
+          "status": "verified_relation",
+          "witness": [
+            [
+              63,
+              79
+            ],
+            [
+              17,
+              122
+            ],
+            [
+              47,
+              7
+            ]
+          ],
+          "rejected_projections": 0,
+          "input_sha256": "27bf82e9f2461818855f50e61763ce114708f35e8b78920737e9ab5ca3f258e3",
+          "encoding_wall_seconds": 0.0019059589831158519,
+          "solve_wall_seconds": 0.013178791967220604,
+          "total_wall_seconds": 0.022570583038032055,
+          "boolean_variables": 16,
+          "cnf_variables": 657,
+          "cnf_clauses": 2509,
+          "anf_equations": 17,
+          "target_scalar": 12,
+          "target": [
+            75,
+            126
+          ],
+          "group_oracle_decomposable": true
+        },
+        {
+          "status": "verified_relation",
+          "witness": [
+            [
+              17,
+              122
+            ],
+            [
+              17,
+              122
+            ],
+            [
+              47,
+              7
+            ]
+          ],
+          "rejected_projections": 0,
+          "input_sha256": "a9a72f855e484cb597a4a1698394428b70860831930e029714c86d5d78a9571c",
+          "encoding_wall_seconds": 0.0023979159304872155,
+          "solve_wall_seconds": 0.015484208008274436,
+          "total_wall_seconds": 0.024362666066735983,
+          "boolean_variables": 16,
+          "cnf_variables": 662,
+          "cnf_clauses": 2529,
+          "anf_equations": 17,
+          "target_scalar": 9,
+          "target": [
+            55,
+            15
+          ],
+          "group_oracle_decomposable": true
+        },
+        {
+          "status": "exhausted_polynomial_models",
+          "witness": null,
+          "rejected_projections": 0,
+          "input_sha256": "5bdc7b2dc4b4d2abebbba35f382d75c2ca1cb62c593c839298482c68675a13fa",
+          "encoding_wall_seconds": 0.0021240419009700418,
+          "solve_wall_seconds": 0.0208383749704808,
+          "total_wall_seconds": 0.02558691694866866,
+          "boolean_variables": 16,
+          "cnf_variables": 657,
+          "cnf_clauses": 2509,
+          "anf_equations": 17,
+          "target_scalar": 21,
+          "target": [
+            43,
+            100
+          ],
+          "group_oracle_decomposable": false
+        },
+        {
+          "status": "verified_relation",
+          "witness": [
+            [
+              17,
+              122
+            ],
+            [
+              63,
+              79
+            ],
+            [
+              47,
+              40
+            ]
+          ],
+          "rejected_projections": 0,
+          "input_sha256": "5c80211b88f0a0ac6c1f06d236f5bc715eb7343d432935f8b2e4517299df22aa",
+          "encoding_wall_seconds": 0.0018275829497724771,
+          "solve_wall_seconds": 0.011109290993772447,
+          "total_wall_seconds": 0.015566666959784925,
+          "boolean_variables": 16,
+          "cnf_variables": 645,
+          "cnf_clauses": 2461,
+          "anf_equations": 17,
+          "target_scalar": 16,
+          "target": [
+            105,
+            39
+          ],
+          "group_oracle_decomposable": true
+        },
+        {
+          "status": "verified_relation",
+          "witness": [
+            [
+              63,
+              79
+            ],
+            [
+              63,
+              79
+            ],
+            [
+              63,
+              79
+            ]
+          ],
+          "rejected_projections": 0,
+          "input_sha256": "6c5ac316ffae710c08a81ce68f2096784b392dce243a50ada7b8739c4624cba3",
+          "encoding_wall_seconds": 0.0016859170282259583,
+          "solve_wall_seconds": 0.0148977090138942,
+          "total_wall_seconds": 0.02117720793467015,
+          "boolean_variables": 16,
+          "cnf_variables": 659,
+          "cnf_clauses": 2517,
+          "anf_equations": 17,
+          "target_scalar": 61,
+          "target": [
+            67,
+            106
+          ],
+          "group_oracle_decomposable": true
+        },
+        {
+          "status": "verified_relation",
+          "witness": [
+            [
+              47,
+              40
+            ],
+            [
+              17,
+              107
+            ],
+            [
+              17,
+              122
+            ]
+          ],
+          "rejected_projections": 0,
+          "input_sha256": "8d5158aff82ed288ba19cd1c3136caaaa88ee5233b31663ab3d8ab62bf24309c",
+          "encoding_wall_seconds": 0.0016509999986737967,
+          "solve_wall_seconds": 0.014582082978449762,
+          "total_wall_seconds": 0.02064020896796137,
+          "boolean_variables": 16,
+          "cnf_variables": 661,
+          "cnf_clauses": 2525,
+          "anf_equations": 17,
+          "target_scalar": 2,
+          "target": [
+            47,
+            40
+          ],
+          "group_oracle_decomposable": true
+        },
+        {
+          "status": "verified_relation",
+          "witness": [
+            [
+              63,
+              112
+            ],
+            [
+              17,
+              122
+            ],
+            [
+              17,
+              122
+            ]
+          ],
+          "rejected_projections": 0,
+          "input_sha256": "d15c5ed2203f2216b6c6f9503576bdd101eb2d9b1ce9dab88eb21d2ff267b29d",
+          "encoding_wall_seconds": 0.0017332909628748894,
+          "solve_wall_seconds": 0.02427879103925079,
+          "total_wall_seconds": 0.030867666006088257,
+          "boolean_variables": 16,
+          "cnf_variables": 653,
+          "cnf_clauses": 2494,
+          "anf_equations": 17,
+          "target_scalar": 38,
+          "target": [
+            93,
+            53
+          ],
+          "group_oracle_decomposable": true
+        },
+        {
+          "status": "verified_relation",
+          "witness": [
+            [
+              63,
+              79
+            ],
+            [
+              17,
+              107
+            ],
+            [
+              17,
+              122
+            ]
+          ],
+          "rejected_projections": 0,
+          "input_sha256": "0e3ca7367a2bc1c94bbc83d378da7e7169960989b7b67ea34b1fda356832c768",
+          "encoding_wall_seconds": 0.0016779160359874368,
+          "solve_wall_seconds": 0.021358708036132157,
+          "total_wall_seconds": 0.025880999979563057,
+          "boolean_variables": 16,
+          "cnf_variables": 650,
+          "cnf_clauses": 2481,
+          "anf_equations": 17,
+          "target_scalar": 44,
+          "target": [
+            63,
+            79
+          ],
+          "group_oracle_decomposable": true
+        }
+      ]
+    },
+    {
+      "name": "trace-zero-affine-one",
+      "basis": [
+        2,
+        4,
+        8
+      ],
+      "affine_offset": 1,
+      "subspace_size": 8,
+      "subgroup_factor_points": 10,
+      "frobenius_invariant": false,
+      "exact_nonzero_target_coverage": 58,
+      "runs": [
+        {
+          "status": "verified_relation",
+          "witness": [
+            [
+              11,
+              85
+            ],
+            [
+              11,
+              85
+            ],
+            [
+              11,
+              85
+            ]
+          ],
+          "rejected_projections": 0,
+          "input_sha256": "88c6d76d42f1a2f2f420cc2eed5a27d0e626d0f6f9968e1b2f498acf8dce9fe4",
+          "encoding_wall_seconds": 0.004815583000890911,
+          "solve_wall_seconds": 0.022588707972317934,
+          "total_wall_seconds": 0.026049750042147934,
+          "boolean_variables": 16,
+          "cnf_variables": 476,
+          "cnf_clauses": 1782,
+          "anf_equations": 14,
+          "target_scalar": 12,
+          "target": [
+            75,
+            126
+          ],
+          "group_oracle_decomposable": true
+        },
+        {
+          "status": "verified_relation",
+          "witness": [
+            [
+              11,
+              85
+            ],
+            [
+              11,
+              85
+            ],
+            [
+              3,
+              85
+            ]
+          ],
+          "rejected_projections": 0,
+          "input_sha256": "0486d135c064c96a1805948063964900631de0e3073e67aa94e23df3c11f3010",
+          "encoding_wall_seconds": 0.0016916249878704548,
+          "solve_wall_seconds": 0.023529959027655423,
+          "total_wall_seconds": 0.02779045794159174,
+          "boolean_variables": 16,
+          "cnf_variables": 487,
+          "cnf_clauses": 1826,
+          "anf_equations": 14,
+          "target_scalar": 9,
+          "target": [
+            55,
+            15
+          ],
+          "group_oracle_decomposable": true
+        },
+        {
+          "status": "exhausted_polynomial_models",
+          "witness": null,
+          "rejected_projections": 0,
+          "input_sha256": "2c88ebb6aeee2fee49bd2b12370128a703b08d970a26c04fb32fa97bd202e8be",
+          "encoding_wall_seconds": 0.0015205410309135914,
+          "solve_wall_seconds": 0.021658709039911628,
+          "total_wall_seconds": 0.023204124998301268,
+          "boolean_variables": 16,
+          "cnf_variables": 483,
+          "cnf_clauses": 1810,
+          "anf_equations": 14,
+          "target_scalar": 21,
+          "target": [
+            43,
+            100
+          ],
+          "group_oracle_decomposable": false
+        },
+        {
+          "status": "exhausted_polynomial_models",
+          "witness": null,
+          "rejected_projections": 0,
+          "input_sha256": "69ec1150bc82dff436aa5ec7c2ac6cd528ea2d745a647bdaf3ccdec0a2de2636",
+          "encoding_wall_seconds": 0.0015522920293733478,
+          "solve_wall_seconds": 0.01434962498024106,
+          "total_wall_seconds": 0.015761374961584806,
+          "boolean_variables": 16,
+          "cnf_variables": 453,
+          "cnf_clauses": 1690,
+          "anf_equations": 14,
+          "target_scalar": 16,
+          "target": [
+            105,
+            39
+          ],
+          "group_oracle_decomposable": false
+        },
+        {
+          "status": "verified_relation",
+          "witness": [
+            [
+              11,
+              94
+            ],
+            [
+              3,
+              86
+            ],
+            [
+              9,
+              85
+            ]
+          ],
+          "rejected_projections": 0,
+          "input_sha256": "60d487ec109e95df1af5c0f1128198006cf9efb99166b41c9a6522360d5d1576",
+          "encoding_wall_seconds": 0.0016375420382246375,
+          "solve_wall_seconds": 0.01381537492852658,
+          "total_wall_seconds": 0.01886779093183577,
+          "boolean_variables": 16,
+          "cnf_variables": 455,
+          "cnf_clauses": 1698,
+          "anf_equations": 14,
+          "target_scalar": 61,
+          "target": [
+            67,
+            106
+          ],
+          "group_oracle_decomposable": true
+        },
+        {
+          "status": "verified_relation",
+          "witness": [
+            [
+              11,
+              94
+            ],
+            [
+              9,
+              92
+            ],
+            [
+              3,
+              85
+            ]
+          ],
+          "rejected_projections": 0,
+          "input_sha256": "81f47ce7562741b14872cb8f473cf2089e439df3f7fb2bc29490df0eebd98048",
+          "encoding_wall_seconds": 0.0017843329114839435,
+          "solve_wall_seconds": 0.01208625000435859,
+          "total_wall_seconds": 0.017520292080007493,
+          "boolean_variables": 16,
+          "cnf_variables": 478,
+          "cnf_clauses": 1790,
+          "anf_equations": 14,
+          "target_scalar": 2,
+          "target": [
+            47,
+            40
+          ],
+          "group_oracle_decomposable": true
+        },
+        {
+          "status": "verified_relation",
+          "witness": [
+            [
+              11,
+              85
+            ],
+            [
+              5,
+              114
+            ],
+            [
+              9,
+              85
+            ]
+          ],
+          "rejected_projections": 0,
+          "input_sha256": "92d999295282037c5a6523eda583adb455de2d8685a14d06a974ec8e951aeb61",
+          "encoding_wall_seconds": 0.001468457980081439,
+          "solve_wall_seconds": 0.010178167023696005,
+          "total_wall_seconds": 0.014161208062432706,
+          "boolean_variables": 16,
+          "cnf_variables": 468,
+          "cnf_clauses": 1750,
+          "anf_equations": 14,
+          "target_scalar": 38,
+          "target": [
+            93,
+            53
+          ],
+          "group_oracle_decomposable": true
+        },
+        {
+          "status": "verified_relation",
+          "witness": [
+            [
+              9,
+              92
+            ],
+            [
+              7,
+              58
+            ],
+            [
+              9,
+              92
+            ]
+          ],
+          "rejected_projections": 0,
+          "input_sha256": "9d6ad67f5b89cfc172d1b1ef16f793c1a65bd4b8f46980225a266faac362cfb9",
+          "encoding_wall_seconds": 0.0014340420020744205,
+          "solve_wall_seconds": 0.009581999969668686,
+          "total_wall_seconds": 0.015397916082292795,
+          "boolean_variables": 16,
+          "cnf_variables": 472,
+          "cnf_clauses": 1766,
+          "anf_equations": 14,
+          "target_scalar": 44,
+          "target": [
+            63,
+            79
+          ],
+          "group_oracle_decomposable": true
+        }
+      ]
+    },
+    {
+      "name": "invariant-001-affine-one",
+      "basis": [
+        98,
+        76,
+        48
+      ],
+      "affine_offset": 1,
+      "subspace_size": 8,
+      "subgroup_factor_points": 14,
+      "frobenius_invariant": true,
+      "exact_nonzero_target_coverage": 70,
+      "runs": [
+        {
+          "status": "verified_relation",
+          "witness": [
+            [
+              125,
+              108
+            ],
+            [
+              31,
+              12
+            ],
+            [
+              125,
+              108
+            ]
+          ],
+          "rejected_projections": 0,
+          "input_sha256": "ebf428e7a0747b6d83fb42069b1b5a5aaa3cc2e6b0c4ea445ae8e25e16fc5590",
+          "encoding_wall_seconds": 0.0017089999746531248,
+          "solve_wall_seconds": 0.009209124953486025,
+          "total_wall_seconds": 0.013546583009883761,
+          "boolean_variables": 16,
+          "cnf_variables": 678,
+          "cnf_clauses": 2590,
+          "anf_equations": 14,
+          "target_scalar": 12,
+          "target": [
+            75,
+            126
+          ],
+          "group_oracle_decomposable": true
+        },
+        {
+          "status": "verified_relation",
+          "witness": [
+            [
+              31,
+              12
+            ],
+            [
+              31,
+              12
+            ],
+            [
+              31,
+              12
+            ]
+          ],
+          "rejected_projections": 0,
+          "input_sha256": "70b68bc56dd457e471df1b069a99b97793c1e90096f3770fb87160342e1f39b4",
+          "encoding_wall_seconds": 0.0017129580955952406,
+          "solve_wall_seconds": 0.009983457974158227,
+          "total_wall_seconds": 0.014392541022971272,
+          "boolean_variables": 16,
+          "cnf_variables": 691,
+          "cnf_clauses": 2642,
+          "anf_equations": 14,
+          "target_scalar": 9,
+          "target": [
+            55,
+            15
+          ],
+          "group_oracle_decomposable": true
+        },
+        {
+          "status": "verified_relation",
+          "witness": [
+            [
+              77,
+              21
+            ],
+            [
+              77,
+              21
+            ],
+            [
+              77,
+              21
+            ]
+          ],
+          "rejected_projections": 0,
+          "input_sha256": "859d396b026a4fffa5b64d5c14e0d760e8f14aebb54fdd5baaf72aa47c17b928",
+          "encoding_wall_seconds": 0.0017655829433351755,
+          "solve_wall_seconds": 0.012453207978978753,
+          "total_wall_seconds": 0.019040334038436413,
+          "boolean_variables": 16,
+          "cnf_variables": 696,
+          "cnf_clauses": 2662,
+          "anf_equations": 14,
+          "target_scalar": 21,
+          "target": [
+            43,
+            100
+          ],
+          "group_oracle_decomposable": true
+        },
+        {
+          "status": "verified_relation",
+          "witness": [
+            [
+              77,
+              88
+            ],
+            [
+              83,
+              80
+            ],
+            [
+              47,
+              7
+            ]
+          ],
+          "rejected_projections": 0,
+          "input_sha256": "758203401fa31914029b7e3c7f980e28e1cf425bc8cc53546c76f5b3f3b4e2bf",
+          "encoding_wall_seconds": 0.0018170839175581932,
+          "solve_wall_seconds": 0.010197290917858481,
+          "total_wall_seconds": 0.014730249997228384,
+          "boolean_variables": 16,
+          "cnf_variables": 688,
+          "cnf_clauses": 2630,
+          "anf_equations": 14,
+          "target_scalar": 16,
+          "target": [
+            105,
+            39
+          ],
+          "group_oracle_decomposable": true
+        },
+        {
+          "status": "verified_relation",
+          "witness": [
+            [
+              47,
+              7
+            ],
+            [
+              31,
+              12
+            ],
+            [
+              49,
+              38
+            ]
+          ],
+          "rejected_projections": 0,
+          "input_sha256": "2640dc123cd7c8608ec716fd4f50f0a84f95f8af4264ed7f907013affdf1664f",
+          "encoding_wall_seconds": 0.0016788749489933252,
+          "solve_wall_seconds": 0.011185750016011298,
+          "total_wall_seconds": 0.016350833931937814,
+          "boolean_variables": 16,
+          "cnf_variables": 699,
+          "cnf_clauses": 2675,
+          "anf_equations": 14,
+          "target_scalar": 61,
+          "target": [
+            67,
+            106
+          ],
+          "group_oracle_decomposable": true
+        },
+        {
+          "status": "verified_relation",
+          "witness": [
+            [
+              47,
+              40
+            ],
+            [
+              31,
+              12
+            ],
+            [
+              31,
+              19
+            ]
+          ],
+          "rejected_projections": 0,
+          "input_sha256": "2bf7c5053d285ad8fddb71803e429506ae301c1178edee599e1eb1c48b0823fc",
+          "encoding_wall_seconds": 0.0017014580080285668,
+          "solve_wall_seconds": 0.009647208033129573,
+          "total_wall_seconds": 0.01510333304759115,
+          "boolean_variables": 16,
+          "cnf_variables": 682,
+          "cnf_clauses": 2606,
+          "anf_equations": 14,
+          "target_scalar": 2,
+          "target": [
+            47,
+            40
+          ],
+          "group_oracle_decomposable": true
+        },
+        {
+          "status": "verified_relation",
+          "witness": [
+            [
+              99,
+              5
+            ],
+            [
+              49,
+              38
+            ],
+            [
+              31,
+              19
+            ]
+          ],
+          "rejected_projections": 0,
+          "input_sha256": "3c322bd39c7626ab70ae0f043f0bc9888fee78e89140d8ab1cf911967ff145a3",
+          "encoding_wall_seconds": 0.00362099998164922,
+          "solve_wall_seconds": 0.012323624920099974,
+          "total_wall_seconds": 0.01694166602101177,
+          "boolean_variables": 16,
+          "cnf_variables": 688,
+          "cnf_clauses": 2630,
+          "anf_equations": 14,
+          "target_scalar": 38,
+          "target": [
+            93,
+            53
+          ],
+          "group_oracle_decomposable": true
+        },
+        {
+          "status": "verified_relation",
+          "witness": [
+            [
+              125,
+              108
+            ],
+            [
+              31,
+              19
+            ],
+            [
+              77,
+              21
+            ]
+          ],
+          "rejected_projections": 0,
+          "input_sha256": "f0fd4a394a449273ab2d7d4ac60dae610efab40d6f0c7c71bdba82f2c94ae1ad",
+          "encoding_wall_seconds": 0.001661374932155013,
+          "solve_wall_seconds": 0.009377875016070902,
+          "total_wall_seconds": 0.016691084019839764,
+          "boolean_variables": 16,
+          "cnf_variables": 679,
+          "cnf_clauses": 2594,
+          "anf_equations": 14,
+          "target_scalar": 44,
+          "target": [
+            63,
+            79
+          ],
+          "group_oracle_decomposable": true
+        }
+      ],
+      "signed_frobenius_orbit_sizes": [
+        14
+      ],
+      "orbit_columns": 1
+    },
+    {
+      "name": "invariant-010-affine-one",
+      "basis": [
+        2,
+        4,
+        16
+      ],
+      "affine_offset": 1,
+      "subspace_size": 8,
+      "subgroup_factor_points": 14,
+      "frobenius_invariant": true,
+      "exact_nonzero_target_coverage": 70,
+      "runs": [
+        {
+          "status": "verified_relation",
+          "witness": [
+            [
+              7,
+              58
+            ],
+            [
+              21,
+              90
+            ],
+            [
+              23,
+              34
+            ]
+          ],
+          "rejected_projections": 0,
+          "input_sha256": "0ddbdc7004616b9ee786dc648fa69c56e322672a6a678ed8bf5927a47ae60b13",
+          "encoding_wall_seconds": 0.0015696249902248383,
+          "solve_wall_seconds": 0.011434874963015318,
+          "total_wall_seconds": 0.01763891603332013,
+          "boolean_variables": 16,
+          "cnf_variables": 492,
+          "cnf_clauses": 1846,
+          "anf_equations": 14,
+          "target_scalar": 12,
+          "target": [
+            75,
+            126
+          ],
+          "group_oracle_decomposable": true
+        },
+        {
+          "status": "verified_relation",
+          "witness": [
+            [
+              7,
+              58
+            ],
+            [
+              23,
+              53
+            ],
+            [
+              3,
+              85
+            ]
+          ],
+          "rejected_projections": 0,
+          "input_sha256": "6a72f860571b0da9fcb0f44a788f359c5a6cc0ab33cb9c0cf2f4eb2f26b7697b",
+          "encoding_wall_seconds": 0.001577666960656643,
+          "solve_wall_seconds": 0.010622666915878654,
+          "total_wall_seconds": 0.016721832915209234,
+          "boolean_variables": 16,
+          "cnf_variables": 495,
+          "cnf_clauses": 1858,
+          "anf_equations": 14,
+          "target_scalar": 9,
+          "target": [
+            55,
+            15
+          ],
+          "group_oracle_decomposable": true
+        },
+        {
+          "status": "verified_relation",
+          "witness": [
+            [
+              17,
+              107
+            ],
+            [
+              21,
+              90
+            ],
+            [
+              5,
+              114
+            ]
+          ],
+          "rejected_projections": 0,
+          "input_sha256": "98c740bedd08eddc5f940571fe561f0a51204a577af391aa97cb7cf3e0879297",
+          "encoding_wall_seconds": 0.002467332989908755,
+          "solve_wall_seconds": 0.01006158406380564,
+          "total_wall_seconds": 0.016023000003769994,
+          "boolean_variables": 16,
+          "cnf_variables": 498,
+          "cnf_clauses": 1870,
+          "anf_equations": 14,
+          "target_scalar": 21,
+          "target": [
+            43,
+            100
+          ],
+          "group_oracle_decomposable": true
+        },
+        {
+          "status": "verified_relation",
+          "witness": [
+            [
+              21,
+              90
+            ],
+            [
+              17,
+              107
+            ],
+            [
+              7,
+              58
+            ]
+          ],
+          "rejected_projections": 0,
+          "input_sha256": "0d13e6735d900c106de125df2d83017df951c1d65f596c77fe3c5aa8d9a8c128",
+          "encoding_wall_seconds": 0.0015267499256879091,
+          "solve_wall_seconds": 0.007826291024684906,
+          "total_wall_seconds": 0.012997417012229562,
+          "boolean_variables": 16,
+          "cnf_variables": 468,
+          "cnf_clauses": 1750,
+          "anf_equations": 14,
+          "target_scalar": 16,
+          "target": [
+            105,
+            39
+          ],
+          "group_oracle_decomposable": true
+        },
+        {
+          "status": "verified_relation",
+          "witness": [
+            [
+              23,
+              53
+            ],
+            [
+              5,
+              114
+            ],
+            [
+              21,
+              79
+            ]
+          ],
+          "rejected_projections": 0,
+          "input_sha256": "d6b28842e5ba12bc5a6b901bd9d1a196f62d9f3c4bfd4b44638169a2eb9c2b8b",
+          "encoding_wall_seconds": 0.0024230829440057278,
+          "solve_wall_seconds": 0.0096583750564605,
+          "total_wall_seconds": 0.014014833024702966,
+          "boolean_variables": 16,
+          "cnf_variables": 471,
+          "cnf_clauses": 1762,
+          "anf_equations": 14,
+          "target_scalar": 61,
+          "target": [
+            67,
+            106
+          ],
+          "group_oracle_decomposable": true
+        },
+        {
+          "status": "verified_relation",
+          "witness": [
+            [
+              23,
+              34
+            ],
+            [
+              21,
+              79
+            ],
+            [
+              3,
+              86
+            ]
+          ],
+          "rejected_projections": 0,
+          "input_sha256": "677317f330c5ed3c3dce9ceb233e1e1867a4f24c07e3593ccf65ad9b4461d22b",
+          "encoding_wall_seconds": 0.001524292048998177,
+          "solve_wall_seconds": 0.012606000062078238,
+          "total_wall_seconds": 0.019794999971054494,
+          "boolean_variables": 16,
+          "cnf_variables": 492,
+          "cnf_clauses": 1846,
+          "anf_equations": 14,
+          "target_scalar": 2,
+          "target": [
+            47,
+            40
+          ],
+          "group_oracle_decomposable": true
+        },
+        {
+          "status": "verified_relation",
+          "witness": [
+            [
+              7,
+              58
+            ],
+            [
+              23,
+              53
+            ],
+            [
+              17,
+              107
+            ]
+          ],
+          "rejected_projections": 0,
+          "input_sha256": "e7db8f4d744a460684e89ebffff42ad69ecd50f88840bc6a5178811c33d7bcc3",
+          "encoding_wall_seconds": 0.003029166953638196,
+          "solve_wall_seconds": 0.011797624989412725,
+          "total_wall_seconds": 0.019646875094622374,
+          "boolean_variables": 16,
+          "cnf_variables": 480,
+          "cnf_clauses": 1798,
+          "anf_equations": 14,
+          "target_scalar": 38,
+          "target": [
+            93,
+            53
+          ],
+          "group_oracle_decomposable": true
+        },
+        {
+          "status": "verified_relation",
+          "witness": [
+            [
+              7,
+              61
+            ],
+            [
+              5,
+              114
+            ],
+            [
+              5,
+              114
+            ]
+          ],
+          "rejected_projections": 0,
+          "input_sha256": "554f5b3797ba9acc717986bbb5f5c6257ad1cb8549ef60952736bc2fc68f9ed5",
+          "encoding_wall_seconds": 0.0015308749862015247,
+          "solve_wall_seconds": 0.0102667500032112,
+          "total_wall_seconds": 0.0141353749204427,
+          "boolean_variables": 16,
+          "cnf_variables": 484,
+          "cnf_clauses": 1814,
+          "anf_equations": 14,
+          "target_scalar": 44,
+          "target": [
+            63,
+            79
+          ],
+          "group_oracle_decomposable": true
+        }
+      ],
+      "signed_frobenius_orbit_sizes": [
+        14
+      ],
+      "orbit_columns": 1
+    }
+  ],
+  "source_sha256": "f2deeb9b07ded874c814520647885bafcd944f8c7b3ac70d26a884654ba81111"
+}
