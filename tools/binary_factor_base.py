@@ -212,6 +212,36 @@ def cnf_text(nvars, clauses):
         ' '.join(map(str, c)) + ' 0\n' for c in clauses)
 
 
+def exact_factor_clauses(E, basis, m, subgroup_order, offset=0):
+    """Block every factor-coordinate assignment that cannot lift as required.
+
+    This table depends only on the frozen factor space and subgroup, never on
+    the decomposition target. Variables are the first m consecutive k-blocks.
+    """
+    k = len(basis)
+    invalid = []
+    valid = []
+    for assignment in range(1 << k):
+        x = E.base_field()(offset)
+        for j, coefficient in enumerate(basis):
+            if assignment & (1 << j):
+                x += coefficient
+        try:
+            lifts = E.lift_x(x, all=True)
+        except ValueError:
+            lifts = []
+        if any(subgroup_order*P == E(0) for P in lifts):
+            valid.append(assignment)
+        else:
+            invalid.append(assignment)
+    clauses = []
+    for block in range(m):
+        for assignment in invalid:
+            clauses.append([-(block*k+j+1) if assignment & (1 << j) else block*k+j+1
+                            for j in range(k)])
+    return clauses, valid, invalid
+
+
 def evaluate(equations, bits):
     return all(sum(all(bits[i-1] for i in mon_ids(mon)) for mon in eq) % 2 == 0
                for eq in equations)
@@ -236,13 +266,20 @@ def witness(E, basis, m, R, bits, subgroup_order, offset=0):
 
 
 def solve_verified(E, basis, m, R, r, solver, timeout, offset=0, trace_filter=False,
-                   artifact_dir=None):
+                   artifact_dir=None, exact_factor_filter=False):
     encoding_start = time.perf_counter()
     if trace_filter and r % 2 == 0:
         raise ValueError('The subgroup trace filter requires odd subgroup order')
     equations, names = descend(E.base_field(), basis, m, R[0], E.a6(), offset,
                               E.a2().trace() if trace_filter else None)
     nvars, clauses = cnf(equations, len(names))
+    factor_clauses = []
+    valid_factor_assignments = []
+    invalid_factor_assignments = []
+    if exact_factor_filter:
+        factor_clauses, valid_factor_assignments, invalid_factor_assignments = \
+            exact_factor_clauses(E, basis, m, r, offset)
+        clauses.extend(factor_clauses)
     encoding_seconds = time.perf_counter() - encoding_start
     input_sha256 = hashlib.sha256(cnf_text(nvars, clauses).encode()).hexdigest()
     original_clauses = len(clauses)
@@ -251,6 +288,11 @@ def solve_verified(E, basis, m, R, r, solver, timeout, offset=0, trace_filter=Fa
         artifact_dir.mkdir(parents=True, exist_ok=False)
         (artifact_dir / 'input.anf').write_text(anf_text(equations, len(names)))
         (artifact_dir / 'variables.json').write_text(json.dumps(names, indent=2) + '\n')
+        (artifact_dir / 'factor-filter.json').write_text(json.dumps(dict(
+            enabled=exact_factor_filter, subgroup_order=int(r),
+            valid_assignments=valid_factor_assignments,
+            invalid_assignments=invalid_factor_assignments,
+            clauses=factor_clauses), indent=2) + '\n')
     rejects = 0
     start = time.perf_counter()
     solver_seconds = 0.0
@@ -304,7 +346,10 @@ def solve_verified(E, basis, m, R, r, solver, timeout, offset=0, trace_filter=Fa
                 input_sha256=input_sha256, encoding_wall_seconds=encoding_seconds,
                 solve_wall_seconds=solver_seconds, total_wall_seconds=time.perf_counter()-start,
                 boolean_variables=len(names), cnf_variables=nvars, cnf_clauses=original_clauses,
-                anf_equations=len(equations))
+                anf_equations=len(equations), exact_factor_filter=exact_factor_filter,
+                factor_filter_valid_assignments=len(valid_factor_assignments),
+                factor_filter_invalid_assignments=len(invalid_factor_assignments),
+                factor_filter_clauses=len(factor_clauses))
 
 
 def main():

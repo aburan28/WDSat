@@ -55,6 +55,23 @@ class FactorBaseTests(unittest.TestCase):
                     self.assertIn(result.returncode, [10, 20])
                     self.assertEqual(result.returncode == 10, lab.evaluate(equations, bits))
 
+    def test_exact_factor_clauses(self):
+        F = GF(128, name='a')
+        E = EllipticCurve(F, [1, 1, 0, 0, 1])
+        basis = [F(1), F.gen(), F.gen()**2]
+        clauses, valid, invalid = lab.exact_factor_clauses(E, basis, 3, 71)
+        self.assertEqual(sorted(valid + invalid), list(range(8)))
+        self.assertEqual(len(clauses), 3*len(invalid))
+        for block in range(3):
+            for assignment in range(8):
+                bits = [0]*9
+                for j in range(3):
+                    bits[block*3+j] = int(bool(assignment & (1 << j)))
+                relevant = clauses[block*len(invalid):(block+1)*len(invalid)]
+                satisfied = all(any((literal > 0) == bool(bits[abs(literal)-1]) for literal in clause)
+                                for clause in relevant)
+                self.assertEqual(satisfied, assignment in valid)
+
     def test_wdsat_export_projection_equivalence(self):
         solver = Path(__file__).resolve().parents[1] / 'wdsat_solver'
         systems = [[{1, 2, 3}, {3, 4, 0}], [{0}], [set()], [{1, 2, 4, 0}]]
@@ -87,6 +104,10 @@ class FactorBaseTests(unittest.TestCase):
         recovered = [E(F.from_integer(x), F.from_integer(y)) for x, y in result['witness']]
         self.assertEqual(sum(recovered, E(0)), R)
         self.assertTrue(all(r*P == E(0) for P in recovered))
+        filtered = lab.solve_verified(E, basis, 2, R, r, 'cadical', 10,
+                                      exact_factor_filter=True)
+        self.assertEqual(filtered['status'], 'verified_relation')
+        self.assertEqual(filtered['rejected_projections'], 0)
 
     def test_affine_factor_base(self):
         F = GF(128, name='a')
