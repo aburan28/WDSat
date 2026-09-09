@@ -103,25 +103,35 @@ def s3(x, y, z, B):
     return add({mon: c*c for mon, c in quadratic.items()}, mul(mul(x, y), z), {0: B})
 
 
-def descend(F, basis, m, target_x, B, offset=0, subgroup_trace=None):
+def descend_multi(F, bases, target_x, B, offsets=None, subgroup_trace=None):
     """Return coordinate ANFs equal to zero and an explicit variable map.
 
     Factor coordinates first, full-field auxiliary coordinates last. The
     chained model's auxiliaries need search: the symmetric-S4 propagation
     theorem from the WDSat paper does not apply to this representation.
     """
+    m = len(bases)
     if m not in (2, 3):
         raise ValueError('This diagnostic supports m=2 or m=3')
-    if not basis or basis_rank(basis) != len(basis):
-        raise ValueError('Factor basis must be nonempty and independent')
+    if offsets is None:
+        offsets = [F(0)]*m
+    if len(offsets) != m:
+        raise ValueError('One affine offset is required per factor space')
+    for basis in bases:
+        if not basis or basis_rank(basis) != len(basis):
+            raise ValueError('Factor bases must be nonempty and independent')
     names = []
+    starts = []
     def variable(name, support):
         p = {}
         for j, coefficient in enumerate(support):
             p[1 << len(names)] = coefficient
             names.append(f'{name}_{j}')
         return p
-    xs = [add(variable(f'x{i+1}', basis), {0: F(offset)}) for i in range(m)]
+    xs = []
+    for i, (basis, offset) in enumerate(zip(bases, offsets)):
+        starts.append(len(names))
+        xs.append(add(variable(f'x{i+1}', basis), {0: F(offset)}))
     if m == 2:
         polys = [s3(xs[0], xs[1], {0: target_x}, B)]
     else:
@@ -140,12 +150,16 @@ def descend(F, basis, m, target_x, B, offset=0, subgroup_trace=None):
         # x(2P)=lambda^2+lambda+A, hence Tr(x)=Tr(A). This is necessary,
         # not a replacement for lifting or the final subgroup certificate.
         for i in range(m):
-            row = {1 << (i*len(basis)+j) for j, b in enumerate(basis) if b.trace()}
-            if F(offset).trace() != subgroup_trace:
+            row = {1 << (starts[i]+j) for j, b in enumerate(bases[i]) if b.trace()}
+            if F(offsets[i]).trace() != subgroup_trace:
                 row.add(0)
             if row:
                 equations.append(row)
     return equations, names
+
+
+def descend(F, basis, m, target_x, B, offset=0, subgroup_trace=None):
+    return descend_multi(F, [basis]*m, target_x, B, [offset]*m, subgroup_trace)
 
 
 def mon_ids(mon):
@@ -212,34 +226,45 @@ def cnf_text(nvars, clauses):
         ' '.join(map(str, c)) + ' 0\n' for c in clauses)
 
 
-def exact_factor_clauses(E, basis, m, subgroup_order, offset=0):
+def exact_factor_clauses_multi(E, bases, subgroup_order, offsets=None):
     """Block every factor-coordinate assignment that cannot lift as required.
 
     This table depends only on the frozen factor space and subgroup, never on
     the decomposition target. Variables are the first m consecutive k-blocks.
     """
-    k = len(basis)
-    invalid = []
-    valid = []
-    for assignment in range(1 << k):
-        x = E.base_field()(offset)
-        for j, coefficient in enumerate(basis):
-            if assignment & (1 << j):
-                x += coefficient
-        try:
-            lifts = E.lift_x(x, all=True)
-        except ValueError:
-            lifts = []
-        if any(subgroup_order*P == E(0) for P in lifts):
-            valid.append(assignment)
-        else:
-            invalid.append(assignment)
+    if offsets is None:
+        offsets = [E.base_field()(0)]*len(bases)
     clauses = []
-    for block in range(m):
+    valid_by_block = []
+    invalid_by_block = []
+    start = 0
+    for basis, offset in zip(bases, offsets):
+        k = len(basis)
+        invalid = []
+        valid = []
+        for assignment in range(1 << k):
+            x = E.base_field()(offset)
+            for j, coefficient in enumerate(basis):
+                if assignment & (1 << j):
+                    x += coefficient
+            try:
+                lifts = E.lift_x(x, all=True)
+            except ValueError:
+                lifts = []
+            (valid if any(subgroup_order*P == E(0) for P in lifts) else invalid).append(assignment)
         for assignment in invalid:
-            clauses.append([-(block*k+j+1) if assignment & (1 << j) else block*k+j+1
+            clauses.append([-(start+j+1) if assignment & (1 << j) else start+j+1
                             for j in range(k)])
-    return clauses, valid, invalid
+        valid_by_block.append(valid)
+        invalid_by_block.append(invalid)
+        start += k
+    return clauses, valid_by_block, invalid_by_block
+
+
+def exact_factor_clauses(E, basis, m, subgroup_order, offset=0):
+    clauses, valid, invalid = exact_factor_clauses_multi(
+        E, [basis]*m, subgroup_order, [offset]*m)
+    return clauses, valid[0], invalid[0]
 
 
 def evaluate(equations, bits):
@@ -247,11 +272,16 @@ def evaluate(equations, bits):
                for eq in equations)
 
 
-def witness(E, basis, m, R, bits, subgroup_order, offset=0):
+def witness_multi(E, bases, R, bits, subgroup_order, offsets=None):
     """Recover signs, require subgroup membership, and verify the group sum."""
-    k = len(basis)
-    xs = [sum((basis[j] * bits[i*k+j] for j in range(k)), E.base_field()(offset))
-          for i in range(m)]
+    if offsets is None:
+        offsets = [E.base_field()(0)]*len(bases)
+    xs = []
+    start = 0
+    for basis, offset in zip(bases, offsets):
+        xs.append(sum((basis[j]*bits[start+j] for j in range(len(basis))),
+                      E.base_field()(offset)))
+        start += len(basis)
     choices = []
     for x in xs:
         try:
@@ -265,20 +295,29 @@ def witness(E, basis, m, R, bits, subgroup_order, offset=0):
     return None
 
 
+def witness(E, basis, m, R, bits, subgroup_order, offset=0):
+    return witness_multi(E, [basis]*m, R, bits, subgroup_order, [offset]*m)
+
+
 def solve_verified(E, basis, m, R, r, solver, timeout, offset=0, trace_filter=False,
-                   artifact_dir=None, exact_factor_filter=False):
+                   artifact_dir=None, exact_factor_filter=False,
+                   factor_bases=None, factor_offsets=None):
     encoding_start = time.perf_counter()
     if trace_filter and r % 2 == 0:
         raise ValueError('The subgroup trace filter requires odd subgroup order')
-    equations, names = descend(E.base_field(), basis, m, R[0], E.a6(), offset,
-                              E.a2().trace() if trace_filter else None)
+    bases = factor_bases if factor_bases is not None else [basis]*m
+    offsets = factor_offsets if factor_offsets is not None else [offset]*m
+    if len(bases) != m or len(offsets) != m:
+        raise ValueError('m must match factor_bases and factor_offsets')
+    equations, names = descend_multi(E.base_field(), bases, R[0], E.a6(), offsets,
+                                    E.a2().trace() if trace_filter else None)
     nvars, clauses = cnf(equations, len(names))
     factor_clauses = []
     valid_factor_assignments = []
     invalid_factor_assignments = []
     if exact_factor_filter:
         factor_clauses, valid_factor_assignments, invalid_factor_assignments = \
-            exact_factor_clauses(E, basis, m, r, offset)
+            exact_factor_clauses_multi(E, bases, r, offsets)
         clauses.extend(factor_clauses)
     encoding_seconds = time.perf_counter() - encoding_start
     input_sha256 = hashlib.sha256(cnf_text(nvars, clauses).encode()).hexdigest()
@@ -334,21 +373,22 @@ def solve_verified(E, basis, m, R, r, solver, timeout, offset=0, trace_filter=Fa
             bits = [int(values[i]) for i in range(1, len(names)+1)]
             if not evaluate(equations, bits):
                 raise RuntimeError('Solver model fails original ANF')
-            cert = witness(E, basis, m, R, bits, r, offset)
+            cert = witness_multi(E, bases, R, bits, r, offsets)
             if cert is not None:
                 status = 'verified_relation'
                 break
             # Lift failure is independent of the chain auxiliaries. Block the
             # factor-coordinate projection, not merely this full SAT assignment.
-            clauses.append([-(i+1) if b else i+1 for i, b in enumerate(bits[:m*len(basis)])])
+            factor_bits = sum(map(len, bases))
+            clauses.append([-(i+1) if b else i+1 for i, b in enumerate(bits[:factor_bits])])
             rejects += 1
     return dict(status=status, witness=cert, rejected_projections=rejects,
                 input_sha256=input_sha256, encoding_wall_seconds=encoding_seconds,
                 solve_wall_seconds=solver_seconds, total_wall_seconds=time.perf_counter()-start,
                 boolean_variables=len(names), cnf_variables=nvars, cnf_clauses=original_clauses,
                 anf_equations=len(equations), exact_factor_filter=exact_factor_filter,
-                factor_filter_valid_assignments=len(valid_factor_assignments),
-                factor_filter_invalid_assignments=len(invalid_factor_assignments),
+                factor_filter_valid_assignments=[len(row) for row in valid_factor_assignments],
+                factor_filter_invalid_assignments=[len(row) for row in invalid_factor_assignments],
                 factor_filter_clauses=len(factor_clauses))
 
 

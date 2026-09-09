@@ -72,6 +72,36 @@ class FactorBaseTests(unittest.TestCase):
                                 for clause in relevant)
                 self.assertEqual(satisfied, assignment in valid)
 
+    def test_distinct_factor_spaces(self):
+        F = GF(128, name='a')
+        E = EllipticCurve(F, [1, 1, 0, 0, 1])
+        basis = [F.from_integer(v) for v in [2, 4, 16]]
+        bases = [basis]
+        offsets = [F(1)]
+        for _ in range(2):
+            bases.append([v*v for v in bases[-1]])
+            offsets.append(offsets[-1]*offsets[-1])
+        clauses, valid, invalid = lab.exact_factor_clauses_multi(E, bases, 71, offsets)
+        self.assertEqual([len(row) for row in valid], [7, 7, 7])
+        self.assertEqual(len(clauses), sum(map(len, invalid)))
+        points = []
+        for current, offset in zip(bases, offsets):
+            choices = []
+            for x in lab.span(current, offset):
+                try:
+                    choices.extend(P for P in E.lift_x(x, all=True) if 71*P == E(0))
+                except ValueError:
+                    pass
+            points.append(choices)
+        target = points[0][0]+points[1][0]+points[2][0]
+        result = lab.solve_verified(E, basis, 3, target, 71, 'cadical', 10,
+            F(1), trace_filter=True, exact_factor_filter=True,
+            factor_bases=bases, factor_offsets=offsets)
+        self.assertEqual(result['status'], 'verified_relation')
+        self.assertEqual(result['rejected_projections'], 0)
+        witness = [E(F.from_integer(x), F.from_integer(y)) for x,y in result['witness']]
+        self.assertEqual(sum(witness,E(0)),target)
+
     def test_wdsat_export_projection_equivalence(self):
         solver = Path(__file__).resolve().parents[1] / 'wdsat_solver'
         systems = [[{1, 2, 3}, {3, 4, 0}], [{0}], [set()], [{1, 2, 4, 0}]]
