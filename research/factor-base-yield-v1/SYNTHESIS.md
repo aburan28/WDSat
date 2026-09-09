@@ -84,15 +84,11 @@ checker imports no producer modules and verified:
 - a byte-identical rebuild of the native solver, SHA-256
   `64ef817176c5ebf0dc4623d20790b88efb8ced65920471cb5ad153ffada1adbc`.
 
-Primary evidence is in
-`n19-same-dimension-ablation-20260909-a/result.json`; raw inputs, solver output,
-filters and variable maps are retained below that directory. The independent
-report is `independent-review-n19-ablation.md`, with checker and build artifacts
-beside it.
-
-The curated pull request omits the thousands of raw generated files. See
-`EVIDENCE.md` for the immutable evidence branch and exact commit containing the
-complete retained tree.
+The independent report is `independent-review-n19-ablation.md`, with compact
+checker and build artifacts beside it. The curated pull request omits the
+producer result and thousands of raw generated files. See `EVIDENCE.md` for the
+immutable evidence branch and exact commit containing the complete retained
+tree, including `n19-same-dimension-ablation-20260909-a/result.json`.
 
 ## What changed in the implementation
 

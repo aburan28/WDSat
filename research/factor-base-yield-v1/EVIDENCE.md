@@ -8,10 +8,11 @@ run, is published at:
 `aburan28/WDSat`, branch `evidence/binary-sat-review-20260909`, commit
 `55d55b2620d768d9f7c78dcd8990a0689533c1d0`.
 
-The primary compact result is
-`n19-same-dimension-ablation-20260909-a/result.json`. The independent checker
-result and byte-identical build receipt are committed beside the review. To
-rerun the checker against all raw files, check out the evidence commit and run:
+The producer result is
+`n19-same-dimension-ablation-20260909-a/result.json` on that evidence commit.
+The independent compact checker result and byte-identical build receipt are
+included in this pull request beside the review. To rerun the checker against
+all raw files, check out the evidence commit and run:
 
 ```sh
 DOT_SAGE=/private/tmp/reviewer-n19-ablation-sage \
