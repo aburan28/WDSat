@@ -1,0 +1,17 @@
+{
+  "claim_under_review": "On the tested Koblitz curve E: y^2+xy=x^3+x^2+1 over F_(2^19), the density-selected sparse trace-affine k=6 factor base with Frobenius schedule [0,2,16], exact membership clauses, and Gaussian WDSat reduced median verified full-log-extraction solver time by about 3.06x versus the trace-k7 frontier control across three frozen target streams.",
+  "claim_boundary": "Toy n=19 implementation result only. No asymptotic ECDLP improvement, cryptographic-parameter break, novelty conclusion, or advantage over automorphism-aware Pollard rho is claimed.",
+  "coordinator_prior": "Expected narrow concurrence on arithmetic and measured implementation behavior. Expected objections: components have substantial prior art; target streams are only three; platform timing is single-machine; factor-base selector and producer share code; cryptographic-scale transfer is unsupported.",
+  "reviewer": "independent-reviewer-n19",
+  "requested_effort": "xhigh",
+  "joints": [
+    {"id": "J1-math", "owner": "independent-reviewer-n19", "attack": "Re-derive the binary lift condition, Frobenius coefficient rewrite, relation equation, rank dependency extraction, and check that the selected factor columns match each run."},
+    {"id": "J2-evidence", "owner": "independent-reviewer-n19", "attack": "Read raw result JSON for all three n19 streams, recompute counts/times/speedup without using a synthesis summary, inspect hashes/source snapshots, and seek target or stopping bias."},
+    {"id": "J3-controls", "owner": "independent-reviewer-n19", "attack": "Challenge semantic SAT/UNSAT validation, exact reachability, reused first stream evidence, solver-mode fairness, and the trace-k7 control choice."},
+    {"id": "J4-scope", "owner": "independent-reviewer-n19", "attack": "Compare the mechanism with retrieved SAT, affine factor-base, dimension tuning, and Frobenius-factor-base prior art; state the narrowest defensible claim and forbidden extrapolations."}
+  ],
+  "blindness": {"may_read": ["committed code", "raw run artifacts", "protocols", "primary literature"], "must_not_read": ["any later synthesis or coordinator decision", "other reviewer reports"], "lifted_for": null},
+  "blind_rederivation": {"quantity": "median trace time divided by median sparse time and per-seed extraction validity", "blind_from": ["future synthesis report", "future coordinator decision"]},
+  "proves_too_much_control": "The review must reject any argument that turns CaDiCaL/WDSat timeout, ANF/CNF success, toy extraction, or prior-art recombination into an asymptotic or cryptographic-scale ECDLP breakthrough.",
+  "required_verdict": "CONCUR, QUALIFIED, or DISSENT, with actionable findings and exact evidence paths."
+}

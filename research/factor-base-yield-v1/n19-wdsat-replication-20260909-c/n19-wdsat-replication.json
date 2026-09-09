@@ -1,0 +1,13 @@
+{
+  "objective": "Replicate the n19 Gaussian WDSat extraction advantage on two new target streams from zero rank.",
+  "target_seeds": [202609105, 202609106],
+  "simulation_secret": 31415,
+  "arms": ["trace-k7:best", "sparse-k6:best"],
+  "maximum_targets": 96,
+  "watchdog_seconds": 30,
+  "initial_relations": 0,
+  "solver": "Same archived WDSat S3-chain n19 binary, Gaussian mode and exact mixed ANF/CNF membership model.",
+  "validation": "Same independent formula, point-witness, rewritten-relation, reachability and d*P=Q checks.",
+  "replication_gate": "Both arms must extract on both streams; disclose any stream where sparse-k6 is slower. Use all three n19 streams in the final median/range.",
+  "scope": "Implementation replication at n19, not asymptotic security evidence."
+}
