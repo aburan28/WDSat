@@ -1,0 +1,14 @@
+{
+  "method": "Independent Sage dense-matrix validation. For each arm, form C from every retained relation coefficient row, compute the right kernel of C^T over GF(262543), and for each kernel vector gamma with nonzero gamma dot b recover d=-(gamma dot a)/(gamma dot b). This does not use the incremental RelationRank implementation.",
+  "command_scope": "Committed result.json files for n19 streams 202609104, 202609105 and 202609106.",
+  "results": [
+    {"stream": 202609104, "arm": "trace-k7", "rows": 47, "rank": 46, "kernel_dimension": 1, "recovered": [31415]},
+    {"stream": 202609104, "arm": "sparse-k6", "rows": 40, "rank": 39, "kernel_dimension": 1, "recovered": [31415]},
+    {"stream": 202609105, "arm": "trace-k7", "rows": 51, "rank": 50, "kernel_dimension": 1, "recovered": [31415]},
+    {"stream": 202609105, "arm": "sparse-k6", "rows": 43, "rank": 42, "kernel_dimension": 1, "recovered": [31415]},
+    {"stream": 202609106, "arm": "trace-k7", "rows": 52, "rank": 51, "kernel_dimension": 1, "recovered": [31415]},
+    {"stream": 202609106, "arm": "sparse-k6", "rows": 45, "rank": 44, "kernel_dimension": 1, "recovered": [31415]}
+  ],
+  "verdict": "All six independent kernel computations recover only 31415 from their one-dimensional dependency space.",
+  "scope": "Validation of retained n19 relation matrices; not a runtime, novelty, or scaling claim."
+}
