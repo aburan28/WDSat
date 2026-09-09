@@ -1,0 +1,12 @@
+{
+  "objective": "Replicate the n=11 lower-dimensional frontier through verified log extraction.",
+  "target_seeds": [202609101, 202609102, 202609103],
+  "maximum_targets": 32,
+  "simulation_secret": 31415,
+  "arms": ["sparse-k3:best", "polynomial-k5:best", "trace-k4:best", "sparse-k2:best"],
+  "solver_watchdog_seconds": 5,
+  "source": "dimension-frontier-n11-20260909-b",
+  "stopping": "Per arm, independently verified extraction or 32 targets.",
+  "success": "Sparse-k3 must extract on all streams and remain competitive with both equal-column controls. Report k2 if its cheaper systems compensate for lower coverage.",
+  "claim_boundary": "Together with n=17 this supports a cross-small-field implementation pattern, not asymptotic ECDLP complexity."
+}
