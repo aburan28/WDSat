@@ -1,0 +1,17 @@
+{
+  "trigger": "End-to-end extraction showed that maximizing factor-point density alone overpays in relation-matrix rank and SAT complexity.",
+  "objective": "Find the n=17 Pareto frontier over factor-space dimension, basis sparsity, exact relation coverage, rank requirement and encoding size.",
+  "dimensions": [3, 4, 5, 6, 7, 8],
+  "families": [
+    "polynomial linear basis",
+    "fixed trace-zero direction basis translated by one",
+    "exhaustively density-selected coordinate subset of trace-zero sparse directions, selected without relation targets",
+    "previously observed dimension-5 all-lifting affine flat as an explicitly labeled exploratory candidate"
+  ],
+  "schedules": "For each base, score [0,0,0], [0,1,2], and the best [0,e,f] over 0 <= e <= f < 17.",
+  "metrics": ["sign-folded columns", "exact nonzero target coverage", "columns divided by coverage fraction", "ANF terms", "nonlinear monomials", "CNF variables and clauses", "exact lift-filter clauses", "basis-selection cost"],
+  "selection": "Report a Pareto frontier. Do not collapse mathematical relation cost and solver-size proxies into one unsupported scalar.",
+  "controls": "Use a complete subgroup logarithm table only to accelerate exact coverage scoring; verify reported frontier coverages by actual curve additions.",
+  "success": "A lower-dimensional point with lower expected systems and competitive encoding size earns end-to-end SAT extraction. This screen itself is not a breakthrough.",
+  "exploratory_flat_provenance": "offset 48581 and basis [70724,4642,8208,34008,2066] came from a 2000-restart exploratory search with exact final membership checks; it was not the output of the frozen sparse selector."
+}
