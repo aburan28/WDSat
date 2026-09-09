@@ -1,0 +1,12 @@
+{
+  "objective": "Determine whether the exact n=19 frontier produces certified SAT relations within a bounded solver watchdog before a full extraction run.",
+  "target_seed": 202609104,
+  "targets": 12,
+  "simulation_secret": 31415,
+  "watchdog_seconds_per_target": 10,
+  "arms": ["sparse-k5:best", "sparse-k6:best", "trace-k7:best", "polynomial-k7:best"],
+  "metrics": ["certified relations", "rank", "SAT/UNSAT/timeout", "measured time", "encoding dimensions"],
+  "admission": "A candidate with at least two certified independent relations and no semantic audit mismatch may advance to extraction. Zero or censored yield is operational evidence only.",
+  "verification": "Apply the independent group-addition audit to every terminal outcome.",
+  "scope": "Bounded implementation admission, not hypothesis rejection or breakthrough evidence."
+}
