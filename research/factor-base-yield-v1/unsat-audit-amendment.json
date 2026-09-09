@@ -1,0 +1,13 @@
+{
+  "objective": "Audit semantic completeness of every terminal SAT/UNSAT outcome in the three frontier extraction streams.",
+  "inputs": ["frontier-extraction-20260909-a", "frontier-replication-20260909-b", "frontier-replication-20260909-c"],
+  "method": "Reconstruct each arm's three point sets from its affine bases and Frobenius exponents. Compute the reachable target set using actual Sage elliptic-curve additions only, independently of Semaev descent, CNF generation, solver output and subgroup logarithm tables.",
+  "checks": [
+    "verified_relation target belongs to the group-addition reachability set",
+    "exhausted_polynomial_models target does not belong to the group-addition reachability set",
+    "timeout is classified by reachability but asserts neither SAT nor UNSAT",
+    "reported predicted coverage equals independent reachable-set cardinality"
+  ],
+  "failure_policy": "Any SAT/UNSAT mismatch invalidates the affected encoding/result batch and triggers a code repair; do not average it into yield results.",
+  "scope": "This proves completeness only for the tested m=3 finite chained representation, factor bases and targets."
+}
