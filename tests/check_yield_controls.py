@@ -11,6 +11,7 @@ from factor_base_cofactor_control import profile_control
 from factor_base_sat_rank import RelationRank, columns, relation_coefficients, point_key
 from factor_base_yield_screen import bit_span, subgroup_generator
 from factor_base_frobenius_schedule import add_mask, score_sets
+from factor_base_frobenius_sat import rewritten_coefficients, frobenius_power
 
 
 class YieldControlTests(unittest.TestCase):
@@ -80,6 +81,20 @@ class YieldControlTests(unittest.TestCase):
             total += coeff[index]*E(F.from_integer(key[0]), F.from_integer(key[1]))
         self.assertEqual(killed, 1)
         self.assertEqual(total, 2*(T+point+point))
+
+    def test_frobenius_relation_rewrite(self):
+        F=GF(128,name='a');E=EllipticCurve(F,[1,1,0,0,1]);r=71
+        P=subgroup_generator(E,r);piP=frobenius_power(E,P,1)
+        lam=next(j for j in range(r) if j*P==piP)
+        candidate=dict(basis=[2,4,16],offset=1,cofactor_multiplier=1)
+        column_map=columns(E,r,candidate)
+        base_points=[E(F.from_integer(x),F.from_integer(y)) for x,y in column_map]
+        chosen=base_points[:3];exponents=[0,1,2]
+        witness=[point_key(frobenius_power(E,Q,e)) for Q,e in zip(chosen,exponents)]
+        coefficients=rewritten_coefficients(E,witness,exponents,lam,r,column_map)
+        lhs=E(0)
+        for key,pos in column_map.items():lhs+=coefficients[pos]*E(F.from_integer(key[0]),F.from_integer(key[1]))
+        self.assertEqual(lhs,sum((frobenius_power(E,Q,e) for Q,e in zip(chosen,exponents)),E(0)))
 
 
 if __name__ == '__main__':
