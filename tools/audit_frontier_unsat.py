@@ -30,17 +30,18 @@ def reachable(E,sets):
 
 def main():
     parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--source',type=Path,required=True);parser.add_argument('--output',type=Path,required=True)
+    parser.add_argument('--runs',help='comma-separated run directories')
     args=parser.parse_args()
     if args.output.exists():parser.error('Choose a new output')
-    runs=['frontier-extraction-20260909-a','frontier-replication-20260909-b','frontier-replication-20260909-c']
-    F=GF(2**17,name='a');E=EllipticCurve(F,[1,1,0,0,1]);cache={};reports=[]
+    runs=args.runs.split(',') if args.runs else ['frontier-extraction-20260909-a','frontier-replication-20260909-b','frontier-replication-20260909-c']
+    cache={};reports=[]
     for run in runs:
-        report=json.loads((args.source/run/'result.json').read_text());r=int(report['subgroup_order'])
+        report=json.loads((args.source/run/'result.json').read_text());r=int(report['subgroup_order']);n=int(report.get('n',17))
+        F=GF(2**n,name='a');E=EllipticCurve(F,[1,1,0,0,1])
         P=E(F.from_integer(report['P'][0]),F.from_integer(report['P'][1]));Q=E(F.from_integer(report['Q'][0]),F.from_integer(report['Q'][1]))
         arms=[]
         for arm in report['arms']:
-            if arm['name'] not in ['sparse-k4-best','sparse-k5-best','polynomial-k6-best']:continue
-            key=(tuple(arm['basis']),arm['offset'],tuple(arm['exponents']))
+            key=(n,tuple(arm['basis']),arm['offset'],tuple(arm['exponents']))
             if key not in cache:cache[key]=reachable(E,point_sets(E,arm['basis'],arm['offset'],arm['exponents'],r))
             reach=cache[key]
             if len(reach)!=arm['predicted_coverage']:raise RuntimeError(f'Coverage mismatch for {run} {arm["name"]}: {len(reach)} != {arm["predicted_coverage"]}')

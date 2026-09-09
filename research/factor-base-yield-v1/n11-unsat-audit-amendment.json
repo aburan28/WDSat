@@ -1,0 +1,6 @@
+{
+  "objective": "Apply the independent group-addition SAT/UNSAT audit to all three n=11 extraction streams.",
+  "inputs": ["n11-frontier-replication-20260909-a", "n11-frontier-replication-20260909-b", "n11-frontier-replication-20260909-c"],
+  "method": "Identical to unsat-audit-amendment.json, reconstructing each arm's exact point sumset with Sage curve additions and no Semaev/CNF/log oracle.",
+  "failure_policy": "Any mismatch invalidates the affected batch."
+}
