@@ -1,0 +1,82 @@
+{
+  "checks": [
+    {
+      "folder": "n19-wdsat-extraction-20260909-a",
+      "arm": "trace-k7-best",
+      "sat": 47,
+      "unsat": 1,
+      "rank": 46,
+      "extraction": [
+        47,
+        31415
+      ]
+    },
+    {
+      "folder": "n19-wdsat-extraction-20260909-a",
+      "arm": "sparse-k6-best",
+      "sat": 40,
+      "unsat": 4,
+      "rank": 39,
+      "extraction": [
+        43,
+        31415
+      ]
+    },
+    {
+      "folder": "n19-wdsat-replication-20260909-b",
+      "arm": "trace-k7-best",
+      "sat": 51,
+      "unsat": 2,
+      "rank": 50,
+      "extraction": [
+        52,
+        31415
+      ]
+    },
+    {
+      "folder": "n19-wdsat-replication-20260909-b",
+      "arm": "sparse-k6-best",
+      "sat": 43,
+      "unsat": 3,
+      "rank": 42,
+      "extraction": [
+        45,
+        31415
+      ]
+    },
+    {
+      "folder": "n19-wdsat-replication-20260909-c",
+      "arm": "trace-k7-best",
+      "sat": 52,
+      "unsat": 0,
+      "rank": 51,
+      "extraction": [
+        51,
+        31415
+      ]
+    },
+    {
+      "folder": "n19-wdsat-replication-20260909-c",
+      "arm": "sparse-k6-best",
+      "sat": 45,
+      "unsat": 7,
+      "rank": 44,
+      "extraction": [
+        51,
+        31415
+      ]
+    }
+  ],
+  "coverage": [
+    {
+      "arm": "trace-k7-best",
+      "coverage": 259220,
+      "nonzero_fraction": 0.9873467864189349
+    },
+    {
+      "arm": "sparse-k6-best",
+      "coverage": 247094,
+      "nonzero_fraction": 0.9411598906079789
+    }
+  ]
+}
