@@ -1,0 +1,10 @@
+{
+  "objective": "Extend the exact dimension/schedule frontier to the cofactor-two Koblitz curve over F_(2^19).",
+  "profile": {"n": 19, "a": 1, "b": 1, "subgroup_order": 262543, "dimensions": [4,5,6,7], "summands": 3},
+  "families": ["polynomial", "fixed trace affine", "exhaustively density-selected sparse trace-affine"],
+  "schedules": "Exhaust all [0,e,f] up to common shift/permutation as on n=11 and n=17.",
+  "metrics": "Exact factor columns, exact subgroup-target coverage, expected systems, exact-lift clauses and descended ANF/CNF size.",
+  "verification": "Verify Pareto-frontier coverage with actual curve additions independently of the cyclic scoring oracle.",
+  "execution_gate": "Run SAT extraction only for candidates whose expected-system/encoding frontier improves over the standard polynomial family.",
+  "scope": "Still a small research curve; no cryptographic-scale claim."
+}
