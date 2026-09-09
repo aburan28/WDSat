@@ -15,10 +15,14 @@ from factor_base_yield_screen import subgroup_generator
 
 def main():
     parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--source',type=Path,required=True);parser.add_argument('--output',type=Path,required=True)
+    parser.add_argument('--target-seed',type=int);parser.add_argument('--max-targets',type=int,default=96)
+    parser.add_argument('--requested',action='append',help='candidate:control; repeat for selected arms')
+    parser.add_argument('--run-protocol',type=Path,help='Frozen protocol copied into the output')
     args=parser.parse_args();config_path=args.source/'frontier-extraction-amendment.json';config=json.loads(config_path.read_text())
     extraction=json.loads((args.source/'extraction-replication.json').read_text());frontier=json.loads((args.source/'dimension-frontier-20260909-a'/'result.json').read_text())
     args.output.mkdir(parents=True,exist_ok=False)
     for path in [Path(__file__),Path(lab.__file__),config_path]:(args.output/path.name).write_bytes(path.read_bytes())
+    if args.run_protocol is not None:(args.output/args.run_protocol.name).write_bytes(args.run_protocol.read_bytes())
     (args.output/'manifest.json').write_text(json.dumps(dict(source_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),config_sha256=hashlib.sha256(config_path.read_bytes()).hexdigest()),indent=2)+'\n')
     F=GF(2**17,name='a');E=EllipticCurve(F,[1,1,0,0,1]);r=int(frontier['subgroup_order']);P=subgroup_generator(E,r);secret=extraction['simulation_secret']%r;Q=secret*P
     piP=frobenius_power(E,P,1);walk=E(0);lam=None
@@ -26,7 +30,7 @@ def main():
         if walk==piP:lam=j;break
         walk+=P
     if lam is None:raise RuntimeError('Frobenius eigenvalue not found')
-    requested=[('sparse-k5','best'),('sparse-k5','consecutive'),('trace-k6','best'),('polynomial-k6','best'),('sparse-k4','best')]
+    requested=[tuple(item.split(':',1)) for item in args.requested] if args.requested else [('sparse-k5','best'),('sparse-k5','consecutive'),('trace-k6','best'),('polynomial-k6','best'),('sparse-k4','best')]
     arms=[];states={}
     for candidate_name,control_name in requested:
         candidate=next(row for row in frontier['candidates'] if row['name']==candidate_name)
@@ -38,8 +42,8 @@ def main():
                  selection_seconds=candidate['selection_seconds'] or 0.0,
                  predicted_coverage=control['coverage'],predicted_systems=control['expected_systems_for_column_count'])
         arms.append(arm);states[arm['name']]=dict(columns=columns(E,r,arm),rank=RelationRank(r),runs=[],seconds=0.0,extraction=None)
-    seed=extraction['target_seeds'][0];rng=random.Random(seed+17);targets=[]
-    while len(targets)<96:
+    seed=args.target_seed if args.target_seed is not None else extraction['target_seeds'][0];rng=random.Random(seed+17);targets=[]
+    while len(targets)<args.max_targets:
         a,b=rng.randrange(r),rng.randrange(r);R=a*P+b*Q
         if R!=E(0):targets.append((a,b,R))
     (args.output/'targets.json').write_text(json.dumps([dict(index=i,a=a,b=b,target=point_key(R)) for i,(a,b,R) in enumerate(targets)],indent=2)+'\n')
@@ -53,7 +57,9 @@ def main():
                 selection_seconds=arm['selection_seconds'],rank=len(state['rank'].rows),measured_seconds=state['seconds'],
                 charged_seconds=state['seconds']+arm['selection_seconds'],extraction=state['extraction'],
                 statuses={s:sum(run['status']==s for run in state['runs']) for s in sorted(set(run['status'] for run in state['runs']))},runs=state['runs']))
-        return dict(scope='n=17 frontier extraction; no broad breakthrough claim',subgroup_order=r,P=point_key(P),Q=point_key(Q),frobenius_eigenvalue=lam,arms=rows)
+        return dict(scope='n=17 frontier extraction; no broad breakthrough claim',target_seed=seed,
+                    maximum_targets=args.max_targets,subgroup_order=r,P=point_key(P),Q=point_key(Q),
+                    frobenius_eigenvalue=lam,arms=rows)
     for index,(a,b,R) in enumerate(targets):
         active=[arm for arm in arms if states[arm['name']]['extraction'] is None]
         if not active:break
@@ -77,7 +83,7 @@ def main():
             state['seconds']+=trial['measured_wall_seconds'];state['runs'].append(trial);(args.output/'progress.json').write_text(json.dumps(report(),indent=2)+'\n')
             print(json.dumps(dict(arm=arm['name'],target=index,status=trial['status'],rank=trial['rank_after'],extracted=state['extraction'] is not None,seconds=trial['measured_wall_seconds'])),flush=True)
     final=report();(args.output/'result.json').write_text(json.dumps(final,indent=2)+'\n')
-    if not all(row['extraction'] for row in final['arms']):print('Some frontier arms did not extract within 96 targets')
+    if not all(row['extraction'] for row in final['arms']):print(f'Some frontier arms did not extract within {args.max_targets} targets')
 
 
 if __name__=='__main__':main()

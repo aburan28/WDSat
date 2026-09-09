@@ -1,0 +1,13 @@
+{
+  "objective": "Replicate the lower-dimensional frontier on two independent target streams.",
+  "target_seeds": [202609102, 202609103],
+  "maximum_targets_per_seed": 96,
+  "simulation_secret": 31415,
+  "arms": ["sparse-k4:best", "sparse-k5:best", "polynomial-k6:best"],
+  "solver_watchdog_seconds": 10,
+  "selection": "All bases and schedules were frozen by dimension-frontier-20260909-a before these targets were generated.",
+  "stopping": "Each arm stops only on independently verified log extraction or at 96 targets.",
+  "primary_metrics": ["targets to extraction", "charged wall time", "relations", "rank", "SAT/UNSAT/timeout mix"],
+  "replication_gate": "The dimension-5 candidate must extract successfully on both streams. Report variability and any seed where k4 or polynomial is superior; do not select seeds post hoc.",
+  "claim_boundary": "Three n=17 target streams can establish a toy implementation result. They cannot establish asymptotic or cryptographic-scale ECDLP complexity."
+}
