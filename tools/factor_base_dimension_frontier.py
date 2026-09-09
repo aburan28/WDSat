@@ -81,6 +81,8 @@ def main():
     points=[]
     for row in rows:
         control=next(c for c in row['controls'] if c['name']=='best')
+        if control['expected_systems_for_column_count'] is None:
+            continue
         point=dict(row=row,control=control)
         points.append(point)
     frontier=[]
