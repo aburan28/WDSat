@@ -1,0 +1,12 @@
+{
+  "amends": ["frobenius-schedule-amendment.json", "exact-lift-amendment.json"],
+  "question": "Does the complete-coverage consecutive Frobenius schedule improve certified SAT relation yield and rank growth over the same sparse base used for all three summands?",
+  "prior_art_boundary": "The factor-base image mechanism and eigenvalue rewrite are prior art. This experiment measures an implementation/configuration, not novelty.",
+  "profiles": [{"n": 11, "targets": 32, "watchdog_seconds": 5}, {"n": 17, "targets": 16, "watchdog_seconds": 10}],
+  "arms": ["sparse exact-lift filtered with schedule [0,0,0]", "sparse exact-lift filtered with schedule [0,1,2]"],
+  "targets": "Reuse exact-lift-amendment deterministic shared targets.",
+  "relation_rewrite": "If P_i=pi^e(Q_i), enter signed lambda^e in the original factor-base column for Q_i. Verify the rewritten point equation directly before rank insertion.",
+  "metrics": ["certified relation count", "rank", "SAT/UNSAT/timeout", "encoding and solver seconds", "verified extraction if a dependency occurs"],
+  "success": "Higher paired certified yield and rank per measured second earns broader scaling. Complete combinatorial coverage alone is insufficient.",
+  "falsifier": "The different-basis encoding is harder enough that certified yield does not improve."
+}
