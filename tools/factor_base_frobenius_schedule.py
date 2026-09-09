@@ -46,7 +46,7 @@ def screen(n, root, config, output):
     sparse=json.loads((root/'sparse-20260909-a'/f'n{n}-result.json').read_text())
     F=GF(2**n,name='a'); E=EllipticCurve(F,[1,1,0,0,1]); r=int(sparse['subgroup_order'])
     P=subgroup_generator(E,r); base=point_factor_base(E,sparse['basis'],sparse['offset'],r)
-    log_by_point={}; Q=P
+    log_by_point={}; Q=E(0)
     oracle_start=time.perf_counter()
     for scalar in range(r):
         log_by_point[point_key(Q)]=scalar; Q+=P
