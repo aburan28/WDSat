@@ -1,0 +1,18 @@
+{
+  "trigger": "The n=17 Pareto screen found sparse-k5 with lower expected relation systems and a smaller SAT encoding than every k6 candidate.",
+  "objective": "Test whether the dimension-5 frontier candidate beats the completed fixed-trace extraction on the identical public ECDLP and target stream.",
+  "public_instance": "Reuse extraction-replication.json: n=17, secret 31415, P and Q derived identically.",
+  "targets": "Reuse seed 202609101 for up to 96 targets.",
+  "arms": [
+    "sparse-k5 best schedule [0,1,10]",
+    "sparse-k5 consecutive schedule [0,1,2]",
+    "trace-k6 best schedule [0,4,11]",
+    "polynomial-k6 best schedule [0,5,11]",
+    "sparse-k4 best schedule [0,1,9]"
+  ],
+  "factor_data": "Read bases, offsets and schedules from the immutable dimension-frontier-20260909-a result.",
+  "solver": "Same exact-lift filtered chained-S3 CaDiCaL path and 10-second per-target watchdog.",
+  "stopping": "Each arm stops only after a dependency recovers and verifies 31415 or after 96 targets.",
+  "comparison": "The previously completed trace-k6 same-base arm extracted at global target 46 in 210.64564291737042 measured seconds. Treat cross-run timing as provisional; target counts and within-run arms are primary.",
+  "success": "Earlier verified extraction with lower charged time than the trace winner earns independent replication and review."
+}
