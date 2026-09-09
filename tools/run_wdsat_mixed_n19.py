@@ -41,7 +41,7 @@ def formula_valid(text,bits):
 
 def main():
     parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--source',type=Path,required=True);parser.add_argument('--solver',type=Path,required=True);parser.add_argument('--output',type=Path,required=True)
-    args=parser.parse_args();config_path=args.source/'n19-wdsat-amendment.json';config=json.loads(config_path.read_text())
+    args=parser.parse_args();args.solver=args.solver.resolve();config_path=args.source/'n19-wdsat-amendment.json';config=json.loads(config_path.read_text())
     admission=json.loads((args.source/'n19-sat-admission-20260909-a'/'result.json').read_text());args.output.mkdir(parents=True,exist_ok=False)
     for path in [Path(__file__),args.solver,config_path]:(args.output/path.name).write_bytes(path.read_bytes())
     F=GF(2**19,name='a');E=EllipticCurve(F,[1,1,0,0,1]);r=int(admission['subgroup_order']);P=subgroup_generator(E,r);Q=E(F.from_integer(admission['Q'][0]),F.from_integer(admission['Q'][1]))
