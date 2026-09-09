@@ -1,0 +1,9 @@
+{
+  "objective": "Check whether the lower-dimensional sparse/Frobenius frontier repeats at n=11 before making an n=17 implementation claim.",
+  "profile": {"n": 11, "a": 1, "b": 1, "dimensions": [2, 3, 4, 5], "summands": 3},
+  "families": ["polynomial", "fixed trace affine", "exhaustively density-selected sparse trace-affine"],
+  "schedules": "Same exhaustive [0,e,f] schedule search and exact subgroup coverage as the n=17 frontier.",
+  "metrics": "Same columns, coverage, expected systems, ANF/CNF size and exact membership-clause metrics.",
+  "execution": "Run end-to-end extraction for the n=11 frontier winner and its polynomial control on three deterministic target streams if the screen finds a nontrivial lower-dimensional point.",
+  "claim_boundary": "Agreement at n=11 and n=17 supports a small-field implementation pattern; it does not prove asymptotic behavior."
+}

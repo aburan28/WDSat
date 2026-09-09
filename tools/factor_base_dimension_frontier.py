@@ -27,10 +27,13 @@ def equation_shape(F,E,basis,offset,schedule,P,r):
 
 def main():
     parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--source',type=Path,required=True);parser.add_argument('--output',type=Path,required=True)
+    parser.add_argument('--n',type=int,default=17);parser.add_argument('--dimensions',help='comma-separated override')
     args=parser.parse_args();config_path=args.source/'dimension-frontier-amendment.json';config=json.loads(config_path.read_text())
     args.output.mkdir(parents=True,exist_ok=False)
     for path in [Path(__file__),Path(lab.__file__),config_path]:(args.output/path.name).write_bytes(path.read_bytes())
-    n=17;F=GF(2**n,name='a');E=EllipticCurve(F,[1,1,0,0,1]);r=int(max(p for p,_ in E.cardinality().factor()));P=subgroup_generator(E,r)
+    n=args.n;dimensions=[int(x) for x in args.dimensions.split(',')] if args.dimensions else config['dimensions']
+    F=GF(2**n,name='a');E=EllipticCurve(F,[1,1,0,0,1]);r=int(max(p for p,_ in E.cardinality().factor()));P=subgroup_generator(E,r)
+    if E.cardinality()!=2*r:raise ValueError('Frontier screen currently requires cofactor two')
     logs_by_x={};log_by_point={};Q=E(0)
     for j in range(r):
         log_by_point[point_key(Q)]=j
@@ -39,7 +42,7 @@ def main():
     lam=log_by_point[point_key(E(P[0]**2,P[1]**2))]
     directions={i:int((F.gen()**i+F((F.gen()**i).trace())).to_integer()) for i in range(1,n)}
     candidates=[]
-    for k in config['dimensions']:
+    for k in dimensions:
         polynomial=[1 << i for i in range(k)]
         trace=[directions[i] for i in range(1,k+1)]
         candidates.extend([dict(name=f'polynomial-k{k}',family='polynomial',dimension=k,basis=polynomial,offset=0,selection_seconds=0.0),
@@ -51,8 +54,9 @@ def main():
             if best is None or item[:3]>best[:3]:best=item
         candidates.append(dict(name=f'sparse-k{k}',family='sparse',dimension=k,basis=best[3],offset=1,
             selection_seconds=time.perf_counter()-start,selection_candidates=count,selection_exponents=list(best[4])))
-    candidates.append(dict(name='all-lift-flat-k5',family='exploratory-flat',dimension=5,
-        basis=[70724,4642,8208,34008,2066],offset=48581,selection_seconds=None))
+    if n==17 and 5 in dimensions:
+        candidates.append(dict(name='all-lift-flat-k5',family='exploratory-flat',dimension=5,
+            basis=[70724,4642,8208,34008,2066],offset=48581,selection_seconds=None))
     rows=[]
     for candidate in candidates:
         if bit_rank(candidate['basis'])!=candidate['dimension']:raise RuntimeError('Dependent factor basis')
@@ -104,7 +108,7 @@ def main():
             point_sets.append({E(Q[0]**(2**e),Q[1]**(2**e)) for Q in base_points})
         control['independent_group_coverage']=group_coverage(E,point_sets)
         if control['independent_group_coverage']!=control['coverage']:raise RuntimeError('Frontier group coverage mismatch')
-    result=dict(scope='n=17 exact Pareto screen; not a breakthrough claim',field_modulus=str(F.modulus()),
+    result=dict(scope=f'n={n} exact Pareto screen; not a breakthrough claim',n=n,field_modulus=str(F.modulus()),
                 subgroup_order=r,frobenius_eigenvalue=lam,frontier=frontier,candidates=rows)
     (args.output/'result.json').write_text(json.dumps(result,indent=2)+'\n')
     (args.output/'manifest.json').write_text(json.dumps(dict(source_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),

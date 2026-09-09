@@ -1,0 +1,1955 @@
+{
+  "scope": "independent group-law audit of bounded n=17 batches",
+  "method": "actual Sage curve additions; no Semaev/CNF/log oracle",
+  "source_sha256": "a6ac73624b5c803e9b7c18c9a981c5cdd0a0c831d406045ed0b2ee8326d4efe5",
+  "reports": [
+    {
+      "run": "frontier-extraction-20260909-a",
+      "arms": [
+        {
+          "name": "sparse-k5-best",
+          "independent_group_coverage": 53944,
+          "counts": {
+            "verified_in_set": 22,
+            "unsat_outside_set": 3,
+            "timeouts_in_set": 0,
+            "timeouts_outside_set": 0
+          },
+          "checks": [
+            {
+              "target_index": 0,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 1,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 2,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 3,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 4,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 5,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 6,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 7,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 8,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 9,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 10,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 11,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 12,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 13,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 14,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 15,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 16,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 17,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 18,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 19,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 20,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 21,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 22,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 23,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 24,
+              "status": "verified_relation",
+              "group_reachable": true
+            }
+          ]
+        },
+        {
+          "name": "polynomial-k6-best",
+          "independent_group_coverage": 37692,
+          "counts": {
+            "verified_in_set": 20,
+            "unsat_outside_set": 13,
+            "timeouts_in_set": 0,
+            "timeouts_outside_set": 2
+          },
+          "checks": [
+            {
+              "target_index": 0,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 1,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 2,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 3,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 4,
+              "status": "timeout",
+              "group_reachable": false
+            },
+            {
+              "target_index": 5,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 6,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 7,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 8,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 9,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 10,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 11,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 12,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 13,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 14,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 15,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 16,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 17,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 18,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 19,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 20,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 21,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 22,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 23,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 24,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 25,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 26,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 27,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 28,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 29,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 30,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 31,
+              "status": "timeout",
+              "group_reachable": false
+            },
+            {
+              "target_index": 32,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 33,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 34,
+              "status": "verified_relation",
+              "group_reachable": true
+            }
+          ]
+        },
+        {
+          "name": "sparse-k4-best",
+          "independent_group_coverage": 15786,
+          "counts": {
+            "verified_in_set": 14,
+            "unsat_outside_set": 39,
+            "timeouts_in_set": 0,
+            "timeouts_outside_set": 0
+          },
+          "checks": [
+            {
+              "target_index": 0,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 1,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 2,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 3,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 4,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 5,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 6,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 7,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 8,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 9,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 10,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 11,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 12,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 13,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 14,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 15,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 16,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 17,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 18,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 19,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 20,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 21,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 22,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 23,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 24,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 25,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 26,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 27,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 28,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 29,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 30,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 31,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 32,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 33,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 34,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 35,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 36,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 37,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 38,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 39,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 40,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 41,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 42,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 43,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 44,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 45,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 46,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 47,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 48,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 49,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 50,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 51,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 52,
+              "status": "verified_relation",
+              "group_reachable": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "run": "frontier-replication-20260909-b",
+      "arms": [
+        {
+          "name": "sparse-k4-best",
+          "independent_group_coverage": 15786,
+          "counts": {
+            "verified_in_set": 14,
+            "unsat_outside_set": 35,
+            "timeouts_in_set": 0,
+            "timeouts_outside_set": 0
+          },
+          "checks": [
+            {
+              "target_index": 0,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 1,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 2,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 3,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 4,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 5,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 6,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 7,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 8,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 9,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 10,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 11,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 12,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 13,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 14,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 15,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 16,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 17,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 18,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 19,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 20,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 21,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 22,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 23,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 24,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 25,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 26,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 27,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 28,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 29,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 30,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 31,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 32,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 33,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 34,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 35,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 36,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 37,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 38,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 39,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 40,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 41,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 42,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 43,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 44,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 45,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 46,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 47,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 48,
+              "status": "verified_relation",
+              "group_reachable": true
+            }
+          ]
+        },
+        {
+          "name": "sparse-k5-best",
+          "independent_group_coverage": 53944,
+          "counts": {
+            "verified_in_set": 25,
+            "unsat_outside_set": 10,
+            "timeouts_in_set": 0,
+            "timeouts_outside_set": 0
+          },
+          "checks": [
+            {
+              "target_index": 0,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 1,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 2,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 3,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 4,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 5,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 6,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 7,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 8,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 9,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 10,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 11,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 12,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 13,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 14,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 15,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 16,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 17,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 18,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 19,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 20,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 21,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 22,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 23,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 24,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 25,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 26,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 27,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 28,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 29,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 30,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 31,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 32,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 33,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 34,
+              "status": "verified_relation",
+              "group_reachable": true
+            }
+          ]
+        },
+        {
+          "name": "polynomial-k6-best",
+          "independent_group_coverage": 37692,
+          "counts": {
+            "verified_in_set": 18,
+            "unsat_outside_set": 9,
+            "timeouts_in_set": 0,
+            "timeouts_outside_set": 1
+          },
+          "checks": [
+            {
+              "target_index": 0,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 1,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 2,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 3,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 4,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 5,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 6,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 7,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 8,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 9,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 10,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 11,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 12,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 13,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 14,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 15,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 16,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 17,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 18,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 19,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 20,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 21,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 22,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 23,
+              "status": "timeout",
+              "group_reachable": false
+            },
+            {
+              "target_index": 24,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 25,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 26,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 27,
+              "status": "verified_relation",
+              "group_reachable": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "run": "frontier-replication-20260909-c",
+      "arms": [
+        {
+          "name": "sparse-k4-best",
+          "independent_group_coverage": 15786,
+          "counts": {
+            "verified_in_set": 14,
+            "unsat_outside_set": 52,
+            "timeouts_in_set": 0,
+            "timeouts_outside_set": 0
+          },
+          "checks": [
+            {
+              "target_index": 0,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 1,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 2,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 3,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 4,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 5,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 6,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 7,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 8,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 9,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 10,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 11,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 12,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 13,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 14,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 15,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 16,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 17,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 18,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 19,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 20,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 21,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 22,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 23,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 24,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 25,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 26,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 27,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 28,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 29,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 30,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 31,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 32,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 33,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 34,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 35,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 36,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 37,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 38,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 39,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 40,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 41,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 42,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 43,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 44,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 45,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 46,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 47,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 48,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 49,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 50,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 51,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 52,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 53,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 54,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 55,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 56,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 57,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 58,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 59,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 60,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 61,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 62,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 63,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 64,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 65,
+              "status": "verified_relation",
+              "group_reachable": true
+            }
+          ]
+        },
+        {
+          "name": "sparse-k5-best",
+          "independent_group_coverage": 53944,
+          "counts": {
+            "verified_in_set": 24,
+            "unsat_outside_set": 6,
+            "timeouts_in_set": 0,
+            "timeouts_outside_set": 0
+          },
+          "checks": [
+            {
+              "target_index": 0,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 1,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 2,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 3,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 4,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 5,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 6,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 7,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 8,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 9,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 10,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 11,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 12,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 13,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 14,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 15,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 16,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 17,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 18,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 19,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 20,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 21,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 22,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 23,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 24,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 25,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 26,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 27,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 28,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 29,
+              "status": "verified_relation",
+              "group_reachable": true
+            }
+          ]
+        },
+        {
+          "name": "polynomial-k6-best",
+          "independent_group_coverage": 37692,
+          "counts": {
+            "verified_in_set": 20,
+            "unsat_outside_set": 23,
+            "timeouts_in_set": 1,
+            "timeouts_outside_set": 0
+          },
+          "checks": [
+            {
+              "target_index": 0,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 1,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 2,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 3,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 4,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 5,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 6,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 7,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 8,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 9,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 10,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 11,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 12,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 13,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 14,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 15,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 16,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 17,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 18,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 19,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 20,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 21,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 22,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 23,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 24,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 25,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 26,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 27,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 28,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 29,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 30,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 31,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 32,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 33,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 34,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 35,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 36,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 37,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 38,
+              "status": "timeout",
+              "group_reachable": true
+            },
+            {
+              "target_index": 39,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 40,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 41,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 42,
+              "status": "exhausted_polynomial_models",
+              "group_reachable": false
+            },
+            {
+              "target_index": 43,
+              "status": "verified_relation",
+              "group_reachable": true
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
