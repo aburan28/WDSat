@@ -1,0 +1,45 @@
+{
+  "objective": "Find and independently substantiate an improvement in usable relation yield and total relation cost for Semaev index calculus on binary/Koblitz curves.",
+  "status": "frozen screening protocol, not a breakthrough claim",
+  "base_commit": "310a82f",
+  "profiles": [
+    {"n": 7, "a": 1, "b": 1, "dimension": 3},
+    {"n": 11, "a": 1, "b": 1, "dimension": 4},
+    {"n": 17, "a": 1, "b": 1, "dimension": 6}
+  ],
+  "summands": 3,
+  "seeds": [202609091, 202609092, 202609093],
+  "pool_size_per_seed": 32,
+  "controls": [
+    "polynomial linear basis with subgroup filtering",
+    "fixed trace-compatible affine basis",
+    "random trace-compatible affine basis",
+    "best of a frozen 32-member random affine pool, selected by subgroup-point count only",
+    "invariant affine spaces at feasible dimension",
+    "random subgroup point sets with exactly matched sign-folded factor-base cardinality"
+  ],
+  "candidate_mechanism": "Increase the density of actual subgroup points inside a fixed-dimensional SAT parameter space while preserving favorable decomposition coverage.",
+  "selection_rule": "Choose maximum subgroup-point count, breaking ties by candidate index. Do not select on target relations or known logarithms.",
+  "metrics": [
+    "construction wall time and membership queries",
+    "actual subgroup points and sign-folded columns",
+    "exact three-fold target coverage",
+    "coverage divided by sign-folded column count",
+    "matched-cardinality random coverage distribution",
+    "ANF variables, equations, terms, unique nonlinear monomials and CNF size",
+    "later-stage certified SAT relations, timing, memory, independent row-rank growth"
+  ],
+  "oracle_boundary": "A complete subgroup logarithm table may be used only for exhaustive small-field validation and matched-null diagnostics. Its construction is separately charged and its values may not select a basis, guide a SAT solver, or be counted as an index-calculus algorithm.",
+  "falsifiers": [
+    "Gain disappears after matching actual factor-base cardinality",
+    "Point-density gain is offset by construction or SAT cost",
+    "Improved root count does not improve certified relation rate or independent rank",
+    "Effect occurs only at the smallest field or a special orbit",
+    "Controls, deterministic replay, or independent certificate checks disagree"
+  ],
+  "novelty": "Unverified. Frobenius compression and trace-based subgroup restrictions are not claimed as new.",
+  "machine_protection": {"single_process": true, "maximum_field_degree_for_exhaustive_oracle": 17},
+  "resource_policy": "No research-time cap. Fixed trial counts define this screen, not the persistent goal. Process failures are operational outcomes, not mathematical results.",
+  "breakthrough_gate": "No completion or breakthrough claim without a precise new mechanism, cost-correct cross-scale advantage, literature comparison, independent adversarial review, and end-to-end usable relation/rank evidence. This screen alone cannot discharge the gate.",
+  "next_action_after_screen": "Choose the next SAT-encoding or factor-base construction experiment using the complete screen, retaining all failed and null outcomes."
+}
