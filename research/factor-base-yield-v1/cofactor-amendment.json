@@ -1,0 +1,14 @@
+{
+  "amends": "protocol.json",
+  "reason": "Subgroup-only factor bases omit a legitimate full-curve baseline: multiply a relation by the cofactor to obtain a relation in the target prime subgroup.",
+  "preservation": "The original screen and its selection rules remain unchanged. This is an additional control, not a replacement result.",
+  "profiles": "Use the exact profiles from protocol.json.",
+  "arms": [
+    "Polynomial x-space, all rational points except points killed by the cofactor, target in the prime subgroup",
+    "Same factor base, allow both preimages of the cleared target; charge up to two SAT attempts",
+    "Original polynomial subgroup-only and trace-compatible affine controls"
+  ],
+  "oracle": "For order 2r with r odd prime, take an order-r point P and the unique nonidentity 2-torsion T. G=P+T generates order 2r. Enumerate its sign quotient independently of factor-space selection. Exact full-group sumsets determine admissible targets; cofactor images determine compressed factor columns.",
+  "controls": ["Check G has order 2r and 2G=2P", "Check torsion points map to zero and are excluded from unknown columns", "Check projected sumsets against clearing each input point", "Record the cost of selecting a second target preimage separately"],
+  "claim_boundary": "A gain over subgroup-filtered polynomial bases is insufficient for a breakthrough if this cofactor-aware baseline removes it. Full-curve UNSAT is not inferred from the subgroup-only encoding."
+}
