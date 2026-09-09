@@ -1,0 +1,15 @@
+{
+  "amends": "protocol.json",
+  "objective": "Check whether sparse density improvements survive actual SAT solving and produce independent useful relations.",
+  "profiles": [{"n": 11, "targets": 32, "solver_watchdog_seconds_per_target": 5}, {"n": 17, "targets": 8, "solver_watchdog_seconds_per_target": 10}],
+  "target_seed": 202609094,
+  "simulation_secret": 42,
+  "arms": ["fixed trace-one affine", "sparse search winner", "highest-density retained random-pool winner, ties in recorded order", "full-curve polynomial, including known two-torsion, followed by cofactor clearing"],
+  "target_rule": "Generate shared nonidentity targets a*P+b*Q with uniform scalars. The solver sees the curve, target point and factor-space encoding only. The known simulation secret constructs Q and verifies final extraction; no target log table or known secret is supplied to SAT or rank elimination.",
+  "order": "Interleave arms on each target in a seeded randomized order. One solver process at a time.",
+  "solver": "CaDiCaL via the existing verified S3-chain CNF path. No symmetry pruning assumptions.",
+  "full_curve_note": "This additional arm deliberately permits the known two-torsion point in the decomposition. Its cofactor image is zero and adds no unknown matrix column. The earlier cofactor control excluding torsion remains distinct.",
+  "metrics": ["SAT/UNSAT/timeout counts", "verified point certificates", "encoding and solving time", "peak child memory where available", "rank of factor-base coefficient rows", "first verified discrete-log extraction from a dependency", "valid relations per total measured time"],
+  "timeouts": "Censored operational observations, never negative mathematical evidence. Keep all targets and all outcomes.",
+  "completion_boundary": "A toy extracted logarithm validates the pipeline, not the persistent breakthrough objective. This screen is too small for a scaling or runtime-breakthrough claim."
+}
