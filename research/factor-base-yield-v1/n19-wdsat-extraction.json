@@ -1,0 +1,13 @@
+{
+  "objective": "Continue the admitted n19 Gaussian WDSat relation streams through verified logarithm extraction.",
+  "public_instance": "Reuse n19-sat-admission target seed 202609104 and simulation secret 31415.",
+  "initial_evidence": "Reuse only independently validated Gaussian records from n19-wdsat-20260909-c: 11 rank rows for trace-k7 and 11 for sparse-k6.",
+  "arms": ["trace-k7:best", "sparse-k6:best"],
+  "maximum_targets": 96,
+  "watchdog_seconds": 30,
+  "solver": "WDSat n19 S3-chain profile, Gaussian mode, exact mixed ANF/CNF membership model.",
+  "rank": "Reconstruct every initial coefficient row from point witnesses, then continue elimination. Verify rewritten point equations and final d*P=Q.",
+  "reachability": "Recompute exact cyclic coverage and require every solver UNSAT to be outside it. Timeouts remain censored.",
+  "success": "Both arms extract or reach the maximum. Compare total solver time, targets, certified relations and rank. A sparse-arm win earns independent replication.",
+  "claim_boundary": "An n19 toy extraction is implementation evidence, not cryptographic-scale complexity evidence."
+}

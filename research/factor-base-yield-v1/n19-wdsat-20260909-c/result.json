@@ -1,0 +1,840 @@
+{
+  "scope": "n19 WDSat mixed-formula admission; not a performance breakthrough",
+  "solver_sha256": "64ef817176c5ebf0dc4623d20790b88efb8ced65920471cb5ad153ffada1adbc",
+  "arms": [
+    {
+      "name": "trace-k7-best",
+      "summaries": {
+        "plain": {
+          "statuses": {
+            "timeout": 12
+          },
+          "seconds": 360.0833942083409,
+          "rank": 0
+        },
+        "gaussian": {
+          "statuses": {
+            "unsat": 1,
+            "verified_relation": 11
+          },
+          "seconds": 38.3205161660444,
+          "rank": 11
+        }
+      },
+      "runs": [
+        {
+          "arm": "trace-k7-best",
+          "target_index": 0,
+          "mode": "plain",
+          "status": "timeout",
+          "seconds": 30.008970084018074,
+          "stdout": null,
+          "stderr": null
+        },
+        {
+          "arm": "trace-k7-best",
+          "target_index": 0,
+          "mode": "gaussian",
+          "status": "unsat",
+          "seconds": 10.015842832974158,
+          "returncode": 0,
+          "witness": null,
+          "stdout": "\n!!! Running times are not optimal with these parameters. Set the __MAX_ID__ constant to 1419 !!!\n\nUNSAT\n135539\n",
+          "stderr": "",
+          "rank": 0
+        },
+        {
+          "arm": "trace-k7-best",
+          "target_index": 1,
+          "mode": "plain",
+          "status": "timeout",
+          "seconds": 30.005512583069503,
+          "stdout": null,
+          "stderr": null
+        },
+        {
+          "arm": "trace-k7-best",
+          "target_index": 1,
+          "mode": "gaussian",
+          "status": "verified_relation",
+          "seconds": 2.0376996248960495,
+          "returncode": 0,
+          "witness": [
+            [
+              89,
+              85936
+            ],
+            [
+              5125,
+              219929
+            ],
+            [
+              339163,
+              946
+            ]
+          ],
+          "stdout": "\n!!! Running times are not optimal with these parameters. Set the __MAX_ID__ constant to 1419 !!!\n\n0011010100011011111110000101111011111010\n22689\n",
+          "stderr": "",
+          "rank": 1
+        },
+        {
+          "arm": "trace-k7-best",
+          "target_index": 2,
+          "mode": "plain",
+          "status": "timeout",
+          "seconds": 30.00656162505038,
+          "stdout": null,
+          "stderr": null
+        },
+        {
+          "arm": "trace-k7-best",
+          "target_index": 2,
+          "mode": "gaussian",
+          "status": "verified_relation",
+          "seconds": 6.528713959036395,
+          "returncode": 0,
+          "witness": [
+            [
+              243,
+              73698
+            ],
+            [
+              4369,
+              520094
+            ],
+            [
+              42057,
+              73564
+            ]
+          ],
+          "stdout": "\n!!! Running times are not optimal with these parameters. Set the __MAX_ID__ constant to 1419 !!!\n\n1001111010101000010110110010110100110111\n88725\n",
+          "stderr": "",
+          "rank": 2
+        },
+        {
+          "arm": "trace-k7-best",
+          "target_index": 3,
+          "mode": "plain",
+          "status": "timeout",
+          "seconds": 30.007945207995363,
+          "stdout": null,
+          "stderr": null
+        },
+        {
+          "arm": "trace-k7-best",
+          "target_index": 3,
+          "mode": "gaussian",
+          "status": "verified_relation",
+          "seconds": 2.0628866670886055,
+          "returncode": 0,
+          "witness": [
+            [
+              217,
+              382243
+            ],
+            [
+              337,
+              339607
+            ],
+            [
+              493410,
+              258743
+            ]
+          ],
+          "stdout": "\n!!! Running times are not optimal with these parameters. Set the __MAX_ID__ constant to 1419 !!!\n\n0011011011100010010000111011101011011110\n24816\n",
+          "stderr": "",
+          "rank": 3
+        },
+        {
+          "arm": "trace-k7-best",
+          "target_index": 4,
+          "mode": "plain",
+          "status": "timeout",
+          "seconds": 30.00707887497265,
+          "stdout": null,
+          "stderr": null
+        },
+        {
+          "arm": "trace-k7-best",
+          "target_index": 4,
+          "mode": "gaussian",
+          "status": "verified_relation",
+          "seconds": 0.0910162921063602,
+          "returncode": 0,
+          "witness": [
+            [
+              65,
+              42532
+            ],
+            [
+              1029,
+              43970
+            ],
+            [
+              439274,
+              330396
+            ]
+          ],
+          "stdout": "\n!!! Running times are not optimal with these parameters. Set the __MAX_ID__ constant to 1419 !!!\n\n0000010100010011100001100111000010110001\n1378\n",
+          "stderr": "",
+          "rank": 4
+        },
+        {
+          "arm": "trace-k7-best",
+          "target_index": 5,
+          "mode": "plain",
+          "status": "timeout",
+          "seconds": 30.005632832995616,
+          "stdout": null,
+          "stderr": null
+        },
+        {
+          "arm": "trace-k7-best",
+          "target_index": 5,
+          "mode": "gaussian",
+          "status": "verified_relation",
+          "seconds": 7.071294000023045,
+          "returncode": 0,
+          "witness": [
+            [
+              155,
+              245585
+            ],
+            [
+              337,
+              339607
+            ],
+            [
+              32561,
+              29412
+            ]
+          ],
+          "stdout": "\n!!! Running times are not optimal with these parameters. Set the __MAX_ID__ constant to 1419 !!!\n\n1011001011100000000100101100001001001011\n99539\n",
+          "stderr": "",
+          "rank": 5
+        },
+        {
+          "arm": "trace-k7-best",
+          "target_index": 6,
+          "mode": "plain",
+          "status": "timeout",
+          "seconds": 30.007047833991237,
+          "stdout": null,
+          "stderr": null
+        },
+        {
+          "arm": "trace-k7-best",
+          "target_index": 6,
+          "mode": "gaussian",
+          "status": "verified_relation",
+          "seconds": 3.5103278750320897,
+          "returncode": 0,
+          "witness": [
+            [
+              245,
+              5879
+            ],
+            [
+              20549,
+              323731
+            ],
+            [
+              522322,
+              263074
+            ]
+          ],
+          "stdout": "\n!!! Running times are not optimal with these parameters. Set the __MAX_ID__ constant to 1419 !!!\n\n0101111101001110010101111100110000011001\n46264\n",
+          "stderr": "",
+          "rank": 6
+        },
+        {
+          "arm": "trace-k7-best",
+          "target_index": 7,
+          "mode": "plain",
+          "status": "timeout",
+          "seconds": 30.007336125010625,
+          "stdout": null,
+          "stderr": null
+        },
+        {
+          "arm": "trace-k7-best",
+          "target_index": 7,
+          "mode": "gaussian",
+          "status": "verified_relation",
+          "seconds": 1.339076624950394,
+          "returncode": 0,
+          "witness": [
+            [
+              233,
+              419062
+            ],
+            [
+              85,
+              173049
+            ],
+            [
+              522322,
+              261104
+            ]
+          ],
+          "stdout": "\n!!! Running times are not optimal with these parameters. Set the __MAX_ID__ constant to 1419 !!!\n\n0010111111000010010100111101100011000011\n18491\n",
+          "stderr": "",
+          "rank": 7
+        },
+        {
+          "arm": "trace-k7-best",
+          "target_index": 8,
+          "mode": "plain",
+          "status": "timeout",
+          "seconds": 30.007699125097133,
+          "stdout": null,
+          "stderr": null
+        },
+        {
+          "arm": "trace-k7-best",
+          "target_index": 8,
+          "mode": "gaussian",
+          "status": "verified_relation",
+          "seconds": 2.7195879579521716,
+          "returncode": 0,
+          "witness": [
+            [
+              229,
+              522662
+            ],
+            [
+              4357,
+              105619
+            ],
+            [
+              339163,
+              946
+            ]
+          ],
+          "stdout": "\n!!! Running times are not optimal with these parameters. Set the __MAX_ID__ constant to 1419 !!!\n\n0100111100101011111111100000011101001000\n35623\n",
+          "stderr": "",
+          "rank": 8
+        },
+        {
+          "arm": "trace-k7-best",
+          "target_index": 9,
+          "mode": "plain",
+          "status": "timeout",
+          "seconds": 30.00550283305347,
+          "stdout": null,
+          "stderr": null
+        },
+        {
+          "arm": "trace-k7-best",
+          "target_index": 9,
+          "mode": "gaussian",
+          "status": "verified_relation",
+          "seconds": 0.31590991595294327,
+          "returncode": 0,
+          "witness": [
+            [
+              193,
+              399935
+            ],
+            [
+              17477,
+              374458
+            ],
+            [
+              135152,
+              423619
+            ]
+          ],
+          "stdout": "\n!!! Running times are not optimal with these parameters. Set the __MAX_ID__ constant to 1419 !!!\n\n0000011101010101111000100110011110111011\n4392\n",
+          "stderr": "",
+          "rank": 9
+        },
+        {
+          "arm": "trace-k7-best",
+          "target_index": 10,
+          "mode": "plain",
+          "status": "timeout",
+          "seconds": 30.00742129108403,
+          "stdout": null,
+          "stderr": null
+        },
+        {
+          "arm": "trace-k7-best",
+          "target_index": 10,
+          "mode": "gaussian",
+          "status": "verified_relation",
+          "seconds": 1.0199747079750523,
+          "returncode": 0,
+          "witness": [
+            [
+              9,
+              78547
+            ],
+            [
+              5205,
+              324048
+            ],
+            [
+              439274,
+              330396
+            ]
+          ],
+          "stdout": "\n!!! Running times are not optimal with these parameters. Set the __MAX_ID__ constant to 1419 !!!\n\n0010000111011011100001111100001110101000\n15670\n",
+          "stderr": "",
+          "rank": 10
+        },
+        {
+          "arm": "trace-k7-best",
+          "target_index": 11,
+          "mode": "plain",
+          "status": "timeout",
+          "seconds": 30.006685792002827,
+          "stdout": null,
+          "stderr": null
+        },
+        {
+          "arm": "trace-k7-best",
+          "target_index": 11,
+          "mode": "gaussian",
+          "status": "verified_relation",
+          "seconds": 1.6081857080571353,
+          "returncode": 0,
+          "witness": [
+            [
+              233,
+              419062
+            ],
+            [
+              21829,
+              429706
+            ],
+            [
+              413608,
+              94693
+            ]
+          ],
+          "stdout": "\n!!! Running times are not optimal with these parameters. Set the __MAX_ID__ constant to 1419 !!!\n\n0010111101111110011111101100011100100101\n18588\n",
+          "stderr": "",
+          "rank": 11
+        }
+      ]
+    },
+    {
+      "name": "sparse-k6-best",
+      "summaries": {
+        "plain": {
+          "statuses": {
+            "timeout": 12
+          },
+          "seconds": 360.08689041866455,
+          "rank": 0
+        },
+        "gaussian": {
+          "statuses": {
+            "unsat": 1,
+            "verified_relation": 11
+          },
+          "seconds": 8.608371877926402,
+          "rank": 11
+        }
+      },
+      "runs": [
+        {
+          "arm": "sparse-k6-best",
+          "target_index": 0,
+          "mode": "plain",
+          "status": "timeout",
+          "seconds": 30.00967395794578,
+          "stdout": null,
+          "stderr": null
+        },
+        {
+          "arm": "sparse-k6-best",
+          "target_index": 0,
+          "mode": "gaussian",
+          "status": "unsat",
+          "seconds": 3.653849459020421,
+          "returncode": 0,
+          "witness": null,
+          "stdout": "\n!!! Running times are not optimal with these parameters. Set the __MAX_ID__ constant to 1099 !!!\n\nUNSAT\n47151\n",
+          "stderr": "",
+          "rank": 0
+        },
+        {
+          "arm": "sparse-k6-best",
+          "target_index": 1,
+          "mode": "plain",
+          "status": "timeout",
+          "seconds": 30.00818599993363,
+          "stdout": null,
+          "stderr": null
+        },
+        {
+          "arm": "sparse-k6-best",
+          "target_index": 1,
+          "mode": "gaussian",
+          "status": "verified_relation",
+          "seconds": 0.21474745799787343,
+          "returncode": 0,
+          "witness": [
+            [
+              1025,
+              143212
+            ],
+            [
+              24149,
+              236222
+            ],
+            [
+              345295,
+              436579
+            ]
+          ],
+          "stdout": "\n!!! Running times are not optimal with these parameters. Set the __MAX_ID__ constant to 1099 !!!\n\n0001000011000111100001101001111010010\n3177\n",
+          "stderr": "",
+          "rank": 1
+        },
+        {
+          "arm": "sparse-k6-best",
+          "target_index": 2,
+          "mode": "plain",
+          "status": "timeout",
+          "seconds": 30.006842000060715,
+          "stdout": null,
+          "stderr": null
+        },
+        {
+          "arm": "sparse-k6-best",
+          "target_index": 2,
+          "mode": "gaussian",
+          "status": "verified_relation",
+          "seconds": 0.665342167019844,
+          "returncode": 0,
+          "witness": [
+            [
+              32785,
+              279902
+            ],
+            [
+              68175,
+              120923
+            ],
+            [
+              160880,
+              11380
+            ]
+          ],
+          "stdout": "\n!!! Running times are not optimal with these parameters. Set the __MAX_ID__ constant to 1099 !!!\n\n0100011110100101010001010111111111111\n13715\n",
+          "stderr": "",
+          "rank": 2
+        },
+        {
+          "arm": "sparse-k6-best",
+          "target_index": 3,
+          "mode": "plain",
+          "status": "timeout",
+          "seconds": 30.006974582909606,
+          "stdout": null,
+          "stderr": null
+        },
+        {
+          "arm": "sparse-k6-best",
+          "target_index": 3,
+          "mode": "gaussian",
+          "status": "verified_relation",
+          "seconds": 1.820807500043884,
+          "returncode": 0,
+          "witness": [
+            [
+              25,
+              197253
+            ],
+            [
+              326723,
+              98770
+            ],
+            [
+              367337,
+              523891
+            ]
+          ],
+          "stdout": "\n!!! Running times are not optimal with these parameters. Set the __MAX_ID__ constant to 1099 !!!\n\n1100000011111010100000111000111101011\n34273\n",
+          "stderr": "",
+          "rank": 3
+        },
+        {
+          "arm": "sparse-k6-best",
+          "target_index": 4,
+          "mode": "plain",
+          "status": "timeout",
+          "seconds": 30.007502291933633,
+          "stdout": null,
+          "stderr": null
+        },
+        {
+          "arm": "sparse-k6-best",
+          "target_index": 4,
+          "mode": "gaussian",
+          "status": "verified_relation",
+          "seconds": 0.09311195800546557,
+          "returncode": 0,
+          "witness": [
+            [
+              4097,
+              344031
+            ],
+            [
+              392215,
+              56263
+            ],
+            [
+              363617,
+              363243
+            ]
+          ],
+          "stdout": "\n!!! Running times are not optimal with these parameters. Set the __MAX_ID__ constant to 1099 !!!\n\n0000101110110101111110110110110011000\n1964\n",
+          "stderr": "",
+          "rank": 4
+        },
+        {
+          "arm": "sparse-k6-best",
+          "target_index": 5,
+          "mode": "plain",
+          "status": "timeout",
+          "seconds": 30.006781167001463,
+          "stdout": null,
+          "stderr": null
+        },
+        {
+          "arm": "sparse-k6-best",
+          "target_index": 5,
+          "mode": "gaussian",
+          "status": "verified_relation",
+          "seconds": 0.04895583388861269,
+          "returncode": 0,
+          "witness": [
+            [
+              32769,
+              372860
+            ],
+            [
+              68175,
+              53780
+            ],
+            [
+              5769,
+              300724
+            ]
+          ],
+          "stdout": "\n!!! Running times are not optimal with these parameters. Set the __MAX_ID__ constant to 1099 !!!\n\n0000011110101111011111100101101101000\n981\n",
+          "stderr": "",
+          "rank": 5
+        },
+        {
+          "arm": "sparse-k6-best",
+          "target_index": 6,
+          "mode": "plain",
+          "status": "timeout",
+          "seconds": 30.00729279196821,
+          "stdout": null,
+          "stderr": null
+        },
+        {
+          "arm": "sparse-k6-best",
+          "target_index": 6,
+          "mode": "gaussian",
+          "status": "verified_relation",
+          "seconds": 0.393910292070359,
+          "returncode": 0,
+          "witness": [
+            [
+              36993,
+              67708
+            ],
+            [
+              322627,
+              122183
+            ],
+            [
+              383353,
+              402417
+            ]
+          ],
+          "stdout": "\n!!! Running times are not optimal with these parameters. Set the __MAX_ID__ constant to 1099 !!!\n\n0010111011111100001111100001110001001\n8166\n",
+          "stderr": "",
+          "rank": 6
+        },
+        {
+          "arm": "sparse-k6-best",
+          "target_index": 7,
+          "mode": "plain",
+          "status": "timeout",
+          "seconds": 30.005629374994896,
+          "stdout": null,
+          "stderr": null
+        },
+        {
+          "arm": "sparse-k6-best",
+          "target_index": 7,
+          "mode": "gaussian",
+          "status": "verified_relation",
+          "seconds": 0.048350958968512714,
+          "returncode": 0,
+          "witness": [
+            [
+              32769,
+              340093
+            ],
+            [
+              68175,
+              120923
+            ],
+            [
+              489252,
+              261297
+            ]
+          ],
+          "stdout": "\n!!! Running times are not optimal with these parameters. Set the __MAX_ID__ constant to 1099 !!!\n\n0000011110100000111111100101101101000\n960\n",
+          "stderr": "",
+          "rank": 7
+        },
+        {
+          "arm": "sparse-k6-best",
+          "target_index": 8,
+          "mode": "plain",
+          "status": "timeout",
+          "seconds": 30.00675920897629,
+          "stdout": null,
+          "stderr": null
+        },
+        {
+          "arm": "sparse-k6-best",
+          "target_index": 8,
+          "mode": "gaussian",
+          "status": "verified_relation",
+          "seconds": 0.45118729199748486,
+          "returncode": 0,
+          "witness": [
+            [
+              1153,
+              255738
+            ],
+            [
+              72219,
+              359099
+            ],
+            [
+              484774,
+              215949
+            ]
+          ],
+          "stdout": "\n!!! Running times are not optimal with these parameters. Set the __MAX_ID__ constant to 1099 !!!\n\n0011001111101011001010100000001111101\n9586\n",
+          "stderr": "",
+          "rank": 8
+        },
+        {
+          "arm": "sparse-k6-best",
+          "target_index": 9,
+          "mode": "plain",
+          "status": "timeout",
+          "seconds": 30.007033084053546,
+          "stdout": null,
+          "stderr": null
+        },
+        {
+          "arm": "sparse-k6-best",
+          "target_index": 9,
+          "mode": "gaussian",
+          "status": "verified_relation",
+          "seconds": 0.5772905419580638,
+          "returncode": 0,
+          "witness": [
+            [
+              38017,
+              318533
+            ],
+            [
+              390745,
+              338646
+            ],
+            [
+              159866,
+              253946
+            ]
+          ],
+          "stdout": "\n!!! Running times are not optimal with these parameters. Set the __MAX_ID__ constant to 1099 !!!\n\n0011110100010001111111111001000100000\n11865\n",
+          "stderr": "",
+          "rank": 9
+        },
+        {
+          "arm": "sparse-k6-best",
+          "target_index": 10,
+          "mode": "plain",
+          "status": "timeout",
+          "seconds": 30.006669041933492,
+          "stdout": null,
+          "stderr": null
+        },
+        {
+          "arm": "sparse-k6-best",
+          "target_index": 10,
+          "mode": "gaussian",
+          "status": "verified_relation",
+          "seconds": 0.06485087494365871,
+          "returncode": 0,
+          "witness": [
+            [
+              4097,
+              344031
+            ],
+            [
+              390745,
+              56463
+            ],
+            [
+              488238,
+              133843
+            ]
+          ],
+          "stdout": "\n!!! Running times are not optimal with these parameters. Set the __MAX_ID__ constant to 1099 !!!\n\n0000100100010100011101000011010111001\n1360\n",
+          "stderr": "",
+          "rank": 10
+        },
+        {
+          "arm": "sparse-k6-best",
+          "target_index": 11,
+          "mode": "plain",
+          "status": "timeout",
+          "seconds": 30.007546916953288,
+          "stdout": null,
+          "stderr": null
+        },
+        {
+          "arm": "sparse-k6-best",
+          "target_index": 11,
+          "mode": "gaussian",
+          "status": "verified_relation",
+          "seconds": 0.5759675420122221,
+          "returncode": 0,
+          "witness": [
+            [
+              38017,
+              280772
+            ],
+            [
+              386573,
+              123164
+            ],
+            [
+              502018,
+              456145
+            ]
+          ],
+          "stdout": "\n!!! Running times are not optimal with these parameters. Set the __MAX_ID__ constant to 1099 !!!\n\n0011110101011101110011000110101000110\n11828\n",
+          "stderr": "",
+          "rank": 11
+        }
+      ]
+    }
+  ]
+}
