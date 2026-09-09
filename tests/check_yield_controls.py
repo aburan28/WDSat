@@ -10,9 +10,17 @@ from sage.all import GF, EllipticCurve
 from factor_base_cofactor_control import profile_control
 from factor_base_sat_rank import RelationRank, columns, relation_coefficients, point_key
 from factor_base_yield_screen import bit_span, subgroup_generator
+from factor_base_frobenius_schedule import add_mask, score_sets
 
 
 class YieldControlTests(unittest.TestCase):
+    def test_distinct_cyclic_sumsets(self):
+        for r in [7,11,71]:
+            sets=[[1,r-1],[2,r-2],[3,r-3]]
+            mask,coverage=score_sets(sets,r)
+            expected={sum(v)%r for v in itertools.product(*sets)}
+            self.assertEqual(mask,sum(1 << v for v in expected))
+            self.assertEqual(coverage,len(expected-{0}))
     def test_rank_recovery(self):
         rng = random.Random(345)
         r, secret = 991, 42
