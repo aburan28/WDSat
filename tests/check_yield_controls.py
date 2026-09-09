@@ -11,7 +11,7 @@ from factor_base_cofactor_control import profile_control
 from factor_base_sat_rank import RelationRank, columns, relation_coefficients, point_key
 from factor_base_yield_screen import bit_span, subgroup_generator
 from factor_base_frobenius_schedule import add_mask, score_sets
-from factor_base_frobenius_sat import rewritten_coefficients, frobenius_power
+from factor_base_frobenius_sat import rewritten_coefficients, frobenius_power, koblitz_frobenius_eigenvalue
 
 
 class YieldControlTests(unittest.TestCase):
@@ -95,6 +95,13 @@ class YieldControlTests(unittest.TestCase):
         lhs=E(0)
         for key,pos in column_map.items():lhs+=coefficients[pos]*E(F.from_integer(key[0]),F.from_integer(key[1]))
         self.assertEqual(lhs,sum((frobenius_power(E,Q,e) for Q,e in zip(chosen,exponents)),E(0)))
+
+    def test_algebraic_frobenius_eigenvalue(self):
+        for n,r in [(7,71),(11,991),(17,65587),(19,262543)]:
+            F=GF(2**n,name='a');E=EllipticCurve(F,[1,1,0,0,1]);P=subgroup_generator(E,r)
+            lam=koblitz_frobenius_eigenvalue(E,P,r)
+            self.assertEqual(lam*P,frobenius_power(E,P,1))
+            self.assertEqual((lam*lam-lam+2)%r,0)
 
 
 if __name__ == '__main__':

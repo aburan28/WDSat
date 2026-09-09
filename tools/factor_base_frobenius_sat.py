@@ -18,6 +18,22 @@ def frobenius_power(E, point, exponent):
     return point
 
 
+def koblitz_frobenius_eigenvalue(E, point, subgroup_order):
+    """Compute pi's subgroup eigenvalue from T^2-tT+2, then identify its root."""
+    if E.a2()**2 != E.a2() or E.a6()**2 != E.a6():
+        raise ValueError('Curve coefficients must lie in GF(2)')
+    base_curve=EllipticCurve(GF(2),[1,int(E.a2()),0,0,int(E.a6())])
+    trace=3-int(base_curve.cardinality())
+    field=GF(subgroup_order);root=field(trace*trace-8).sqrt();inv2=field(2)**-1
+    roots=[int((field(trace)+root)*inv2),int((field(trace)-root)*inv2)]
+    image=frobenius_power(E,point,1)
+    matches=[value for value in roots if value*point==image]
+    if len(matches)!=1:raise RuntimeError('Could not identify a unique Frobenius eigenvalue')
+    value=matches[0]
+    if (value*value-trace*value+2)%subgroup_order:raise RuntimeError('Invalid Frobenius characteristic root')
+    return value
+
+
 def rewritten_coefficients(E,witness,exponents,lam,r,column_map):
     coefficients=[0]*len(column_map); n=E.base_field().degree()
     for pair,e in zip(witness,exponents):
