@@ -66,7 +66,7 @@ char thread[1000] = "";
  * @brief It scans and checks command line options
  */
 int scan_opt(int argc, char **argv, const char *opt) {
-	char c;
+	int c;
 	while ((c = getopt (argc, argv, opt)) != -1)
 		switch (c) {
 			case 'a': if(!strncmp(optarg, "compile", 7)) action = 0; if(!strncmp(optarg, "time", 4)) action = 2; if(!strncmp(optarg, "delete", 6)) action = 3; if(!strncmp(optarg, "color", 5)) action = 4; break;
@@ -130,6 +130,8 @@ int main(int argc, char * argv[]) {
 	"c          -P : prime field mode (input: p fp <n> <m> <p> systems)\n"
 	"c          -i file    : where file is the input file\n"
 	"c          -g mvc    : where mvc is a string of comma-separated variables that defines statically the branching order\n"
+	"c          -n n -l l -m m : field degree, factor-space dimension, number of summands\n"
+	"c          -b : symmetry pruning (requires symmetric factor-coordinate blocks first)\n"
 	"c          -h : help (shows the argument list)\n"
 	;
 	
@@ -147,7 +149,8 @@ on_break:
 	goto end;
 	
 on_continue:
-	if(scan_opt(argc, argv, "i:o:a:n:l:xbcshmPg:t:")) goto on_break;
+	if(scan_opt(argc, argv, "i:o:a:n:l:xbcshm:Pg:t:")) goto on_break;
+	if(n <= 0 || _l < 0 || _m < 2) goto on_break;
 	
 	
 	if(!generate(input_filename, output_filename)) {

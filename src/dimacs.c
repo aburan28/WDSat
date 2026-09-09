@@ -261,14 +261,23 @@ void dimacs_read_formula(FILE *f) {
 		}
 		else
 		{
-			dimacs_size_of_boolean_equation[dimacs_nb_of_boolean_equations] = 1;
-			dimacs_boolean_equation[dimacs_nb_of_boolean_equations++][0] = atoi(str_l);
-			++dimacs_nb_of_atoms_be;
-			dimacs_size_min_among_boolean_equations = 1;
+			int_t clause_size = 0;
+			while(str_l != NULL && str_l[0] != '0')
+			{
+				assert(clause_size < __MAX_EQ_SIZE__);
+				dimacs_boolean_equation[dimacs_nb_of_boolean_equations][clause_size++] = atoi(str_l);
+				++dimacs_nb_of_atoms_be;
+				str_l = strtok (NULL, " ");
+			}
+			assert(str_l != NULL && str_l[0] == '0');
+			assert(clause_size > 0);
+			dimacs_size_of_boolean_equation[dimacs_nb_of_boolean_equations++] = clause_size;
+			if(!dimacs_size_min_among_boolean_equations || clause_size < dimacs_size_min_among_boolean_equations)
+				dimacs_size_min_among_boolean_equations = clause_size;
+			if(clause_size > dimacs_size_max_among_boolean_equations)
+				dimacs_size_max_among_boolean_equations = clause_size;
 			assert(dimacs_nb_of_atoms_be < __MAX_BUFFER_SIZE__);
 			assert(dimacs_nb_of_boolean_equations < __MAX_EQ__);
-			str_l = strtok (NULL, " ");
-			assert(str_l[0] == '0');
 		}
 	}
 	assert(dimacs_nb_of_vars <= __ID_SIZE__);

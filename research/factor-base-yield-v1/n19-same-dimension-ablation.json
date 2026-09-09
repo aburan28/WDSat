@@ -1,0 +1,20 @@
+{
+  "objective": "Isolate the n19 factor-base selection effect at fixed dimension, Frobenius schedule, solver, curve and exact membership model.",
+  "arms": [
+    {"name": "fixed-trace-k6", "candidate": "trace-k6", "schedule": [0,1,2]},
+    {"name": "density-selected-sparse-k6", "candidate": "sparse-k6", "schedule": [0,1,2]}
+  ],
+  "streams": [
+    {"target_seed": 202609107, "secret": 27183},
+    {"target_seed": 202609108, "secret": 16180},
+    {"target_seed": 202609109, "secret": 14142}
+  ],
+  "maximum_targets": 128,
+  "watchdog_seconds": 30,
+  "fixed_conditions": "Both arms use k=6, schedule [0,1,2], the same targets per stream, exact lift clauses, chained S3, the same Gaussian WDSat binary, and identical stopping/rank rules.",
+  "intended_difference": "Only the direction basis differs: fixed first six trace-zero monomials versus the preselected sparse density winner. Actual factor columns and exact-clause count are consequences of that basis choice and are the measured mechanism.",
+  "eigenvalue": "Compute lambda from T^2-tT+2 modulo r and select the root by one public point equality; do not build a subgroup logarithm table.",
+  "reachability": "Use actual curve point additions for validation only. Charge validation setup separately from solver/pipeline measurements.",
+  "success": "Both arms extract on all streams. A sparse advantage on all streams supports the factor-base yield claim without dimension or schedule confounding.",
+  "scope": "n19 implementation ablation; no asymptotic or cryptographic-scale claim."
+}

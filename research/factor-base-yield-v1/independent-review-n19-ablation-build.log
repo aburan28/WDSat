@@ -1,0 +1,14 @@
+/Library/Developer/CommandLineTools/usr/bin/make clean
+rm -f *.o *~ .*~
+/Library/Developer/CommandLineTools/usr/bin/make ARC=../wdsat_s3_chain_19 FLAGS='-O3 -Wall -std=gnu11 -DWDSAT_PROFILE_S3_CHAIN_19'
+cc -O3 -Wall -std=gnu11 -DWDSAT_PROFILE_S3_CHAIN_19 -c main.c -o main.o
+cc -O3 -Wall -std=gnu11 -DWDSAT_PROFILE_S3_CHAIN_19 -c wdsat_utils.c -o wdsat_utils.o
+cc -O3 -Wall -std=gnu11 -DWDSAT_PROFILE_S3_CHAIN_19 -c dimacs.c -o dimacs.o
+cc -O3 -Wall -std=gnu11 -DWDSAT_PROFILE_S3_CHAIN_19 -c cnf.c -o cnf.o
+cc -O3 -Wall -std=gnu11 -DWDSAT_PROFILE_S3_CHAIN_19 -c xorset.c -o xorset.o
+cc -O3 -Wall -std=gnu11 -DWDSAT_PROFILE_S3_CHAIN_19 -c xorgauss.c -o xorgauss.o
+cc -O3 -Wall -std=gnu11 -DWDSAT_PROFILE_S3_CHAIN_19 -c wdsat.c -o wdsat.o
+cc -O3 -Wall -std=gnu11 -DWDSAT_PROFILE_S3_CHAIN_19 -c fp.c -o fp.o
+cc main.o wdsat_utils.o dimacs.o cnf.o xorset.o xorgauss.o wdsat.o fp.o -o ../wdsat_s3_chain_19  -lm
+/Library/Developer/CommandLineTools/usr/bin/make clean
+rm -f *.o *~ .*~

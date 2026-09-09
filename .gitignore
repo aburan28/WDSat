@@ -1,2 +1,4 @@
 *.o
 .DS_Store
+__pycache__/
+/wdsat_s3_chain_19

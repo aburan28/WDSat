@@ -1,0 +1,15 @@
+{
+  "claim_under_review": "At fixed n=19, k=6, schedule [0,1,2], Gaussian WDSat binary, exact membership model and stopping rule, the density-selected sparse trace-affine basis reduced median targets to verified extraction from 90 to 44, ratio-of-median solver subprocess time by 2.505x, and ratio-of-median recorded per-target pipeline time by 2.323x versus the fixed trace-k6 basis across three different public Q values.",
+  "claim_boundary": "Same-dimension n19 implementation ablation only. No novelty, asymptotic, cryptographic-scale, whole-program, or Pollard-rho advantage is claimed.",
+  "coordinator_prior": "Expected qualified concurrence if the no-log-oracle construction, fixed conditions, reachability sets, certificates, timing labels and environment record all verify. Expected remaining qualification: one curve/machine and only three streams.",
+  "reviewer": "independent-reviewer-n19",
+  "joints": [
+    {"id": "A1-isolation", "attack": "Confirm dimension, schedule, solver, targets, stopping and semantic constraints are identical; enumerate every remaining difference and decide whether it is intended factor-base mechanism or confound."},
+    {"id": "A2-no-oracle", "attack": "Verify lambda is derived from T^2-tT+2 and public point equality, basis selection uses membership only, and neither SAT nor rank receives a subgroup log table or secret."},
+    {"id": "A3-evidence", "attack": "Independently recompute all reachability, models, UNSATs, matrices, extraction points, target/solver/pipeline medians and ratios from raw artifacts."},
+    {"id": "A4-scope", "attack": "State the narrowest defensible factor-base yield claim and remaining prior-art/scale limits."}
+  ],
+  "blind_rederivation": {"quantities": ["90 versus 44 target medians", "2.505 solver ratio", "2.323 pipeline ratio"], "blind_from": ["future synthesis and completion decision"]},
+  "proves_too_much_control": "Reject any inference to asymptotic ECDLP, standardized curves, novelty, complete program wall time, or cryptographic security.",
+  "evidence": "Snapshot commit containing n19-same-dimension-ablation-20260909-a plus committed source and protocol."
+}

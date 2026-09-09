@@ -78,7 +78,21 @@
 #define __MAX_XEQ__ 44
 #define __MAX_XEQ_SIZE__ 650*/
 
-/** IC-S4: l=6 **/
+/** Chained S3 n=19 profile: up to 40 unary variables and about 1400 monomials. **/
+#ifdef WDSAT_PROFILE_S3_CHAIN_19
+#ifdef __XG_ENHANCED__
+#define __MAX_ANF_ID__ 64
+#define __MAX_DEGREE__ 4
+#endif
+#define __MAX_ID__ 1536
+#define __MAX_BUFFER_SIZE__ 60000
+#define __MAX_EQ__ 7000
+#define __MAX_EQ_SIZE__ 16
+#define __MAX_XEQ__ 64
+#define __MAX_XEQ_SIZE__ 1600
+#else
+
+/** IC-S4: l=6 (default) **/
 #ifdef __XG_ENHANCED__
 #define __MAX_ANF_ID__ 52
 #define __MAX_DEGREE__ 4 // make it +1
@@ -86,9 +100,10 @@
 #define __MAX_ID__ 767
 #define __MAX_BUFFER_SIZE__ 60000
 #define __MAX_EQ__ 3000
-#define __MAX_EQ_SIZE__ 5 //make it +1
+#define __MAX_EQ_SIZE__ 16
 #define __MAX_XEQ__ 52
 #define __MAX_XEQ_SIZE__ 800
+#endif
 
 /** MQ : n=20 m=40 **/
 /*#ifdef __XG_ENHANCED__

@@ -1,0 +1,17 @@
+{
+  "snapshot": "3c5e675b0ccd3685076fa5e58b4262ed2007d24c",
+  "source_files": 17,
+  "compiler": "Apple clang version 17.0.0 (clang-1700.0.13.5)\nTarget: arm64-apple-darwin25.6.0\nThread model: posix\nInstalledDir: /Library/Developer/CommandLineTools/usr/bin",
+  "command": [
+    "make",
+    "-C",
+    "<temporary snapshot>/src",
+    "s3-chain-19"
+  ],
+  "build_exit_code": 0,
+  "rebuilt_sha256": "64ef817176c5ebf0dc4623d20790b88efb8ced65920471cb5ad153ffada1adbc",
+  "archived_sha256": "64ef817176c5ebf0dc4623d20790b88efb8ced65920471cb5ad153ffada1adbc",
+  "identical": true,
+  "build_log_sha256": "f7736e25755640c06738a1b05d21532c37ab8f2434eaac1264fbc592d6b1267c",
+  "scratch": "/private/tmp/reviewer-ablation-build-u1mm4bqc"
+}

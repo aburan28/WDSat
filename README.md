@@ -19,6 +19,45 @@ in the ```src``` folder wil create the ```wdsat_solver``` executable in the root
 -g mvc    : where mvc is a string of comma-separated variables that defines statically the branching order
 ```
 
+`-g` is a priority prefix: remaining unary variables are appended, so the
+solver always completes its model. Duplicate or out-of-range entries are errors.
+`-b -l L -m M` enables the existing symmetry pruning only for an encoding whose
+first `M*L` variables are interchangeable factor-coordinate blocks in canonical
+bit order. It rejects reordered prefixes and combination with `-t`. These
+checks cannot prove that an arbitrary input actually has the required symmetry.
+For a chained S3 model, use ordinary search until permutation completeness of
+that particular encoding has been established. `-m` now correctly consumes its
+argument. Both SAT and UNSAT retain the historical exit status 0; interpret
+the output and validate the model.
+
+### Binary-curve factor-base laboratory
+
+See [the code and mathematical review](docs/binary-sat-review.md) for the
+factor-base comparison, correctness fixes, retained toy diagnostics, and limits.
+The generator needs SageMath; the verified relation loop uses CaDiCaL. It makes
+no Groebner basis calls and can also export native WDSat ANF.
+
+```sh
+make -C src
+python3 -m unittest discover -s tests -v
+sage -python tests/check_binary_factor_base.py
+sage -python tools/binary_factor_base.py --n 7 --dimension 3 --m 3 \
+  --targets 8 --output /tmp/binary-fb-new.json --artifacts /tmp/binary-fb-new
+```
+
+Output paths must be new. Add `--no-trace-filter` for the matched ablation,
+or `--a 1 --b 3` for the general binary curve control. Coefficients are integers
+encoding polynomial-basis bits, not integers coerced into the prime subfield.
+The exhaustive CLI is intentionally limited to odd field degrees 3 through 13,
+factor-space dimensions at most 6, and 2 or 3 summands. It reports exact toy
+group coverage and verified relations, not a completed index-calculus solve.
+
+The continued campaign produced an independently reviewed n=19 same-dimension
+factor-base result with complete SAT relation matrices and verified log
+extraction. See [the final factor-base synthesis](research/factor-base-yield-v1/SYNTHESIS.md)
+and [independent ablation review](research/factor-base-yield-v1/independent-review-n19-ablation.md).
+The result is explicitly bounded to the tested small-field implementation.
+
 ### Configuration
 The core structures in the different WDSat modules are statically allocated and, currently, several constants need to be set manually in the ```config.h``` file.
 * When __\_\_XG_ENHANCED\_\___ is defined, the XORGAUSS-extended module is used for Gaussian Elimination and the input instance has to be in ANF form. (see input forms section)
@@ -95,4 +134,3 @@ x 1 2 4 5 T 0
 x 1 .2 1 2 6 0
 x .3 2 3 6 6 T 0
 ```
-
