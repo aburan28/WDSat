@@ -52,6 +52,12 @@ The exhaustive CLI is intentionally limited to odd field degrees 3 through 13,
 factor-space dimensions at most 6, and 2 or 3 summands. It reports exact toy
 group coverage and verified relations, not a completed index-calculus solve.
 
+The continued campaign produced an independently reviewed n=19 same-dimension
+factor-base result with complete SAT relation matrices and verified log
+extraction. See [the final factor-base synthesis](research/factor-base-yield-v1/SYNTHESIS.md)
+and [independent ablation review](research/factor-base-yield-v1/independent-review-n19-ablation.md).
+The result is explicitly bounded to the tested small-field implementation.
+
 ### Configuration
 The core structures in the different WDSat modules are statically allocated and, currently, several constants need to be set manually in the ```config.h``` file.
 * When __\_\_XG_ENHANCED\_\___ is defined, the XORGAUSS-extended module is used for Gaussian Elimination and the input instance has to be in ANF form. (see input forms section)
