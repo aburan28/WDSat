@@ -1,0 +1,12 @@
+{
+  "amends": "sat-rank-amendment.json",
+  "trigger": "Certified SAT runs still reject algebraic roots after solving because trace compatibility is necessary but not sufficient for rational lifting.",
+  "mechanism": "Precompute the exact valid k-bit coordinate assignments for each fixed affine factor space and add one blocking clause for every invalid assignment in each summand block. This enforces factor-base membership before Semaev solving.",
+  "profiles": [{"n": 11, "targets": 32, "watchdog_seconds": 5}, {"n": 17, "targets": 16, "watchdog_seconds": 10}],
+  "arms": ["trace unfiltered", "trace exact-lift filtered", "sparse unfiltered", "sparse exact-lift filtered"],
+  "shared_targets": "Reuse the first targets from sat-rank-amendment.json and its deterministic target rule; append targets from the same RNG stream at n=17.",
+  "filter_cost": "Charge factor-base enumeration, curve lifting, clauses, encoding time and solver time. The filter uses no target and no relation outcome.",
+  "verification": "Every returned model must satisfy the original ANF and every accepted witness must lift to target-subgroup points summing to the target. Filtered runs must have zero rejected factor-coordinate projections.",
+  "success": "A higher certified relation count or lower measured time on shared targets earns larger replication; it is not by itself a breakthrough claim.",
+  "falsifier": "No improvement under paired targets, or clause overhead cancels removed invalid projections."
+}
