@@ -40,6 +40,16 @@ class BinarySolverTests(unittest.TestCase):
             bits = assignment(result.stdout, 3)
             self.assertEqual(bits[1] ^ bits[2], 1)
 
+    def test_mixed_anf_and_general_cnf(self):
+        text = 'p cnf 3 3\nx 1 2 T 0\n1 2 3 0\n-1 -2 0\n'
+        for flags in [(), ('-x',)]:
+            result = run(text, flags)
+            self.assertEqual(result.returncode, 0, result.stderr)
+            bits = assignment(result.stdout, 3)
+            self.assertEqual(bits[0] ^ bits[1], 0)
+            self.assertTrue(bits[0] or bits[1] or bits[2])
+            self.assertFalse(bits[0] and bits[1])
+
     def test_symmetry_completes_auxiliary_variables(self):
         # Symmetric in x1,x2, with unresolved auxiliary XOR in x3,x4.
         for flags in [(), ('-x',)]:

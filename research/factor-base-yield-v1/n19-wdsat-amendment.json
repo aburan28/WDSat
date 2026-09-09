@@ -1,0 +1,11 @@
+{
+  "objective": "Test the XOR-aware native WDSat solver on the exact n=19 frontier models that largely timed out under CaDiCaL.",
+  "build": "Add an explicit S3-chain n19 capacity profile; preserve the existing default profile.",
+  "semantic_input": "Combine retained ANF rows with the exact factor-membership CNF clauses. Extend the enhanced parser to accept general CNF clauses, with regression tests.",
+  "targets": "Use the same 12 target inputs from n19-sat-admission-20260909-a for trace-k7 and sparse-k6.",
+  "modes": ["native XOR/unit propagation", "native XOR plus Gaussian elimination"],
+  "watchdog_seconds": 30,
+  "validation": "Parse every complete model, evaluate the original ANF and mixed clauses independently, recover curve points, and verify the point sum. UNSAT must pass the group-addition reachability audit.",
+  "admission": "At least two certified relations and a lower censoring rate than the 10-second CaDiCaL screen earns a larger matched solver comparison.",
+  "scope": "Solver implementation evidence only; no mathematical conclusion from timeout or failure."
+}
