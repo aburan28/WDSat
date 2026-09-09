@@ -1,0 +1,20 @@
+{
+  "corrects": "Timing interpretation for n19-wdsat-extraction-20260909-a and replications b,c; original artifacts remain byte-identical.",
+  "trigger": "Independent review observed that the first stream reused 12 records whose seconds field measured only the solver subprocess, while later records and all fresh streams measured the per-target pipeline around encoding, artifact writes, solver, witness/rewrite checks and rank insertion.",
+  "invalid_interpretation": "Do not treat each arm's top-level seconds field as a harmonized solver-only total across all three streams or as complete program wall time.",
+  "solver_only_definition": "For each record, sum solver_seconds when present; for reused admission records, sum their original seconds subprocess measurement.",
+  "solver_only_seconds": {
+    "202609104": {"trace-k7": 142.84112012805417, "sparse-k6": 43.73439812497236, "ratio_trace_over_sparse": 3.26610462821236},
+    "202609105": {"trace-k7": 127.83650241675787, "sparse-k6": 36.112586584175006, "ratio_trace_over_sparse": 3.5399431197979445},
+    "202609106": {"trace-k7": 135.27519216551445, "sparse-k6": 60.09759975573979, "ratio_trace_over_sparse": 2.2509250405228474}
+  },
+  "solver_only_medians": {"trace-k7": 135.27519216551445, "sparse-k6": 43.73439812497236, "ratio_trace_over_sparse": 3.0931074386564443},
+  "fresh_per_target_pipeline_seconds": {
+    "202609105": {"trace-k7": 149.2563667112263, "sparse-k6": 47.1417477511568, "ratio_trace_over_sparse": 3.1661186492086246},
+    "202609106": {"trace-k7": 158.60238424956333, "sparse-k6": 73.2628720809007, "ratio_trace_over_sparse": 2.1648398396724913}
+  },
+  "setup_costs": "Sparse basis selection was separately measured at 0.09077562496531755 seconds. Common validation-oracle construction and complete process wall time were not recorded as arm-specific attack timings.",
+  "unchanged_evidence": "All three sparse runs remain faster under harmonized solver-only totals; both fully fresh per-target pipeline comparisons also favor sparse. Extraction target counts, witnesses, ranks and d*P=Q checks are unaffected.",
+  "permitted_claim": "Across three frozen n19 streams, sparse-k6 used 2.25x to 3.54x less solver subprocess time than trace-k7, with a median solver-only ratio of 3.09x. On the two fully fresh streams, recorded per-target pipeline time was 2.16x and 3.17x lower.",
+  "forbidden_claim": "Do not call 3.09x a complete end-to-end program-wall speedup or use the mixed top-level seconds to claim a harmonized three-stream pipeline median."
+}
