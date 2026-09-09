@@ -1,0 +1,22 @@
+{
+  "objective": "Measure end-to-end toy ECDLP relation collection through independently verified logarithm extraction.",
+  "status": "frozen replication protocol; completion does not by itself satisfy the persistent breakthrough gate",
+  "profile": {"n": 17, "a": 1, "b": 1, "dimension": 6, "summands": 3},
+  "target_seeds": [202609101, 202609102, 202609103],
+  "targets_per_seed": 64,
+  "simulation_secret": 31415,
+  "solver_watchdog_seconds_per_target": 10,
+  "arms": [
+    "standard polynomial factor space with exact prime-subgroup membership clauses",
+    "fixed trace-one affine control with exact membership clauses",
+    "sparse density-selected affine base with exact membership clauses and schedule [0,0,0]",
+    "same sparse base with exact membership clauses and Frobenius schedule [0,1,2]"
+  ],
+  "shared_target_rule": "For each seed generate uniform nonzero a*P+b*Q targets; interleave active arms in a seeded randomized order.",
+  "stopping_rule": "Stop an arm only after a relation dependency recovers the simulation secret and d*P=Q, or after all 192 targets. Other arms continue independently.",
+  "rank_rule": "Insert only point-certified relations. Reduce factor columns over the prime subgroup order. Frobenius-image points rewrite through signed powers of the verified eigenvalue. Verify the rewritten point equality before insertion.",
+  "cost_accounting": "Record all encoding and solving wall time, timeouts, relation count, rank, first extraction, factor-base columns and prior selection cost. Timeout is operational censoring.",
+  "controls": "Known secret is used only to create Q and verify extraction. It is not supplied to factor selection, SAT, relation coefficients or elimination.",
+  "success": "A faster verified extraction replicated across later target streams can support an implementation breakthrough claim only after independent adversarial review and a literature/scale boundary.",
+  "falsifier": "Sparse or Frobenius arms fail to extract, lose after rank/cardinality accounting, or checks disagree."
+}
