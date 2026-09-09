@@ -1,0 +1,300 @@
+{
+  "scope": "independent group-law audit of bounded n=17 batches",
+  "method": "actual Sage curve additions; no Semaev/CNF/log oracle",
+  "source_sha256": "ccc9e19b0e41cfcef30eeed303a07378dbf69157a7ff022234dd0b0006f72759",
+  "reports": [
+    {
+      "run": "n19-sat-admission-20260909-a",
+      "arms": [
+        {
+          "name": "sparse-k5-best",
+          "independent_group_coverage": 100162,
+          "counts": {
+            "verified_in_set": 1,
+            "unsat_outside_set": 0,
+            "timeouts_in_set": 2,
+            "timeouts_outside_set": 9
+          },
+          "checks": [
+            {
+              "target_index": 0,
+              "status": "timeout",
+              "group_reachable": false
+            },
+            {
+              "target_index": 1,
+              "status": "timeout",
+              "group_reachable": true
+            },
+            {
+              "target_index": 2,
+              "status": "timeout",
+              "group_reachable": false
+            },
+            {
+              "target_index": 3,
+              "status": "timeout",
+              "group_reachable": false
+            },
+            {
+              "target_index": 4,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 5,
+              "status": "timeout",
+              "group_reachable": false
+            },
+            {
+              "target_index": 6,
+              "status": "timeout",
+              "group_reachable": false
+            },
+            {
+              "target_index": 7,
+              "status": "timeout",
+              "group_reachable": false
+            },
+            {
+              "target_index": 8,
+              "status": "timeout",
+              "group_reachable": false
+            },
+            {
+              "target_index": 9,
+              "status": "timeout",
+              "group_reachable": false
+            },
+            {
+              "target_index": 10,
+              "status": "timeout",
+              "group_reachable": false
+            },
+            {
+              "target_index": 11,
+              "status": "timeout",
+              "group_reachable": true
+            }
+          ]
+        },
+        {
+          "name": "sparse-k6-best",
+          "independent_group_coverage": 247094,
+          "counts": {
+            "verified_in_set": 2,
+            "unsat_outside_set": 0,
+            "timeouts_in_set": 9,
+            "timeouts_outside_set": 1
+          },
+          "checks": [
+            {
+              "target_index": 0,
+              "status": "timeout",
+              "group_reachable": false
+            },
+            {
+              "target_index": 1,
+              "status": "timeout",
+              "group_reachable": true
+            },
+            {
+              "target_index": 2,
+              "status": "timeout",
+              "group_reachable": true
+            },
+            {
+              "target_index": 3,
+              "status": "timeout",
+              "group_reachable": true
+            },
+            {
+              "target_index": 4,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 5,
+              "status": "timeout",
+              "group_reachable": true
+            },
+            {
+              "target_index": 6,
+              "status": "timeout",
+              "group_reachable": true
+            },
+            {
+              "target_index": 7,
+              "status": "timeout",
+              "group_reachable": true
+            },
+            {
+              "target_index": 8,
+              "status": "timeout",
+              "group_reachable": true
+            },
+            {
+              "target_index": 9,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 10,
+              "status": "timeout",
+              "group_reachable": true
+            },
+            {
+              "target_index": 11,
+              "status": "timeout",
+              "group_reachable": true
+            }
+          ]
+        },
+        {
+          "name": "trace-k7-best",
+          "independent_group_coverage": 259220,
+          "counts": {
+            "verified_in_set": 3,
+            "unsat_outside_set": 0,
+            "timeouts_in_set": 8,
+            "timeouts_outside_set": 1
+          },
+          "checks": [
+            {
+              "target_index": 0,
+              "status": "timeout",
+              "group_reachable": false
+            },
+            {
+              "target_index": 1,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 2,
+              "status": "timeout",
+              "group_reachable": true
+            },
+            {
+              "target_index": 3,
+              "status": "timeout",
+              "group_reachable": true
+            },
+            {
+              "target_index": 4,
+              "status": "timeout",
+              "group_reachable": true
+            },
+            {
+              "target_index": 5,
+              "status": "timeout",
+              "group_reachable": true
+            },
+            {
+              "target_index": 6,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 7,
+              "status": "timeout",
+              "group_reachable": true
+            },
+            {
+              "target_index": 8,
+              "status": "timeout",
+              "group_reachable": true
+            },
+            {
+              "target_index": 9,
+              "status": "verified_relation",
+              "group_reachable": true
+            },
+            {
+              "target_index": 10,
+              "status": "timeout",
+              "group_reachable": true
+            },
+            {
+              "target_index": 11,
+              "status": "timeout",
+              "group_reachable": true
+            }
+          ]
+        },
+        {
+          "name": "polynomial-k7-best",
+          "independent_group_coverage": 81946,
+          "counts": {
+            "verified_in_set": 0,
+            "unsat_outside_set": 0,
+            "timeouts_in_set": 5,
+            "timeouts_outside_set": 7
+          },
+          "checks": [
+            {
+              "target_index": 0,
+              "status": "timeout",
+              "group_reachable": false
+            },
+            {
+              "target_index": 1,
+              "status": "timeout",
+              "group_reachable": true
+            },
+            {
+              "target_index": 2,
+              "status": "timeout",
+              "group_reachable": false
+            },
+            {
+              "target_index": 3,
+              "status": "timeout",
+              "group_reachable": false
+            },
+            {
+              "target_index": 4,
+              "status": "timeout",
+              "group_reachable": true
+            },
+            {
+              "target_index": 5,
+              "status": "timeout",
+              "group_reachable": true
+            },
+            {
+              "target_index": 6,
+              "status": "timeout",
+              "group_reachable": false
+            },
+            {
+              "target_index": 7,
+              "status": "timeout",
+              "group_reachable": false
+            },
+            {
+              "target_index": 8,
+              "status": "timeout",
+              "group_reachable": false
+            },
+            {
+              "target_index": 9,
+              "status": "timeout",
+              "group_reachable": true
+            },
+            {
+              "target_index": 10,
+              "status": "timeout",
+              "group_reachable": false
+            },
+            {
+              "target_index": 11,
+              "status": "timeout",
+              "group_reachable": true
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
