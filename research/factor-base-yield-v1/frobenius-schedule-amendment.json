@@ -1,0 +1,13 @@
+{
+  "amends": "protocol.json",
+  "prior_art_boundary": "Distinct Frobenius-related factor bases and rewriting their relations through the subgroup eigenvalue are prior art (Galbraith-Granger-Merz-Petit, SAC 2020). This screen claims no novelty for that mechanism.",
+  "question": "Does selecting non-consecutive Frobenius exponents materially increase exact relation coverage for the retained high-density sparse affine base without increasing SAT variables or relation-matrix columns?",
+  "profiles": [11, 17],
+  "base": "Use the immutable sparse-20260909-a winner for each field.",
+  "schedules": "Fix the first exponent to zero and exhaust all unordered pairs 0 <= e <= f < n. Common Frobenius shifts and summand permutations are coverage-equivalent.",
+  "selection": "Maximum exact nonzero subgroup-target coverage, then lexicographically smallest exponent triple. Retain all schedule scores.",
+  "controls": ["same base [0,0,0]", "consecutive images [0,1,2]", "32 cardinality-matched random signed point sets"],
+  "costs": "Charge schedule enumeration and independent group-law verification. A small-field logarithm table accelerates the exhaustive score but may not enter the SAT instance or relation matrix.",
+  "independent_check": "Recompute coverage for same, consecutive and selected schedules using actual curve point additions only, with no logarithm table.",
+  "success": "A reproducible coverage increase earns a paired exact-lift SAT/rank experiment. It remains an optimization of prior art until a distinct new mechanism and scaling evidence are established."
+}
