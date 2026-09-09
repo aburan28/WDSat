@@ -43,6 +43,9 @@ def main():
     parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--source',type=Path,required=True);parser.add_argument('--solver',type=Path,required=True);parser.add_argument('--output',type=Path,required=True)
     args=parser.parse_args();args.solver=args.solver.resolve();config_path=args.source/'n19-wdsat-amendment.json';config=json.loads(config_path.read_text())
     admission=json.loads((args.source/'n19-sat-admission-20260909-a'/'result.json').read_text());args.output.mkdir(parents=True,exist_ok=False)
+    audit=json.loads((args.source/'n19-sat-admission-audit-20260909.json').read_text())
+    audited={arm['name']:{row['target_index']:row['group_reachable'] for row in arm['checks']}
+             for arm in audit['reports'][0]['arms']}
     for path in [Path(__file__),args.solver,config_path]:(args.output/path.name).write_bytes(path.read_bytes())
     F=GF(2**19,name='a');E=EllipticCurve(F,[1,1,0,0,1]);r=int(admission['subgroup_order']);P=subgroup_generator(E,r);Q=E(F.from_integer(admission['Q'][0]),F.from_integer(admission['Q'][1]))
     piP=frobenius_power(E,P,1);walk=E(0);lam=None
@@ -69,7 +72,9 @@ def main():
                     state['runs'].append(record);print(json.dumps({k:record[k] for k in ['arm','target_index','mode','status','seconds']}),flush=True);continue
                 seconds=time.perf_counter()-start;(run_dir/'stdout').write_text(result.stdout);(run_dir/'stderr').write_text(result.stderr)
                 if result.returncode!=0:raise RuntimeError(f'WDSat process failed {result.returncode}: {result.stderr}')
-                if 'UNSAT' in result.stdout:status='unsat';bits=None;witness=None
+                if 'UNSAT' in result.stdout:
+                    if audited[name][target_index]:raise RuntimeError('WDSat UNSAT contradicts independent group reachability')
+                    status='unsat';bits=None;witness=None
                 else:
                     models=[line for line in result.stdout.splitlines() if re.fullmatch(r'[01]{%d}'%len(json.loads((original/'variables.json').read_text())),line)]
                     if not models:raise RuntimeError('WDSat returned no complete model')
@@ -78,6 +83,7 @@ def main():
                     target=next(t for t in arm['runs'] if t['target_index']==target_index);R=target['a']*P+target['b']*Q
                     witness=lab.witness_multi(E,bases,R,bits,r,offsets);status='verified_relation' if witness else 'algebraic_nonrelation'
                     if witness:
+                        if not audited[name][target_index]:raise RuntimeError('WDSat relation lies outside audited reachability set')
                         coefficients=rewritten_coefficients(E,witness,arm['exponents'],lam,r,state['columns']);lhs=E(0)
                         for key,pos in state['columns'].items():lhs+=coefficients[pos]*E(F.from_integer(key[0]),F.from_integer(key[1]))
                         if lhs!=R:raise RuntimeError('Rewritten relation failed')
